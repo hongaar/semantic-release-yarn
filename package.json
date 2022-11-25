@@ -30,7 +30,7 @@
     "pretest": "npm run lint",
     "semantic-release": "semantic-release",
     "test": "nyc ava -v",
-    "test:ci": "nyc ava -v"
+    "build": "echo 'not implemented'"
   },
   "engines": {
     "node": ">=16 || ^14.17"
@@ -96,5 +96,8 @@
       "unicorn/no-reduce": "off"
     }
   },
-  "packageManager": "yarn@3.3.0"
+  "packageManager": "yarn@3.3.0",
+  "moker": {
+    "plugins": []
+  }
 }

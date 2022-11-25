@@ -6517,7 +6517,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moker@npm:^0.4.4":
+"moker@npm:0.4.4":
   version: 0.4.4
   resolution: "moker@npm:0.4.4"
   dependencies:
@@ -8330,7 +8330,7 @@ __metadata:
     get-stream: 6.0.1
     got: 11.8.5
     lodash: ^4.17.15
-    moker: ^0.4.4
+    moker: 0.4.4
     nerf-dart: ^1.0.0
     normalize-url: ^6.0.0
     npm: ^8.3.0
