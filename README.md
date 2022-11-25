@@ -1,7 +1,7 @@
 # semantic-release-yarn [![npm](https://img.shields.io/npm/v/semantic-release-yarn)](https://www.npmjs.com/package/semantic-release-yarn)
 
-> **⚠️ DO NOT USE IN PRODUCTION ⚠️**
-> **This plugin is work in progress.**  
+> **⚠️ DO NOT USE IN PRODUCTION ⚠️**  
+> **This plugin is work in progress.**
 
 [**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to publish a [npm](https://www.npmjs.com) package with Yarn.
 
