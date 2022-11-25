@@ -1,22 +1,40 @@
 {
-  "name": "@semantic-release/npm",
-  "description": "semantic-release plugin to publish a npm package",
-  "version": "0.0.0-development",
-  "author": "Pierre Vanduynslager (https://twitter.com/@pvdlg_)",
-  "ava": {
-    "files": [
-      "test/**/*.test.js"
-    ],
-    "timeout": "2m",
-    "workerThreads": false
-  },
-  "bugs": {
-    "url": "https://github.com/semantic-release/npm/issues"
-  },
+  "name": "semantic-release-yarn",
+  "description": "semantic-release plugin to publish a npm package with yarn",
+  "version": "0.0.0",
+  "author": "Joram van den Boezem <joram@vandenboezem.nl>",
   "contributors": [
+    "Pierre Vanduynslager (https://twitter.com/@pvdlg_)",
     "Stephan Bönnemann <stephan@boennemann.me> (http://boennemann.me)",
     "Gregor Martynus (https://twitter.com/gr2m)"
   ],
+  "homepage": "https://github.com/hongaar/semantic-release-yarn",
+  "repository": "github:hongaar/semantic-release-yarn",
+  "bugs": "https://github.com/hongaar/semantic-release-yarn/issues",
+  "keywords": [
+    "npm",
+    "publish",
+    "semantic-release",
+    "yarn",
+    "monorepo"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "scripts": {
+    "codecov": "codecov -f coverage/coverage-final.json",
+    "lint": "xo",
+    "pretest": "npm run lint",
+    "semantic-release": "semantic-release",
+    "test": "nyc ava -v",
+    "test:ci": "nyc ava -v"
+  },
+  "engines": {
+    "node": ">=16 || ^14.17"
+  },
   "dependencies": {
     "@semantic-release/error": "^3.0.0",
     "aggregate-error": "^3.0.0",
@@ -40,6 +58,7 @@
     "dockerode": "3.3.1",
     "get-stream": "6.0.1",
     "got": "11.8.5",
+    "moker": "0.4.4",
     "nyc": "15.1.0",
     "p-retry": "4.6.2",
     "semantic-release": "19.0.2",
@@ -47,23 +66,16 @@
     "stream-buffers": "3.0.2",
     "xo": "0.36.1"
   },
-  "engines": {
-    "node": ">=16 || ^14.17"
+  "peerDependencies": {
+    "semantic-release": ">=19.0.0"
   },
-  "files": [
-    "lib",
-    "index.js"
-  ],
-  "homepage": "https://github.com/semantic-release/npm#readme",
-  "keywords": [
-    "npm",
-    "publish",
-    "registry",
-    "semantic-release",
-    "version"
-  ],
-  "license": "MIT",
-  "main": "index.js",
+  "ava": {
+    "files": [
+      "test/**/*.test.js"
+    ],
+    "timeout": "2m",
+    "workerThreads": false
+  },
   "nyc": {
     "include": [
       "lib/**/*.js",
@@ -76,28 +88,6 @@
     ],
     "all": true
   },
-  "peerDependencies": {
-    "semantic-release": ">=19.0.0"
-  },
-  "prettier": {
-    "printWidth": 120,
-    "trailingComma": "es5"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/semantic-release/npm.git"
-  },
-  "scripts": {
-    "codecov": "codecov -f coverage/coverage-final.json",
-    "lint": "xo",
-    "pretest": "npm run lint",
-    "semantic-release": "semantic-release",
-    "test": "nyc ava -v",
-    "test:ci": "nyc ava -v"
-  },
   "xo": {
     "prettier": true,
     "space": true,
@@ -106,9 +96,5 @@
       "unicorn/no-reduce": "off"
     }
   },
-  "renovate": {
-    "extends": [
-      "github>semantic-release/.github"
-    ]
-  }
+  "packageManager": "yarn@3.3.0"
 }
