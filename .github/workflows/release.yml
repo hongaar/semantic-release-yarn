@@ -1,8 +1,9 @@
-name: Release
+name: release
+
 "on":
   push:
     branches:
-      - main
+      - main-DISABLED
 
 jobs:
   release:
