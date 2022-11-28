@@ -25,7 +25,6 @@ async function start() {
     Tty: true,
     Image: IMAGE,
     PortBindings: {[`${REGISTRY_PORT}/tcp`]: [{HostPort: `${REGISTRY_PORT}`}]},
-    Binds: [`${path.join(__dirname, 'config.yaml')}:/verdaccio/conf/config.yaml`],
   });
 
   await execa('docker', ['cp', path.join(__dirname, 'config.yaml'), `${container.id}:/verdaccio/conf/config.yaml`]);
