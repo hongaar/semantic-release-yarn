@@ -19,18 +19,22 @@
     "monorepo"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
   "files": [
-    "lib",
-    "index.js"
+    "dist",
+    "types"
   ],
   "scripts": {
     "codecov": "codecov -f coverage/coverage-final.json",
     "lint": "xo",
     "pretest": "npm run lint",
-    "semantic-release": "semantic-release",
+    "clean": "rm -rf dist && rm -rf types",
+    "build": "yarn clean && tsc",
+    "watch:build": "tsc --watch",
     "test": "nyc ava -v",
-    "build": "echo 'not implemented'"
+    "prepublish": "yarn build",
+    "release": "semantic-release"
   },
   "engines": {
     "node": ">=16 || ^14.17"
@@ -51,6 +55,7 @@
     "tempy": "^1.0.0"
   },
   "devDependencies": {
+    "@types/node": "18.11.9",
     "ava": "4.2.0",
     "clear-module": "4.1.2",
     "codecov": "3.8.3",
@@ -64,6 +69,7 @@
     "semantic-release": "19.0.2",
     "sinon": "14.0.0",
     "stream-buffers": "3.0.2",
+    "typescript": "4.9.3",
     "xo": "0.36.1"
   },
   "peerDependencies": {
@@ -98,6 +104,8 @@
   },
   "packageManager": "yarn@3.3.0",
   "moker": {
-    "plugins": []
+    "plugins": [
+      "typescript"
+    ]
   }
 }

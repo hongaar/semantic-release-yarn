@@ -2,10 +2,8 @@ name: Release
 "on":
   push:
     branches:
-      - master
-      - next
-      - beta
-      - "*.x"
+      - main
+
 jobs:
   release:
     name: release
@@ -16,8 +14,8 @@ jobs:
         with:
           cache: npm
           node-version: 16
-      - run: npm ci
-      - run: npx semantic-release
+      - run: yarn install
+      - run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}

@@ -23,12 +23,11 @@ async function start() {
   container = await docker.createContainer({
     Tty: true,
     Image: IMAGE,
-    PortBindings: {[`${REGISTRY_PORT}/tcp`]: [{HostPort: `${REGISTRY_PORT}`}]},
-    Binds: [`${path.join(__dirname, 'config.yaml')}:/verdaccio/conf/config.yaml`],
+    PortBindings: { [`${REGISTRY_PORT}/tcp`]: [{ HostPort: `${REGISTRY_PORT}` }] }
   });
 
   await container.start();
-  await delay(4000);
+  // await delay(4000);
 
   try {
     // Wait for the registry to be ready
@@ -38,7 +37,7 @@ async function start() {
       factor: 2,
     });
   } catch {
-    throw new Error(`Couldn't start npm-docker-couchdb after 2 min`);
+    throw new Error(`Couldn't start ${IMAGE} after 2 min`);
   }
 
   // Create user
