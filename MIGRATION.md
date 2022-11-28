@@ -2,7 +2,8 @@
 
 ## TypeScript conversion
 
-...
+- `definitions/errors.ts` removed dynamic import of `package.json` (due to TS
+  rootDir limitation with resolveJsonModule enabled)
 
 ## Use `docker cp` for moving test/helpers/config.yaml
 
