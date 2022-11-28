@@ -13,3 +13,7 @@ node_modules
 # artifacts
 /dist
 /types
+
+# tmp
+/.nyc_output
+/coverage
