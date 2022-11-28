@@ -1,5 +1,9 @@
 # Migration log
 
+## TypeScript conversion
+
+...
+
 ## Use `docker cp` for moving test/helpers/config.yaml
 
 The Docker API `Binds` parameter doesn't work on certain environments (e.g. WSL)
@@ -42,5 +46,3 @@ if (String(result.stdout).trim() === 'undefined') {
   throw new AggregateError([getError('EINVALIDNPMTOKEN', {registry})]);
 }
 ```
-
-## TypeScript
