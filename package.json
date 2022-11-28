@@ -19,22 +19,26 @@
     "monorepo"
   ],
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "index.js",
   "types": "types/index.d.ts",
   "files": [
+    "lib",
     "dist",
     "types"
   ],
   "scripts": {
-    "codecov": "codecov -f coverage/coverage-final.json",
-    "lint": "xo",
-    "pretest": "npm run lint",
+    "postinstall": "husky install",
+    "format": "prettier --write --ignore-unknown .",
+    "format:check": "prettier --check --ignore-unknown .",
     "clean": "rm -rf dist && rm -rf types",
     "build": "yarn clean && tsc",
-    "watch:build": "tsc --watch",
-    "test": "nyc ava -v",
+    "build:watch": "yarn build && tsc --watch",
     "prepublish": "yarn build",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "_comment": "remove 👇 these lines",
+    "test": "nyc ava -v",
+    "pretest": "npm run lint",
+    "codecov": "codecov -f coverage/coverage-final.json"
   },
   "engines": {
     "node": ">=16 || ^14.17"
@@ -55,7 +59,10 @@
     "tempy": "^1.0.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/git": "10.0.1",
     "@types/node": "18.11.9",
+    "@types/prettier": "^2",
     "ava": "4.2.0",
     "clear-module": "4.1.2",
     "codecov": "3.8.3",
@@ -63,10 +70,13 @@
     "dockerode": "3.3.1",
     "get-stream": "6.0.1",
     "got": "11.8.5",
+    "husky": "8.0.2",
+    "lint-staged": "13.0.4",
     "moker": "0.4.4",
     "nyc": "15.1.0",
     "p-retry": "4.6.2",
-    "semantic-release": "19.0.2",
+    "prettier": "2.8.0",
+    "semantic-release": "19.0.5",
     "sinon": "14.0.0",
     "stream-buffers": "3.0.2",
     "typescript": "4.9.3",
@@ -105,7 +115,16 @@
   "packageManager": "yarn@3.3.0",
   "moker": {
     "plugins": [
-      "typescript"
+      "typescript",
+      "github-actions",
+      "semantic-release",
+      "prettier",
+      "lint-staged",
+      "husky",
+      "dependabot"
     ]
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown"
   }
 }

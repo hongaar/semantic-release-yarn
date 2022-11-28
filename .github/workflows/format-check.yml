@@ -1,12 +1,12 @@
-name: release
+name: format-check
 
 on:
   push:
     branches:
-      - main_DISABLED_FOR_NOW
+      - main
 
 jobs:
-  release:
+  format-check:
     name: release
     runs-on: ubuntu-latest
     steps:
@@ -16,9 +16,4 @@ jobs:
           node-version: lts/*
           cache: yarn
       - run: yarn install
-      # @todo: enable
-      # - run: yarn build
-      - run: yarn release
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn format:check
