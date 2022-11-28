@@ -60,6 +60,8 @@
   "devDependencies": {
     "@semantic-release/changelog": "6.0.1",
     "@semantic-release/git": "10.0.1",
+    "@types/es-aggregate-error": "1.0.2",
+    "@types/lodash": "4.14.190",
     "@types/node": "18.11.9",
     "@types/prettier": "^2",
     "ava": "4.2.0",
@@ -67,6 +69,7 @@
     "codecov": "3.8.3",
     "delay": "5.0.0",
     "dockerode": "3.3.1",
+    "es-aggregate-error": "1.0.9",
     "get-stream": "6.0.1",
     "got": "11.8.5",
     "husky": "8.0.2",

@@ -1,13 +1,13 @@
-const path = require("path");
-const { move } = require("fs-extra");
-const execa = require("execa");
+import execa from "execa";
+import { move } from "fs-extra";
+import { resolve } from "node:path";
 
-module.exports = async (
+export default async (
   npmrc,
   { tarballDir, pkgRoot },
   { cwd, env, stdout, stderr, nextRelease: { version }, logger }
 ) => {
-  const basePath = pkgRoot ? path.resolve(cwd, pkgRoot) : cwd;
+  const basePath = pkgRoot ? resolve(cwd, pkgRoot) : cwd;
 
   logger.log("Write version %s to package.json in %s", version, basePath);
 
@@ -43,8 +43,8 @@ module.exports = async (
     packResult.stderr.pipe(stderr, { end: false });
 
     const tarball = (await packResult).stdout.split("\n").pop();
-    const tarballSource = path.resolve(cwd, tarball);
-    const tarballDestination = path.resolve(cwd, tarballDir.trim(), tarball);
+    const tarballSource = resolve(cwd, tarball);
+    const tarballDestination = resolve(cwd, tarballDir.trim(), tarball);
 
     // Only move the tarball if we need to
     // Fixes: https://github.com/semantic-release/npm/issues/169
