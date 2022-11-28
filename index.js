@@ -1,27 +1,38 @@
-const {defaultTo, castArray} = require('lodash');
-const AggregateError = require('aggregate-error');
-const tempy = require('tempy');
-const setLegacyToken = require('./lib/set-legacy-token');
-const getPkg = require('./lib/get-pkg');
-const verifyNpmConfig = require('./lib/verify-config');
-const verifyNpmAuth = require('./lib/verify-auth');
-const addChannelNpm = require('./lib/add-channel');
-const prepareNpm = require('./lib/prepare');
-const publishNpm = require('./lib/publish');
+const { defaultTo, castArray } = require("lodash");
+const AggregateError = require("aggregate-error");
+const tempy = require("tempy");
+const setLegacyToken = require("./lib/set-legacy-token");
+const getPkg = require("./lib/get-pkg");
+const verifyNpmConfig = require("./lib/verify-config");
+const verifyNpmAuth = require("./lib/verify-auth");
+const addChannelNpm = require("./lib/add-channel");
+const prepareNpm = require("./lib/prepare");
+const publishNpm = require("./lib/publish");
 
 let verified;
 let prepared;
-const npmrc = tempy.file({name: '.npmrc'});
+const npmrc = tempy.file({ name: ".npmrc" });
 
 async function verifyConditions(pluginConfig, context) {
   // If the npm publish plugin is used and has `npmPublish`, `tarballDir` or `pkgRoot` configured, validate them now in order to prevent any release if the configuration is wrong
   if (context.options.publish) {
     const publishPlugin =
-      castArray(context.options.publish).find((config) => config.path && config.path === '@semantic-release/npm') || {};
+      castArray(context.options.publish).find(
+        (config) => config.path && config.path === "@semantic-release/npm"
+      ) || {};
 
-    pluginConfig.npmPublish = defaultTo(pluginConfig.npmPublish, publishPlugin.npmPublish);
-    pluginConfig.tarballDir = defaultTo(pluginConfig.tarballDir, publishPlugin.tarballDir);
-    pluginConfig.pkgRoot = defaultTo(pluginConfig.pkgRoot, publishPlugin.pkgRoot);
+    pluginConfig.npmPublish = defaultTo(
+      pluginConfig.npmPublish,
+      publishPlugin.npmPublish
+    );
+    pluginConfig.tarballDir = defaultTo(
+      pluginConfig.tarballDir,
+      publishPlugin.tarballDir
+    );
+    pluginConfig.pkgRoot = defaultTo(
+      pluginConfig.pkgRoot,
+      publishPlugin.pkgRoot
+    );
   }
 
   const errors = verifyNpmConfig(pluginConfig);
@@ -54,7 +65,11 @@ async function prepare(pluginConfig, context) {
   try {
     // Reload package.json in case a previous external step updated it
     const pkg = await getPkg(pluginConfig, context);
-    if (!verified && pluginConfig.npmPublish !== false && pkg.private !== true) {
+    if (
+      !verified &&
+      pluginConfig.npmPublish !== false &&
+      pkg.private !== true
+    ) {
       await verifyNpmAuth(npmrc, pkg, context);
     }
   } catch (error) {
@@ -78,7 +93,11 @@ async function publish(pluginConfig, context) {
   try {
     // Reload package.json in case a previous external step updated it
     pkg = await getPkg(pluginConfig, context);
-    if (!verified && pluginConfig.npmPublish !== false && pkg.private !== true) {
+    if (
+      !verified &&
+      pluginConfig.npmPublish !== false &&
+      pkg.private !== true
+    ) {
       await verifyNpmAuth(npmrc, pkg, context);
     }
   } catch (error) {
@@ -105,7 +124,11 @@ async function addChannel(pluginConfig, context) {
   try {
     // Reload package.json in case a previous external step updated it
     pkg = await getPkg(pluginConfig, context);
-    if (!verified && pluginConfig.npmPublish !== false && pkg.private !== true) {
+    if (
+      !verified &&
+      pluginConfig.npmPublish !== false &&
+      pkg.private !== true
+    ) {
       await verifyNpmAuth(npmrc, pkg, context);
     }
   } catch (error) {
@@ -119,4 +142,4 @@ async function addChannel(pluginConfig, context) {
   return addChannelNpm(npmrc, pluginConfig, pkg, context);
 }
 
-module.exports = {verifyConditions, prepare, publish, addChannel};
+module.exports = { verifyConditions, prepare, publish, addChannel };

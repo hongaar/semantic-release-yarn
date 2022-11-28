@@ -6,11 +6,11 @@ auth:
   htpasswd:
     file: /verdaccio/storage/htpasswd
 packages:
-  '@*/*':
+  "@*/*":
     access: $all
     publish: $authenticated
     unpublish: $authenticated
-  '**':
+  "**":
     access: $all
     publish: $authenticated
     unpublish: $authenticated

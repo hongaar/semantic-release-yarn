@@ -37,7 +37,6 @@
     "release": "semantic-release",
     "_comment": "remove 👇 these lines",
     "test": "nyc ava -v",
-    "lint": "xo",
     "pretest": "npm run lint",
     "codecov": "codecov -f coverage/coverage-final.json"
   },
