@@ -1,10 +1,14 @@
 # Migration log
 
-## Tests
+## Use `docker cp` for moving test/helpers/config.yaml
 
-Ran into some issues with the integration tests.
+The Docker API `Binds` parameter doesn't work on certain environments (e.g. WSL)
 
-### Throws error if NPM token is invalid
+See https://github.com/hongaar/semantic-release-yarn/pull/1/commits/aea50dd9e9ce14e32f5bedf3fda34c8c1fe2989f
+
+## `Throws error if NPM token is invalid`
+
+See https://github.com/hongaar/semantic-release-yarn/pull/1/commits/a1458ba9a8c40c9d5438beb12e5567f182ed5c43
 
 ```
  ✖ Throws error if NPM token is invalid 

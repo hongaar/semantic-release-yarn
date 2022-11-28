@@ -1,5 +1,6 @@
 const Docker = require('dockerode');
 const getStream = require('get-stream');
+const execa = require('execa');
 const got = require('got');
 const path = require('path');
 const delay = require('delay');
@@ -27,6 +28,7 @@ async function start() {
     Binds: [`${path.join(__dirname, 'config.yaml')}:/verdaccio/conf/config.yaml`],
   });
 
+  await execa('docker', ['cp', path.join(__dirname, 'config.yaml'), `${container.id}:/verdaccio/conf/config.yaml`]);
   await container.start();
   await delay(4000);
 
