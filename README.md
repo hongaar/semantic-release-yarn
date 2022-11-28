@@ -3,7 +3,7 @@
 > **⚠️ DO NOT USE IN PRODUCTION ⚠️**  
 > **This plugin is work in progress.**
 
-[**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to publish a [npm](https://www.npmjs.com) package with Yarn.
+[**semantic-release**](https://github.com/semantic-release/semantic-release) plugin to publish a [npm](https://www.npmjs.com) package with yarn.
 
 | Step               | Description                                                                                                                      |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------- |

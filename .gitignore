@@ -9,3 +9,7 @@ node_modules
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# artifacts
+/dist
+/types
