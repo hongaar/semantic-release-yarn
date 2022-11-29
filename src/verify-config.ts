@@ -1,25 +1,38 @@
-const { isString, isNil, isBoolean } = require("lodash");
-const getError = require("./get-error");
+import _ from "lodash";
+import { getError } from "./get-error.js";
+import type { PluginConfig } from "./index.js";
 
-const isNonEmptyString = (value) => isString(value) && value.trim();
+const isNonEmptyString = (value: unknown) =>
+  !!(_.isString(value) && value.trim());
 
 const VALIDATORS = {
-  npmPublish: isBoolean,
+  npmPublish: _.isBoolean,
   tarballDir: isNonEmptyString,
   pkgRoot: isNonEmptyString,
 };
 
-module.exports = ({ npmPublish, tarballDir, pkgRoot }) => {
+export function verifyConfig({
+  npmPublish,
+  tarballDir,
+  pkgRoot,
+}: PluginConfig) {
   const errors = Object.entries({ npmPublish, tarballDir, pkgRoot }).reduce(
-    (errors, [option, value]) =>
-      !isNil(value) && !VALIDATORS[option](value)
-        ? [
-            ...errors,
-            getError(`EINVALID${option.toUpperCase()}`, { [option]: value }),
-          ]
-        : errors,
-    []
+    (errors, [option, value]) => {
+      if (_.isNil(value)) {
+        return errors;
+      }
+
+      if (VALIDATORS[option as keyof PluginConfig](value)) {
+        return errors;
+      }
+
+      return [
+        ...errors,
+        getError(`EINVALID${option.toUpperCase()}` as any, { [option]: value }),
+      ];
+    },
+    [] as Error[]
   );
 
   return errors;
-};
+}

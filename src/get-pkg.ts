@@ -1,9 +1,14 @@
-const path = require("path");
-const readPkg = require("read-pkg");
-const AggregateError = require("aggregate-error");
-const getError = require("./get-error");
+import AggregateError from "aggregate-error";
+import path from "path";
+import readPkg from "read-pkg";
+import type { CommonContext } from "./definitions/context.js";
+import { getError } from "./get-error.js";
+import type { PluginConfig } from "./index.js";
 
-module.exports = async ({ pkgRoot }, { cwd }) => {
+export async function getPkg(
+  { pkgRoot }: PluginConfig,
+  { cwd }: CommonContext
+) {
   try {
     const pkg = await readPkg({
       cwd: pkgRoot ? path.resolve(cwd, String(pkgRoot)) : cwd,
@@ -14,11 +19,11 @@ module.exports = async ({ pkgRoot }, { cwd }) => {
     }
 
     return pkg;
-  } catch (error) {
+  } catch (error: any) {
     if (error.code === "ENOENT") {
       throw new AggregateError([getError("ENOPKG")]);
     }
 
     throw new AggregateError([error]);
   }
-};
+}

@@ -4,6 +4,10 @@
 
 - `definitions/errors.ts` removed dynamic import of `package.json` (due to TS
   rootDir limitation with resolveJsonModule enabled)
+- add `definitions/constants.ts` to hold constants
+- add `definitions/context.ts` to TypeScript context types
+  (@types/semantic-release were incomplete, might want to open PR to add to
+  @types/semantic-release later)
 
 ## Use `docker cp` for moving test/helpers/config.yaml
 

@@ -1,11 +1,17 @@
-const execa = require("execa");
-const normalizeUrl = require("normalize-url");
-const AggregateError = require("aggregate-error");
-const getError = require("./get-error");
-const getRegistry = require("./get-registry");
-const setNpmrcAuth = require("./set-npmrc-auth");
+import AggregateError from "aggregate-error";
+import execa from "execa";
+import normalizeUrl from "normalize-url";
+import type { PackageJson } from "read-pkg";
+import type { CommonContext } from "./definitions/context.js";
+import { getError } from "./get-error.js";
+import { getRegistry } from "./get-registry.js";
+import { setNpmrcAuth } from "./set-npmrc-auth.js";
 
-module.exports = async (npmrc, pkg, context) => {
+export async function verifyAuth(
+  npmrc: string,
+  pkg: PackageJson,
+  context: CommonContext
+) {
   const {
     cwd,
     env: { DEFAULT_NPM_REGISTRY = "https://registry.npmjs.org/", ...env },
@@ -27,8 +33,8 @@ module.exports = async (npmrc, pkg, context) => {
           preferLocal: true,
         }
       );
-      whoamiResult.stdout.pipe(stdout, { end: false });
-      whoamiResult.stderr.pipe(stderr, { end: false });
+      whoamiResult.stdout!.pipe(stdout, { end: false });
+      whoamiResult.stderr!.pipe(stderr, { end: false });
       const result = await whoamiResult;
       // Fix for error "Promise resolved with: undefined" on Node >= 16
       if (String(result.stdout).trim() === "undefined") {
@@ -38,4 +44,4 @@ module.exports = async (npmrc, pkg, context) => {
       throw new AggregateError([getError("EINVALIDNPMTOKEN", { registry })]);
     }
   }
-};
+}
