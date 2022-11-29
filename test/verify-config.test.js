@@ -1,6 +1,6 @@
-const test = require("ava");
-const { stub } = require("sinon");
-const verify = require("../lib/verify-config");
+import test from "ava";
+import { stub } from "sinon";
+import { verifyConfig } from "../dist/verify-config.js";
 
 test.beforeEach((t) => {
   // Stub the logger functions
@@ -10,7 +10,7 @@ test.beforeEach((t) => {
 
 test('Verify "npmPublish", "tarballDir" and "pkgRoot" options', async (t) => {
   t.deepEqual(
-    await verify(
+    verifyConfig(
       { npmPublish: true, tarballDir: "release", pkgRoot: "dist" },
       {},
       t.context.logger
@@ -21,7 +21,11 @@ test('Verify "npmPublish", "tarballDir" and "pkgRoot" options', async (t) => {
 
 test('Return SemanticReleaseError if "npmPublish" option is not a Boolean', async (t) => {
   const npmPublish = 42;
-  const [error, ...errors] = await verify({ npmPublish }, {}, t.context.logger);
+  const [error, ...errors] = await verifyConfig(
+    { npmPublish },
+    {},
+    t.context.logger
+  );
 
   t.is(errors.length, 0);
   t.is(error.name, "SemanticReleaseError");
@@ -30,7 +34,11 @@ test('Return SemanticReleaseError if "npmPublish" option is not a Boolean', asyn
 
 test('Return SemanticReleaseError if "tarballDir" option is not a String', async (t) => {
   const tarballDir = 42;
-  const [error, ...errors] = await verify({ tarballDir }, {}, t.context.logger);
+  const [error, ...errors] = await verifyConfig(
+    { tarballDir },
+    {},
+    t.context.logger
+  );
 
   t.is(errors.length, 0);
   t.is(error.name, "SemanticReleaseError");
@@ -39,7 +47,11 @@ test('Return SemanticReleaseError if "tarballDir" option is not a String', async
 
 test('Return SemanticReleaseError if "pkgRoot" option is not a String', async (t) => {
   const pkgRoot = 42;
-  const [error, ...errors] = await verify({ pkgRoot }, {}, t.context.logger);
+  const [error, ...errors] = await verifyConfig(
+    { pkgRoot },
+    {},
+    t.context.logger
+  );
 
   t.is(errors.length, 0);
   t.is(error.name, "SemanticReleaseError");
@@ -50,7 +62,7 @@ test("Return SemanticReleaseError Array if multiple config are invalid", async (
   const npmPublish = 42;
   const tarballDir = 42;
   const pkgRoot = 42;
-  const [error1, error2, error3] = await verify(
+  const [error1, error2, error3] = await verifyConfig(
     { npmPublish, tarballDir, pkgRoot },
     {},
     t.context.logger

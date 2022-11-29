@@ -1,9 +1,9 @@
-const test = require("ava");
-const getReleaseInfo = require("../lib/get-release-info");
+import test from "ava";
+import { getReleaseInfo } from "../dist/get-release-info.js";
 
 test("Default registry and scoped module", async (t) => {
   t.deepEqual(
-    await getReleaseInfo(
+    getReleaseInfo(
       { name: "@scope/module" },
       { env: {}, nextRelease: { version: "1.0.0" } },
       "latest",
