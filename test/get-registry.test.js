@@ -1,11 +1,11 @@
-const path = require("path");
-const test = require("ava");
-const { appendFile } = require("fs-extra");
-const tempy = require("tempy");
-const getRegistry = require("../lib/get-registry");
+import test from "ava";
+import fs from "fs-extra";
+import { resolve } from "node:path";
+import { directory } from "tempy";
+import { getRegistry } from "../dist/get-registry.js";
 
 test("Get default registry", (t) => {
-  const cwd = tempy.directory();
+  const cwd = directory();
   t.is(
     getRegistry({ name: "package-name" }, { cwd, env: {} }),
     "https://registry.npmjs.org/"
@@ -17,9 +17,9 @@ test("Get default registry", (t) => {
 });
 
 test('Get the registry configured in ".npmrc" and normalize trailing slash', async (t) => {
-  const cwd = tempy.directory();
-  await appendFile(
-    path.resolve(cwd, ".npmrc"),
+  const cwd = directory();
+  await fs.appendFile(
+    resolve(cwd, ".npmrc"),
     "registry = https://custom1.registry.com"
   );
 
@@ -30,9 +30,9 @@ test('Get the registry configured in ".npmrc" and normalize trailing slash', asy
 });
 
 test('Get the registry configured from "publishConfig"', async (t) => {
-  const cwd = tempy.directory();
-  await appendFile(
-    path.resolve(cwd, ".npmrc"),
+  const cwd = directory();
+  await fs.appendFile(
+    resolve(cwd, ".npmrc"),
     "registry = https://custom2.registry.com"
   );
 
@@ -49,7 +49,7 @@ test('Get the registry configured from "publishConfig"', async (t) => {
 });
 
 test('Get the registry configured in "NPM_CONFIG_REGISTRY"', (t) => {
-  const cwd = tempy.directory();
+  const cwd = directory();
 
   t.is(
     getRegistry(
@@ -61,9 +61,9 @@ test('Get the registry configured in "NPM_CONFIG_REGISTRY"', (t) => {
 });
 
 test('Get the registry configured in ".npmrc" for scoped package', async (t) => {
-  const cwd = tempy.directory();
-  await appendFile(
-    path.resolve(cwd, ".npmrc"),
+  const cwd = directory();
+  await fs.appendFile(
+    resolve(cwd, ".npmrc"),
     "@scope:registry = https://custom3.registry.com"
   );
 
@@ -76,9 +76,9 @@ test('Get the registry configured in ".npmrc" for scoped package', async (t) => 
 test.serial(
   'Get the registry configured via "NPM_CONFIG_USERCONFIG" for scoped package',
   async (t) => {
-    const cwd = tempy.directory();
-    await appendFile(
-      path.resolve(cwd, ".custom-npmrc"),
+    const cwd = directory();
+    await fs.appendFile(
+      resolve(cwd, ".custom-npmrc"),
       "@scope:registry = https://custom4.registry.com"
     );
 
@@ -89,7 +89,7 @@ test.serial(
         },
         {
           cwd,
-          env: { NPM_CONFIG_USERCONFIG: path.resolve(cwd, ".custom-npmrc") },
+          env: { NPM_CONFIG_USERCONFIG: resolve(cwd, ".custom-npmrc") },
         }
       ),
       "https://custom4.registry.com/"
