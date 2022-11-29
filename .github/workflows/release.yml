@@ -16,8 +16,7 @@ jobs:
           node-version: lts/*
           cache: yarn
       - run: yarn install
-      # @todo: enable
-      # - run: yarn build
+      - run: yarn build
       - run: yarn release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
