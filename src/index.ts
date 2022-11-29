@@ -1,41 +1,62 @@
-const { defaultTo, castArray } = require("lodash");
-const AggregateError = require("aggregate-error");
-const tempy = require("tempy");
-const setLegacyToken = require("./lib/set-legacy-token");
-const getPkg = require("./lib/get-pkg");
-const verifyNpmConfig = require("./lib/verify-config");
-const verifyNpmAuth = require("./lib/verify-auth");
-const addChannelNpm = require("./lib/add-channel");
-const prepareNpm = require("./lib/prepare");
-const publishNpm = require("./lib/publish");
+import AggregateError from "aggregate-error";
+import _ from "lodash";
+import type { PackageJson } from "read-pkg";
+import tempy from "tempy";
+import { addChannel as addChannelNpm } from "./add-channel.js";
+import { PLUGIN_NAME } from "./definitions/constants.js";
+import type {
+  AddChannelContext,
+  PrepareContext,
+  PublishContext,
+  VerifyConditionsContext,
+} from "./definitions/context.js";
+import { getPkg } from "./get-pkg.js";
+import { prepare as prepareNpm } from "./prepare.js";
+import { publish as publishNpm } from "./publish.js";
+import { setLegacyToken } from "./set-legacy-token.js";
+import { verifyAuth } from "./verify-auth.js";
+import { verifyConfig } from "./verify-config.js";
 
-let verified;
-let prepared;
+export type PluginConfig = {
+  npmPublish?: boolean;
+  tarballDir?: string;
+  pkgRoot?: string;
+};
+
+let verified: boolean;
+let prepared: boolean;
 const npmrc = tempy.file({ name: ".npmrc" });
 
-async function verifyConditions(pluginConfig, context) {
-  // If the npm publish plugin is used and has `npmPublish`, `tarballDir` or `pkgRoot` configured, validate them now in order to prevent any release if the configuration is wrong
-  if (context.options.publish) {
+async function verifyConditions(
+  pluginConfig: PluginConfig,
+  context: VerifyConditionsContext
+) {
+  /**
+   * If the npm publish plugin is used and has `npmPublish`, `tarballDir` or
+   * `pkgRoot` configured, validate them now in order to prevent any release if
+   * the configuration is wrong
+   */
+  if (context.options?.["publish"]) {
     const publishPlugin =
-      castArray(context.options.publish).find(
-        (config) => config.path && config.path === "@semantic-release/npm"
+      _.castArray(context.options["publish"]).find(
+        (config) => config.path && config.path === PLUGIN_NAME
       ) || {};
 
-    pluginConfig.npmPublish = defaultTo(
+    pluginConfig.npmPublish = _.defaultTo(
       pluginConfig.npmPublish,
       publishPlugin.npmPublish
     );
-    pluginConfig.tarballDir = defaultTo(
+    pluginConfig.tarballDir = _.defaultTo(
       pluginConfig.tarballDir,
       publishPlugin.tarballDir
     );
-    pluginConfig.pkgRoot = defaultTo(
+    pluginConfig.pkgRoot = _.defaultTo(
       pluginConfig.pkgRoot,
       publishPlugin.pkgRoot
     );
   }
 
-  const errors = verifyNpmConfig(pluginConfig);
+  const errors = verifyConfig(pluginConfig);
 
   setLegacyToken(context);
 
@@ -44,9 +65,9 @@ async function verifyConditions(pluginConfig, context) {
 
     // Verify the npm authentication only if `npmPublish` is not false and `pkg.private` is not `true`
     if (pluginConfig.npmPublish !== false && pkg.private !== true) {
-      await verifyNpmAuth(npmrc, pkg, context);
+      await verifyAuth(npmrc, pkg, context);
     }
-  } catch (error) {
+  } catch (error: any) {
     errors.push(...error);
   }
 
@@ -57,8 +78,8 @@ async function verifyConditions(pluginConfig, context) {
   verified = true;
 }
 
-async function prepare(pluginConfig, context) {
-  const errors = verified ? [] : verifyNpmConfig(pluginConfig);
+async function prepare(pluginConfig: PluginConfig, context: PrepareContext) {
+  const errors = verified ? [] : verifyConfig(pluginConfig);
 
   setLegacyToken(context);
 
@@ -70,9 +91,9 @@ async function prepare(pluginConfig, context) {
       pluginConfig.npmPublish !== false &&
       pkg.private !== true
     ) {
-      await verifyNpmAuth(npmrc, pkg, context);
+      await verifyAuth(npmrc, pkg, context);
     }
-  } catch (error) {
+  } catch (error: any) {
     errors.push(...error);
   }
 
@@ -84,9 +105,9 @@ async function prepare(pluginConfig, context) {
   prepared = true;
 }
 
-async function publish(pluginConfig, context) {
+async function publish(pluginConfig: PluginConfig, context: PublishContext) {
   let pkg;
-  const errors = verified ? [] : verifyNpmConfig(pluginConfig);
+  const errors = verified ? [] : verifyConfig(pluginConfig);
 
   setLegacyToken(context);
 
@@ -98,9 +119,9 @@ async function publish(pluginConfig, context) {
       pluginConfig.npmPublish !== false &&
       pkg.private !== true
     ) {
-      await verifyNpmAuth(npmrc, pkg, context);
+      await verifyAuth(npmrc, pkg, context);
     }
-  } catch (error) {
+  } catch (error: any) {
     errors.push(...error);
   }
 
@@ -112,12 +133,15 @@ async function publish(pluginConfig, context) {
     await prepareNpm(npmrc, pluginConfig, context);
   }
 
-  return publishNpm(npmrc, pluginConfig, pkg, context);
+  return publishNpm(npmrc, pluginConfig, pkg as PackageJson, context);
 }
 
-async function addChannel(pluginConfig, context) {
+async function addChannel(
+  pluginConfig: PluginConfig,
+  context: AddChannelContext
+) {
   let pkg;
-  const errors = verified ? [] : verifyNpmConfig(pluginConfig);
+  const errors = verified ? [] : verifyConfig(pluginConfig);
 
   setLegacyToken(context);
 
@@ -129,9 +153,9 @@ async function addChannel(pluginConfig, context) {
       pluginConfig.npmPublish !== false &&
       pkg.private !== true
     ) {
-      await verifyNpmAuth(npmrc, pkg, context);
+      await verifyAuth(npmrc, pkg, context);
     }
-  } catch (error) {
+  } catch (error: any) {
     errors.push(...error);
   }
 
@@ -139,7 +163,7 @@ async function addChannel(pluginConfig, context) {
     throw new AggregateError(errors);
   }
 
-  return addChannelNpm(npmrc, pluginConfig, pkg, context);
+  return addChannelNpm(npmrc, pluginConfig, pkg as PackageJson, context);
 }
 
-module.exports = { verifyConditions, prepare, publish, addChannel };
+export { verifyConditions, prepare, publish, addChannel };

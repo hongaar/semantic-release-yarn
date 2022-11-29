@@ -1,9 +1,17 @@
-const execa = require("execa");
-const getRegistry = require("./get-registry");
-const getChannel = require("./get-channel");
-const getReleaseInfo = require("./get-release-info");
+import execa from "execa";
+import type { PackageJson } from "read-pkg";
+import type { AddChannelContext } from "./definitions/context.js";
+import { getChannel } from "./get-channel.js";
+import { getRegistry } from "./get-registry.js";
+import { getReleaseInfo } from "./get-release-info.js";
+import type { PluginConfig } from "./index.js";
 
-module.exports = async (npmrc, { npmPublish }, pkg, context) => {
+export async function addChannel(
+  npmrc: string,
+  { npmPublish }: PluginConfig,
+  pkg: PackageJson,
+  context: AddChannelContext
+) {
   const {
     cwd,
     env,
@@ -15,7 +23,7 @@ module.exports = async (npmrc, { npmPublish }, pkg, context) => {
 
   if (npmPublish !== false && pkg.private !== true) {
     const registry = getRegistry(pkg, context);
-    const distTag = getChannel(channel);
+    const distTag = getChannel(channel!);
 
     logger.log(
       `Adding version ${version} to npm registry on dist-tag ${distTag}`
@@ -38,8 +46,8 @@ module.exports = async (npmrc, { npmPublish }, pkg, context) => {
         preferLocal: true,
       }
     );
-    result.stdout.pipe(stdout, { end: false });
-    result.stderr.pipe(stderr, { end: false });
+    result.stdout!.pipe(stdout, { end: false });
+    result.stderr!.pipe(stderr, { end: false });
     await result;
 
     logger.log(
@@ -56,4 +64,4 @@ module.exports = async (npmrc, { npmPublish }, pkg, context) => {
   );
 
   return false;
-};
+}

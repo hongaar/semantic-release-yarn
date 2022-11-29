@@ -951,12 +951,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/env-ci@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@types/env-ci@npm:3.1.1"
+  checksum: 8f2afdb5928ed590e1a2b727ed14483ff226d6e20e321b2e934e663590edca6084fece047286bd491d7b250696f112859a2d13b44c31f72d26bb650e60dc96c1
+  languageName: node
+  linkType: hard
+
 "@types/es-aggregate-error@npm:1.0.2":
   version: 1.0.2
   resolution: "@types/es-aggregate-error@npm:1.0.2"
   dependencies:
     "@types/node": "*"
   checksum: 076fd59b595f33c8c7e7eb68ec55bd43cf8b2cf7bbc6778e25d7ae1a5fa0538a0a56f149015f403d7bbcefe59f1d8182351685b59c1fe719fd46d0dd8a9737fa
+  languageName: node
+  linkType: hard
+
+"@types/fs-extra@npm:9.0.13":
+  version: 9.0.13
+  resolution: "@types/fs-extra@npm:9.0.13"
+  dependencies:
+    "@types/node": "*"
+  checksum: add79e212acd5ac76b97b9045834e03a7996aef60a814185e0459088fd290519a3c1620865d588fa36c4498bf614210d2a703af5cf80aa1dbc125db78f6edac3
   languageName: node
   linkType: hard
 
@@ -983,7 +999,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/minimist@npm:^1.2.0":
+"@types/minimist@npm:*, @types/minimist@npm:^1.2.0":
   version: 1.2.2
   resolution: "@types/minimist@npm:1.2.2"
   checksum: b8da83c66eb4aac0440e64674b19564d9d86c80ae273144db9681e5eeff66f238ade9515f5006ffbfa955ceff8b89ad2bd8ec577d7caee74ba101431fb07045d
@@ -1011,10 +1027,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:^2":
+"@types/prettier@npm:2":
   version: 2.7.1
   resolution: "@types/prettier@npm:2.7.1"
   checksum: 5e3f58e229d6c73b5f5cae2e8f96c1c4a5b5805f83459e17a045ba8e96152b1d38e86b63e3172fb159dac923388699660862b75b2d37e54220805f0e691e26f1
+  languageName: node
+  linkType: hard
+
+"@types/rc@npm:1.2.1":
+  version: 1.2.1
+  resolution: "@types/rc@npm:1.2.1"
+  dependencies:
+    "@types/minimist": "*"
+  checksum: 8ffe65ba9c686e6a023c3a148e530c69586048d2f0191caa57aeefb56bc27471ac150830a08154f630c8cfd844ce92bca401f62970da176f6aa0c524912f0ff7
+  languageName: node
+  linkType: hard
+
+"@types/registry-auth-token@npm:4.2.1":
+  version: 4.2.1
+  resolution: "@types/registry-auth-token@npm:4.2.1"
+  checksum: 832f5a6c16259a4bb3285b3ad0b632ee579800bb05330517fbbf5dd813b56bf422dc6778ed8eaf9835f91fe322359179cd38d7eb0dcc112e8b4bb65d1e57ee35
   languageName: node
   linkType: hard
 
@@ -1031,6 +1063,22 @@ __metadata:
   version: 0.12.0
   resolution: "@types/retry@npm:0.12.0"
   checksum: 61a072c7639f6e8126588bf1eb1ce8835f2cb9c2aba795c4491cf6310e013267b0c8488039857c261c387e9728c1b43205099223f160bb6a76b4374f741b5603
+  languageName: node
+  linkType: hard
+
+"@types/semantic-release@npm:17.2.4":
+  version: 17.2.4
+  resolution: "@types/semantic-release@npm:17.2.4"
+  dependencies:
+    "@types/node": "*"
+  checksum: b4a51db09fdb3fb823c1c826f21fc519ee37e81e238591d853ff556adee714e125314c0786b1ce3e99c32c6751df17c7008cf0d9aad9559d30fd5291eb942a33
+  languageName: node
+  linkType: hard
+
+"@types/semver@npm:7.3.13":
+  version: 7.3.13
+  resolution: "@types/semver@npm:7.3.13"
+  checksum: 00c0724d54757c2f4bc60b5032fe91cda6410e48689633d5f35ece8a0a66445e3e57fa1d6e07eb780f792e82ac542948ec4d0b76eb3484297b79bd18b8cf1cb0
   languageName: node
   linkType: hard
 
@@ -6238,10 +6286,16 @@ __metadata:
     "@semantic-release/changelog": 6.0.1
     "@semantic-release/error": ^3.0.0
     "@semantic-release/git": 10.0.1
+    "@types/env-ci": 3.1.1
     "@types/es-aggregate-error": 1.0.2
+    "@types/fs-extra": 9.0.13
     "@types/lodash": 4.14.190
     "@types/node": 18.11.9
-    "@types/prettier": ^2
+    "@types/prettier": 2
+    "@types/rc": 1.2.1
+    "@types/registry-auth-token": 4.2.1
+    "@types/semantic-release": 17.2.4
+    "@types/semver": 7.3.13
     ava: 4.2.0
     clear-module: 4.1.2
     codecov: 3.8.3

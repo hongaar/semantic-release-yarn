@@ -1,12 +1,14 @@
 import execa from "execa";
 import { move } from "fs-extra";
 import { resolve } from "node:path";
+import type { PrepareContext } from "./definitions/context.js";
+import type { PluginConfig } from "./index.js";
 
-export default async (
-  npmrc,
-  { tarballDir, pkgRoot },
-  { cwd, env, stdout, stderr, nextRelease: { version }, logger }
-) => {
+export async function prepare(
+  npmrc: string,
+  { tarballDir, pkgRoot }: PluginConfig,
+  { cwd, env, stdout, stderr, nextRelease: { version }, logger }: PrepareContext
+) {
   const basePath = pkgRoot ? resolve(cwd, pkgRoot) : cwd;
 
   logger.log("Write version %s to package.json in %s", version, basePath);
@@ -27,8 +29,8 @@ export default async (
       preferLocal: true,
     }
   );
-  versionResult.stdout.pipe(stdout, { end: false });
-  versionResult.stderr.pipe(stderr, { end: false });
+  versionResult.stdout!.pipe(stdout, { end: false });
+  versionResult.stderr!.pipe(stderr, { end: false });
 
   await versionResult;
 
@@ -39,10 +41,10 @@ export default async (
       env,
       preferLocal: true,
     });
-    packResult.stdout.pipe(stdout, { end: false });
-    packResult.stderr.pipe(stderr, { end: false });
+    packResult.stdout!.pipe(stdout, { end: false });
+    packResult.stderr!.pipe(stderr, { end: false });
 
-    const tarball = (await packResult).stdout.split("\n").pop();
+    const tarball = (await packResult).stdout.split("\n").pop()!;
     const tarballSource = resolve(cwd, tarball);
     const tarballDestination = resolve(cwd, tarballDir.trim(), tarball);
 
@@ -52,4 +54,4 @@ export default async (
       await move(tarballSource, tarballDestination);
     }
   }
-};
+}

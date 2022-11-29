@@ -1,8 +1,9 @@
-const semver = require("semver");
+import semver from "semver";
 
-module.exports = (channel) =>
-  channel
+export function getChannel(channel: string) {
+  return channel
     ? semver.validRange(channel)
       ? `release-${channel}`
       : channel
     : "latest";
+}

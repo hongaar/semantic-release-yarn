@@ -1,14 +1,16 @@
-const path = require("path");
-const rc = require("rc");
-const { outputFile, readFile } = require("fs-extra");
-const getAuthToken = require("registry-auth-token");
-const nerfDart = require("nerf-dart");
-const AggregateError = require("aggregate-error");
-const getError = require("./get-error");
+import AggregateError from "aggregate-error";
+import fs from "fs-extra";
+// @ts-ignore
+import nerfDart from "nerf-dart";
+import path from "path";
+import rc from "rc";
+import getAuthToken from "registry-auth-token";
+import type { CommonContext } from "./definitions/context.js";
+import { getError } from "./get-error.js";
 
-module.exports = async (
-  npmrc,
-  registry,
+export async function setNpmrcAuth(
+  npmrc: string,
+  registry: string,
   {
     cwd,
     env: {
@@ -19,8 +21,8 @@ module.exports = async (
       NPM_EMAIL,
     },
     logger,
-  }
-) => {
+  }: CommonContext
+) {
   logger.log("Verify authentication for registry %s", registry);
   const { configs, ...rcConfig } = rc(
     "npm",
@@ -33,16 +35,18 @@ module.exports = async (
   }
 
   const currentConfig = configs
-    ? (await Promise.all(configs.map((config) => readFile(config)))).join("\n")
+    ? (await Promise.all(configs.map((config) => fs.readFile(config)))).join(
+        "\n"
+      )
     : "";
 
-  if (getAuthToken(registry, { npmrc: rcConfig })) {
-    await outputFile(npmrc, currentConfig);
+  if (getAuthToken(registry, { npmrc: rcConfig } as any)) {
+    await fs.outputFile(npmrc, currentConfig);
     return;
   }
 
   if (NPM_USERNAME && NPM_PASSWORD && NPM_EMAIL) {
-    await outputFile(
+    await fs.outputFile(
       npmrc,
       `${
         currentConfig ? `${currentConfig}\n` : ""
@@ -50,7 +54,7 @@ module.exports = async (
     );
     logger.log(`Wrote NPM_USERNAME, NPM_PASSWORD and NPM_EMAIL to ${npmrc}`);
   } else if (NPM_TOKEN) {
-    await outputFile(
+    await fs.outputFile(
       npmrc,
       `${currentConfig ? `${currentConfig}\n` : ""}${nerfDart(
         registry
@@ -60,4 +64,4 @@ module.exports = async (
   } else {
     throw new AggregateError([getError("ENONPMTOKEN", { registry })]);
   }
-};
+}

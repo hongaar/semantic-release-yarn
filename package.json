@@ -60,10 +60,16 @@
   "devDependencies": {
     "@semantic-release/changelog": "6.0.1",
     "@semantic-release/git": "10.0.1",
+    "@types/env-ci": "3.1.1",
     "@types/es-aggregate-error": "1.0.2",
+    "@types/fs-extra": "9.0.13",
     "@types/lodash": "4.14.190",
     "@types/node": "18.11.9",
-    "@types/prettier": "^2",
+    "@types/prettier": "2",
+    "@types/rc": "1.2.1",
+    "@types/registry-auth-token": "4.2.1",
+    "@types/semantic-release": "17.2.4",
+    "@types/semver": "7.3.13",
     "ava": "4.2.0",
     "clear-module": "4.1.2",
     "codecov": "3.8.3",
@@ -88,7 +94,7 @@
   },
   "ava": {
     "files": [
-      "test/**/*.test.js"
+      "test/**/*.test.cjs"
     ],
     "timeout": "2m",
     "workerThreads": false
