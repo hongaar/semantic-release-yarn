@@ -61,37 +61,30 @@ The NPM authentication configuration is **required** and can be set either via
 [environment variables](#environment-variables) or the
 [`.yarnrc.yml`](#yarn-configuration) file.
 
-Only the
-[`npmAuthToken`](https://yarnpkg.com/configuration/yarnrc/#npmAuthToken) is
-supported. The legacy
-[`npmAuthIdent`](https://yarnpkg.com/configuration/yarnrc/#npmAuthIdent)
-(`username:password`) authentication is strongly discouraged and not supported
-by this plugin.
+The options set in an existing `.yarnrc.yml` file will take precedence over
+environment variables.
 
 > ⚠️  
 > When
 > [two-factor authentication](https://docs.npmjs.com/configuring-two-factor-authentication)
-> is enabled on your NPM account, it needs to be disabled for writes. This
-> plugin will not work with the default setting. To read how to disable 2FA for
-> writes, see
-> [Disabling 2FA for writes](https://docs.npmjs.com/configuring-two-factor-authentication#disabling-2fa-for-writes).
+> is enabled on your NPM account and enabled for writes (default setting), the
+> token needs to be of type **Automation**.
 
 > ⚠️  
-> The presence of an `.yarnrc.yml` file will override any specified environment
-> variables.
+> Only the
+> [`npmAuthToken`](https://yarnpkg.com/configuration/yarnrc/#npmAuthToken) is
+> supported. The legacy
+> [`npmAuthIdent`](https://yarnpkg.com/configuration/yarnrc/#npmAuthIdent)
+> (`username:password`) authentication is strongly discouraged and not supported
+> by this plugin.
 
 ### Environment variables
 
-| Variable                | Description                                                                                                                   |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `NPM_TOKEN`             | Npm token created via [npm token create](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) |
-| `NPM_USERNAME`          | Npm username created via [npm adduser](https://docs.npmjs.com/cli/adduser) or on [npmjs.com](https://www.npmjs.com)           |
-| `NPM_PASSWORD`          | Password of the npm user.                                                                                                     |
-| `NPM_EMAIL`             | Email address associated with the npm user                                                                                    |
-| `NPM_CONFIG_USERCONFIG` | Path to non-default .npmrc file                                                                                               |
-
-Use either `NPM_TOKEN` for token authentication or `NPM_USERNAME`,
-`NPM_PASSWORD` and `NPM_EMAIL` for legacy authentication
+| Variable                | Description                                                            |
+| ----------------------- | ---------------------------------------------------------------------- |
+| `NPM_TOKEN`             | [NPM token](https://docs.npmjs.com/creating-and-viewing-access-tokens) |
+| `NPM_CONFIG_REGISTRY`   | NPM registry to use                                                    |
+| `NPM_CONFIG_USERCONFIG` | Path to non-default `.yarnrc.yml` file                                 |
 
 ### Yarn configuration
 
@@ -99,9 +92,9 @@ The plugin uses the [`yarn` CLI](https://yarnpkg.com/cli) which will read the
 configuration from a `.yarnrc.yml` file if present. See
 [Yarnrc files](https://yarnpkg.com/configuration/yarnrc) for the option list.
 
-The NPM registry to publish to can be configured via the environment variable
-`NPM_CONFIG_REGISTRY` and will take precedence over the configuration in
-`.yarnrc.yml`.
+The NPM registry to publish to can be configured via the
+[environment variable](#environment-variables) `NPM_CONFIG_REGISTRY` and will
+take precedence over the configuration in `.yarnrc.yml`.
 
 The
 [`registry`](https://yarnpkg.com/configuration/manifest#publishConfig.registry)
