@@ -16,10 +16,10 @@ test("Get default registry", (t) => {
   );
 });
 
-test('Get the registry configured in ".npmrc" and normalize trailing slash', async (t) => {
+test('Get the registry configured in ".yarnrc.yml" and normalize trailing slash', async (t) => {
   const cwd = directory();
   await fs.appendFile(
-    resolve(cwd, ".npmrc"),
+    resolve(cwd, ".yarnrc.yml"),
     "registry = https://custom1.registry.com"
   );
 
@@ -32,7 +32,7 @@ test('Get the registry configured in ".npmrc" and normalize trailing slash', asy
 test('Get the registry configured from "publishConfig"', async (t) => {
   const cwd = directory();
   await fs.appendFile(
-    resolve(cwd, ".npmrc"),
+    resolve(cwd, ".yarnrc.yml"),
     "registry = https://custom2.registry.com"
   );
 
@@ -60,10 +60,10 @@ test('Get the registry configured in "NPM_CONFIG_REGISTRY"', (t) => {
   );
 });
 
-test('Get the registry configured in ".npmrc" for scoped package', async (t) => {
+test('Get the registry configured in ".yarnrc.yml" for scoped package', async (t) => {
   const cwd = directory();
   await fs.appendFile(
-    resolve(cwd, ".npmrc"),
+    resolve(cwd, ".yarnrc.yml"),
     "@scope:registry = https://custom3.registry.com"
   );
 

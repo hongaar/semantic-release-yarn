@@ -16,7 +16,7 @@ test.beforeEach((t) => {
 
 test("Updade package.json", async (t) => {
   const cwd = directory();
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const packagePath = resolve(cwd, "package.json");
   await fs.outputJson(packagePath, { version: "0.0.0-dev" });
 
@@ -46,7 +46,7 @@ test("Updade package.json", async (t) => {
 
 test("Updade package.json and npm-shrinkwrap.json", async (t) => {
   const cwd = directory();
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const packagePath = resolve(cwd, "package.json");
   const shrinkwrapPath = resolve(cwd, "npm-shrinkwrap.json");
   await fs.outputJson(packagePath, { version: "0.0.0-dev" });
@@ -79,11 +79,11 @@ test("Updade package.json and npm-shrinkwrap.json", async (t) => {
 
 test("Updade package.json and package-lock.json", async (t) => {
   const cwd = directory();
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const packagePath = resolve(cwd, "package.json");
   const packageLockPath = resolve(cwd, "package-lock.json");
   await fs.outputJson(packagePath, { version: "0.0.0-dev" });
-  await fs.appendFile(resolve(cwd, ".npmrc"), "package-lock = true");
+  await fs.appendFile(resolve(cwd, ".yarnrc.yml"), "package-lock = true");
   // Create a package-lock.json file
   await execa("npm", ["install"], { cwd });
 
@@ -113,7 +113,7 @@ test("Updade package.json and package-lock.json", async (t) => {
 
 test("Updade package.json and npm-shrinkwrap.json in a sub-directory", async (t) => {
   const cwd = directory();
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const pkgRoot = "dist";
   const packagePath = resolve(cwd, pkgRoot, "package.json");
   const shrinkwrapPath = resolve(cwd, pkgRoot, "npm-shrinkwrap.json");
@@ -147,12 +147,15 @@ test("Updade package.json and npm-shrinkwrap.json in a sub-directory", async (t)
 
 test("Updade package.json and package-lock.json in a sub-directory", async (t) => {
   const cwd = directory();
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const pkgRoot = "dist";
   const packagePath = resolve(cwd, pkgRoot, "package.json");
   const packageLockPath = resolve(cwd, pkgRoot, "package-lock.json");
   await fs.outputJson(packagePath, { version: "0.0.0-dev" });
-  await fs.appendFile(resolve(cwd, pkgRoot, ".npmrc"), "package-lock = true");
+  await fs.appendFile(
+    resolve(cwd, pkgRoot, ".yarnrc.yml"),
+    "package-lock = true"
+  );
   // Create a package-lock.json file
   await execa("npm", ["install"], { cwd: resolve(cwd, pkgRoot) });
 
@@ -182,7 +185,7 @@ test("Updade package.json and package-lock.json in a sub-directory", async (t) =
 
 test("Preserve indentation and newline", async (t) => {
   const cwd = directory();
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const packagePath = resolve(cwd, "package.json");
   await fs.outputFile(
     packagePath,
@@ -218,7 +221,7 @@ test("Preserve indentation and newline", async (t) => {
 
 test('Create the package in the "tarballDir" directory', async (t) => {
   const cwd = directory();
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const packagePath = resolve(cwd, "package.json");
   const pkg = { name: "my-pkg", version: "0.0.0-dev" };
   await fs.outputJson(packagePath, pkg);
@@ -250,7 +253,7 @@ test('Create the package in the "tarballDir" directory', async (t) => {
 
 test('Only move the created tarball if the "tarballDir" directory is not the CWD', async (t) => {
   const cwd = directory();
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const packagePath = resolve(cwd, "package.json");
   const pkg = { name: "my-pkg", version: "0.0.0-dev" };
   await fs.outputJson(packagePath, pkg);

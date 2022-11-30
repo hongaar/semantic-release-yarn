@@ -5,10 +5,10 @@ import type { PackageJson } from "read-pkg";
 import type { CommonContext } from "./definitions/context.js";
 import { getError } from "./get-error.js";
 import { getRegistry } from "./get-registry.js";
-import { setNpmrcAuth } from "./set-npmrc-auth.js";
+import { setYarnrcAuth } from "./set-yarnrc-auth.js";
 
 export async function verifyAuth(
-  npmrc: string,
+  yarnrc: string,
   pkg: PackageJson,
   context: CommonContext
 ) {
@@ -20,7 +20,7 @@ export async function verifyAuth(
   } = context;
   const registry = getRegistry(pkg, context);
 
-  await setNpmrcAuth(npmrc, registry, context);
+  await setYarnrcAuth(yarnrc, registry, context);
 
   if (normalizeUrl(registry) === normalizeUrl(DEFAULT_NPM_REGISTRY)) {
     try {

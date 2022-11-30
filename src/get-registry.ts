@@ -11,7 +11,7 @@ export function getRegistry(
   rc(
     "npm",
     { registry: "https://registry.npmjs.org/" },
-    { config: env["NPM_CONFIG_USERCONFIG"] || path.resolve(cwd, ".npmrc") }
+    { config: env["NPM_CONFIG_USERCONFIG"] || path.resolve(cwd, ".yarnrc.yml") }
   );
 
   return (registry ||
@@ -21,7 +21,10 @@ export function getRegistry(
       rc(
         "npm",
         { registry: "https://registry.npmjs.org/" },
-        { config: env["NPM_CONFIG_USERCONFIG"] || path.resolve(cwd, ".npmrc") }
+        {
+          config:
+            env["NPM_CONFIG_USERCONFIG"] || path.resolve(cwd, ".yarnrc.yml"),
+        }
       ) as any
     )) as string;
 }

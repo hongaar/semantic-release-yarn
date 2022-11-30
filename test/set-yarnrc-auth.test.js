@@ -16,8 +16,8 @@ test.before((t) => {
 
 test.beforeEach(async (t) => {
   // Clear files
-  await fs.remove(resolve(process.env.HOME, ".npmrc"));
-  await fs.remove(resolve(cwd, ".npmrc"));
+  await fs.remove(resolve(process.env.HOME, ".yarnrc.yml"));
+  await fs.remove(resolve(cwd, ".yarnrc.yml"));
 
   // Stub the logger
   t.context.log = stub();
@@ -30,36 +30,36 @@ test.after.always(() => {
 });
 
 test.serial('Set auth with "NPM_TOKEN"', async (t) => {
-  const npmrc = file({ name: ".npmrc" });
+  const yarnrc = file({ name: ".yarnrc.yml" });
   const env = { NPM_TOKEN: "npm_token" };
 
   await (
-    await import("../dist/set-npmrc-auth.js")
-  ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+    await import("../dist/set-yarnrc-auth.js")
+  ).setYarnrcAuth(yarnrc, "http://custom.registry.com", {
     cwd,
     env,
     logger: t.context.logger,
   });
 
   t.is(
-    (await fs.readFile(npmrc)).toString(),
-    "//custom.registry.com/:_authToken = ${NPM_TOKEN}"
+    (await fs.readFile(yarnrc)).toString(),
+    "npmPublishRegistry: //custom.registry.com/\nnpmAuthToken: ${NPM_TOKEN}\n"
   );
-  t.deepEqual(t.context.log.args[1], [`Wrote NPM_TOKEN to ${npmrc}`]);
+  t.deepEqual(t.context.log.args[1], [`Wrote NPM_TOKEN to ${yarnrc}`]);
 });
 
-test.serial('Preserve home ".npmrc"', async (t) => {
-  const npmrc = file({ name: ".npmrc" });
+test.only('Preserve home ".yarnrc.yml"', async (t) => {
+  const npmrc = file({ name: ".yarnrc.yml" });
   const env = { NPM_TOKEN: "npm_token" };
 
   await fs.appendFile(
-    resolve(process.env.HOME, ".npmrc"),
-    "home_config = test"
+    resolve(process.env.HOME, ".yarnrc.yml"),
+    "enableColors: false"
   );
 
   await (
-    await import("../dist/set-npmrc-auth.js")
-  ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+    await import("../dist/set-yarnrc-auth.js")
+  ).setYarnrcAuth(npmrc, "http://custom.registry.com", {
     cwd,
     env,
     logger: t.context.logger,
@@ -67,28 +67,28 @@ test.serial('Preserve home ".npmrc"', async (t) => {
 
   t.is(
     (await fs.readFile(npmrc)).toString(),
-    `home_config = test\n//custom.registry.com/:_authToken = \${NPM_TOKEN}`
+    "enableColors: false\nnpmPublishRegistry: //custom.registry.com/\nnpmAuthToken: ${NPM_TOKEN}\n"
   );
   t.deepEqual(t.context.log.args[1], [
     "Reading npm config from %s",
-    [resolve(process.env.HOME, ".npmrc")].join(", "),
+    [resolve(process.env.HOME, ".yarnrc.yml")].join(", "),
   ]);
   t.deepEqual(t.context.log.args[2], [`Wrote NPM_TOKEN to ${npmrc}`]);
 });
 
-test.serial('Preserve home and local ".npmrc"', async (t) => {
-  const npmrc = file({ name: ".npmrc" });
+test.serial('Preserve home and local ".yarnrc.yml"', async (t) => {
+  const npmrc = file({ name: ".yarnrc.yml" });
   const env = { NPM_TOKEN: "npm_token" };
 
-  await fs.appendFile(resolve(cwd, ".npmrc"), "cwd_config = test");
+  await fs.appendFile(resolve(cwd, ".yarnrc.yml"), "cwd_config = test");
   await fs.appendFile(
-    resolve(process.env.HOME, ".npmrc"),
+    resolve(process.env.HOME, ".yarnrc.yml"),
     "home_config = test"
   );
 
   await (
-    await import("../dist/set-npmrc-auth.js")
-  ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+    await import("../dist/set-yarnrc-auth.js")
+  ).setYarnrcAuth(npmrc, "http://custom.registry.com", {
     cwd,
     env,
     logger: t.context.logger,
@@ -100,28 +100,31 @@ test.serial('Preserve home and local ".npmrc"', async (t) => {
   );
   t.deepEqual(t.context.log.args[1], [
     "Reading npm config from %s",
-    [resolve(process.env.HOME, ".npmrc"), resolve(cwd, ".npmrc")].join(", "),
+    [
+      resolve(process.env.HOME, ".yarnrc.yml"),
+      resolve(cwd, ".yarnrc.yml"),
+    ].join(", "),
   ]);
   t.deepEqual(t.context.log.args[2], [`Wrote NPM_TOKEN to ${npmrc}`]);
 });
 
 test.serial(
-  'Preserve all ".npmrc" if auth is already configured',
+  'Preserve all ".yarnrc.yml" if auth is already configured',
   async (t) => {
-    const npmrc = file({ name: ".npmrc" });
+    const npmrc = file({ name: ".yarnrc.yml" });
 
     await fs.appendFile(
-      resolve(cwd, ".npmrc"),
+      resolve(cwd, ".yarnrc.yml"),
       `//custom.registry.com/:_authToken = \${NPM_TOKEN}`
     );
     await fs.appendFile(
-      resolve(process.env.HOME, ".npmrc"),
+      resolve(process.env.HOME, ".yarnrc.yml"),
       "home_config = test"
     );
 
     await (
-      await import("../dist/set-npmrc-auth.js")
-    ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+      await import("../dist/set-yarnrc-auth.js")
+    ).setYarnrcAuth(npmrc, "http://custom.registry.com", {
       cwd,
       env: {},
       logger: t.context.logger,
@@ -133,28 +136,31 @@ test.serial(
     );
     t.deepEqual(t.context.log.args[1], [
       "Reading npm config from %s",
-      [resolve(process.env.HOME, ".npmrc"), resolve(cwd, ".npmrc")].join(", "),
+      [
+        resolve(process.env.HOME, ".yarnrc.yml"),
+        resolve(cwd, ".yarnrc.yml"),
+      ].join(", "),
     ]);
   }
 );
 
 test.serial(
-  'Preserve ".npmrc" if auth is already configured for a scoped package',
+  'Preserve ".yarnrc.yml" if auth is already configured for a scoped package',
   async (t) => {
-    const npmrc = file({ name: ".npmrc" });
+    const npmrc = file({ name: ".yarnrc.yml" });
 
     await fs.appendFile(
-      resolve(cwd, ".npmrc"),
+      resolve(cwd, ".yarnrc.yml"),
       `@scope:registry=http://custom.registry.com\n//custom.registry.com/:_authToken = \${NPM_TOKEN}`
     );
     await fs.appendFile(
-      resolve(process.env.HOME, ".npmrc"),
+      resolve(process.env.HOME, ".yarnrc.yml"),
       "home_config = test"
     );
 
     await (
-      await import("../dist/set-npmrc-auth.js")
-    ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+      await import("../dist/set-yarnrc-auth.js")
+    ).setYarnrcAuth(npmrc, "http://custom.registry.com", {
       cwd,
       env: {},
       logger: t.context.logger,
@@ -166,18 +172,21 @@ test.serial(
     );
     t.deepEqual(t.context.log.args[1], [
       "Reading npm config from %s",
-      [resolve(process.env.HOME, ".npmrc"), resolve(cwd, ".npmrc")].join(", "),
+      [
+        resolve(process.env.HOME, ".yarnrc.yml"),
+        resolve(cwd, ".yarnrc.yml"),
+      ].join(", "),
     ]);
   }
 );
 
 test.serial('Throw error if "NPM_TOKEN" is missing', async (t) => {
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
 
   const [error] = await t.throwsAsync(
     (
-      await import("../dist/set-npmrc-auth.js")
-    ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+      await import("../dist/set-yarnrc-auth.js")
+    ).setYarnrcAuth(npmrc, "http://custom.registry.com", {
       cwd,
       env: {},
       logger: t.context.logger,
@@ -192,7 +201,7 @@ test.serial('Throw error if "NPM_TOKEN" is missing', async (t) => {
 test.serial(
   'Emulate npm config resolution if "NPM_CONFIG_USERCONFIG" is set',
   async (t) => {
-    const npmrc = file({ name: ".npmrc" });
+    const npmrc = file({ name: ".yarnrc.yml" });
 
     await fs.appendFile(
       resolve(cwd, ".custom-npmrc"),
@@ -200,8 +209,8 @@ test.serial(
     );
 
     await (
-      await import("../dist/set-npmrc-auth.js")
-    ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+      await import("../dist/set-yarnrc-auth.js")
+    ).setYarnrcAuth(npmrc, "http://custom.registry.com", {
       cwd,
       env: { NPM_CONFIG_USERCONFIG: resolve(cwd, ".custom-npmrc") },
       logger: t.context.logger,
@@ -219,13 +228,13 @@ test.serial(
 );
 
 test.serial('Throw error if "NPM_USERNAME" is missing', async (t) => {
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const env = { NPM_PASSWORD: "npm_pasword", NPM_EMAIL: "npm_email" };
 
   const [error] = await t.throwsAsync(
     (
-      await import("../dist/set-npmrc-auth.js")
-    ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+      await import("../dist/set-yarnrc-auth.js")
+    ).setYarnrcAuth(npmrc, "http://custom.registry.com", {
       cwd,
       env,
       logger: t.context.logger,
@@ -238,13 +247,13 @@ test.serial('Throw error if "NPM_USERNAME" is missing', async (t) => {
 });
 
 test.serial('Throw error if "NPM_PASSWORD" is missing', async (t) => {
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const env = { NPM_USERNAME: "npm_username", NPM_EMAIL: "npm_email" };
 
   const [error] = await t.throwsAsync(
     (
-      await import("../dist/set-npmrc-auth.js")
-    ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+      await import("../dist/set-yarnrc-auth.js")
+    ).setYarnrcAuth(npmrc, "http://custom.registry.com", {
       cwd,
       env,
       logger: t.context.logger,
@@ -257,13 +266,13 @@ test.serial('Throw error if "NPM_PASSWORD" is missing', async (t) => {
 });
 
 test.serial('Throw error if "NPM_EMAIL" is missing', async (t) => {
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   const env = { NPM_USERNAME: "npm_username", NPM_PASSWORD: "npm_password" };
 
   const [error] = await t.throwsAsync(
     (
-      await import("../dist/set-npmrc-auth.js")
-    ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
+      await import("../dist/set-yarnrc-auth.js")
+    ).setYarnrcAuth(npmrc, "http://custom.registry.com", {
       cwd,
       env,
       logger: t.context.logger,
@@ -276,18 +285,18 @@ test.serial('Throw error if "NPM_EMAIL" is missing', async (t) => {
 });
 
 test.serial("Prefer .npmrc over environment variables", async (t) => {
-  const npmrc = file({ name: ".npmrc" });
+  const npmrc = file({ name: ".yarnrc.yml" });
   // Specify an NPM token environment variable
   const env = { NPM_TOKEN: "env_npm_token" };
 
   await fs.appendFile(
-    resolve(cwd, ".npmrc"),
+    resolve(cwd, ".yarnrc.yml"),
     "//registry.npmjs.org/:_authToken=npmrc_npm_token"
   );
 
   await (
-    await import("../dist/set-npmrc-auth.js")
-  ).setNpmrcAuth(npmrc, "http://registry.npmjs.org", {
+    await import("../dist/set-yarnrc-auth.js")
+  ).setYarnrcAuth(npmrc, "http://registry.npmjs.org", {
     cwd,
     env,
     logger: t.context.logger,
@@ -302,7 +311,7 @@ test.serial("Prefer .npmrc over environment variables", async (t) => {
   // Assert reads from config
   t.deepEqual(t.context.log.args[1], [
     "Reading npm config from %s",
-    resolve(cwd, ".npmrc"),
+    resolve(cwd, ".yarnrc.yml"),
   ]);
 
   // Assert does not write NPM_TOKEN

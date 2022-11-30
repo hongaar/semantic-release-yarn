@@ -24,14 +24,14 @@ export type PluginConfig = {
 
 let verified: boolean;
 let prepared: boolean;
-const npmrc = tempy.file({ name: ".npmrc" });
+const yarnrc = tempy.file({ name: ".yarnrc.yml" });
 
 async function verifyConditions(
   pluginConfig: PluginConfig,
   context: VerifyConditionsContext
 ) {
   /**
-   * If the npm publish plugin is used and has `npmPublish`, `tarballDir` or
+   * If the plugin is used and has `npmPublish`, `tarballDir` or
    * `pkgRoot` configured, validate them now in order to prevent any release if
    * the configuration is wrong
    */
@@ -62,7 +62,7 @@ async function verifyConditions(
 
     // Verify the npm authentication only if `npmPublish` is not false and `pkg.private` is not `true`
     if (pluginConfig.npmPublish !== false && pkg.private !== true) {
-      await verifyAuth(npmrc, pkg, context);
+      await verifyAuth(yarnrc, pkg, context);
     }
   } catch (error: any) {
     errors.push(...error);

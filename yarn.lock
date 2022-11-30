@@ -1000,6 +1000,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-yaml@npm:^4":
+  version: 4.0.5
+  resolution: "@types/js-yaml@npm:4.0.5"
+  checksum: 7dcac8c50fec31643cc9d6444b5503239a861414cdfaa7ae9a38bc22597c4d850c4b8cec3d82d73b3fbca408348ce223b0408d598b32e094470dfffc6d486b4d
+  languageName: node
+  linkType: hard
+
 "@types/keyv@npm:^3.1.4":
   version: 3.1.4
   resolution: "@types/keyv@npm:3.1.4"
@@ -1016,7 +1023,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/minimist@npm:*, @types/minimist@npm:^1.2.0":
+"@types/minimist@npm:^1.2.0":
   version: 1.2.2
   resolution: "@types/minimist@npm:1.2.2"
   checksum: b8da83c66eb4aac0440e64674b19564d9d86c80ae273144db9681e5eeff66f238ade9515f5006ffbfa955ceff8b89ad2bd8ec577d7caee74ba101431fb07045d
@@ -1048,15 +1055,6 @@ __metadata:
   version: 2.7.1
   resolution: "@types/prettier@npm:2.7.1"
   checksum: 5e3f58e229d6c73b5f5cae2e8f96c1c4a5b5805f83459e17a045ba8e96152b1d38e86b63e3172fb159dac923388699660862b75b2d37e54220805f0e691e26f1
-  languageName: node
-  linkType: hard
-
-"@types/rc@npm:1.2.1":
-  version: 1.2.1
-  resolution: "@types/rc@npm:1.2.1"
-  dependencies:
-    "@types/minimist": "*"
-  checksum: 8ffe65ba9c686e6a023c3a148e530c69586048d2f0191caa57aeefb56bc27471ac150830a08154f630c8cfd844ce92bca401f62970da176f6aa0c524912f0ff7
   languageName: node
   linkType: hard
 
@@ -1310,6 +1308,13 @@ __metadata:
   dependencies:
     sprintf-js: ~1.0.2
   checksum: 7ca6e45583a28de7258e39e13d81e925cfa25d7d4aacbf806a382d3c02fcb13403a07fb8aeef949f10a7cfe4a62da0e2e807b348a5980554cc28ee573ef95945
+  languageName: node
+  linkType: hard
+
+"argparse@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "argparse@npm:2.0.1"
+  checksum: 83644b56493e89a254bae05702abf3a1101b4fa4d0ca31df1c9985275a5a5bd47b3c27b7fa0b71098d41114d8ca000e6ed90cad764b306f8a503665e4d517ced
   languageName: node
   linkType: hard
 
@@ -2243,6 +2248,18 @@ __metadata:
     path-type: ^4.0.0
     yaml: ^1.10.0
   checksum: c53bf7befc1591b2651a22414a5e786cd5f2eeaa87f3678a3d49d6069835a9d8d1aef223728e98aa8fec9a95bf831120d245096db12abe019fecb51f5696c96f
+  languageName: node
+  linkType: hard
+
+"cosmiconfig@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "cosmiconfig@npm:8.0.0"
+  dependencies:
+    import-fresh: ^3.2.1
+    js-yaml: ^4.1.0
+    parse-json: ^5.0.0
+    path-type: ^4.0.0
+  checksum: ff4cdf89ac1ae52e7520816622c21a9e04380d04b82d653f5139ec581aa4f7f29e096d46770bc76c4a63c225367e88a1dfa233ea791669a35101f5f9b972c7d1
   languageName: node
   linkType: hard
 
@@ -3750,6 +3767,17 @@ __metadata:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: bef146085f472d44dee30ec34e5cf36bf89164f5d585435a3d3da89e52622dff0b188a580e4ad091c3341889e14cb88cac6e4deb16dc5b1e9623bb0601fc255c
+  languageName: node
+  linkType: hard
+
+"js-yaml@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "js-yaml@npm:4.1.0"
+  dependencies:
+    argparse: ^2.0.1
+  bin:
+    js-yaml: bin/js-yaml.js
+  checksum: c7830dfd456c3ef2c6e355cc5a92e6700ceafa1d14bba54497b34a99f0376cecbb3e9ac14d3e5849b426d5a5140709a66237a8c991c675431271c4ce5504151a
   languageName: node
   linkType: hard
 
@@ -6012,16 +6040,17 @@ __metadata:
     "@semantic-release/git": 10.0.1
     "@types/env-ci": 3.1.1
     "@types/fs-extra": 9.0.13
+    "@types/js-yaml": ^4
     "@types/lodash": 4.14.190
     "@types/node": 18.11.9
     "@types/prettier": 2
-    "@types/rc": 1.2.1
     "@types/registry-auth-token": 4.2.1
     "@types/semantic-release": 17.2.4
     "@types/semver": 7.3.13
     aggregate-error: ^3.0.0
     ava: 4.2.0
     codecov: 3.8.3
+    cosmiconfig: ^8.0.0
     delay: 5.0.0
     dockerode: 3.3.4
     execa: ^5.0.0
@@ -6029,6 +6058,7 @@ __metadata:
     get-stream: 6.0.1
     got: 11.8.5
     husky: 8.0.2
+    js-yaml: ^4.1.0
     lint-staged: 13.0.4
     lodash: ^4.17.15
     moker: 0.4.4
@@ -6038,7 +6068,6 @@ __metadata:
     nyc: 15.1.0
     p-retry: 4.6.2
     prettier: 2.8.0
-    rc: ^1.2.8
     read-pkg: ^5.0.0
     registry-auth-token: ^5.0.1
     semantic-release: 19.0.5
