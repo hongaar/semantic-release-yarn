@@ -11,17 +11,7 @@ import { getError } from "./get-error.js";
 export async function setNpmrcAuth(
   npmrc: string,
   registry: string,
-  {
-    cwd,
-    env: {
-      NPM_TOKEN,
-      NPM_CONFIG_USERCONFIG,
-      NPM_USERNAME,
-      NPM_PASSWORD,
-      NPM_EMAIL,
-    },
-    logger,
-  }: CommonContext
+  { cwd, env: { NPM_TOKEN, NPM_CONFIG_USERCONFIG }, logger }: CommonContext
 ) {
   logger.log("Verify authentication for registry %s", registry);
   const { configs, ...rcConfig } = rc(
@@ -45,15 +35,7 @@ export async function setNpmrcAuth(
     return;
   }
 
-  if (NPM_USERNAME && NPM_PASSWORD && NPM_EMAIL) {
-    await fs.outputFile(
-      npmrc,
-      `${
-        currentConfig ? `${currentConfig}\n` : ""
-      }_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`
-    );
-    logger.log(`Wrote NPM_USERNAME, NPM_PASSWORD and NPM_EMAIL to ${npmrc}`);
-  } else if (NPM_TOKEN) {
+  if (NPM_TOKEN) {
     await fs.outputFile(
       npmrc,
       `${currentConfig ? `${currentConfig}\n` : ""}${nerfDart(

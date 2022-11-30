@@ -16,6 +16,13 @@ const NPM_EMAIL = "integration@test.com";
 const docker = new Docker();
 let container;
 
+export const url = `http://${REGISTRY_HOST}:${REGISTRY_PORT}/`;
+
+export const authEnv = {
+  npm_config_registry: url, // eslint-disable-line camelcase
+  NPM_TOKEN: null,
+};
+
 /**
  * Download the `npm-registry-docker` Docker image, create a new container and start it.
  */
@@ -53,30 +60,25 @@ export async function start() {
   }
 
   // Create user
-  await got(
-    `http://${REGISTRY_HOST}:${REGISTRY_PORT}/-/user/org.couchdb.user:${NPM_USERNAME}`,
-    {
-      method: "PUT",
-      json: {
-        _id: `org.couchdb.user:${NPM_USERNAME}`,
-        name: NPM_USERNAME,
-        roles: [],
-        type: "user",
-        password: NPM_PASSWORD,
-        email: NPM_EMAIL,
-      },
-    }
-  );
+  const response = await got
+    .put(
+      `http://${REGISTRY_HOST}:${REGISTRY_PORT}/-/user/org.couchdb.user:${NPM_USERNAME}`,
+      {
+        json: {
+          _id: `org.couchdb.user:${NPM_USERNAME}`,
+          name: NPM_USERNAME,
+          roles: [],
+          type: "user",
+          password: NPM_PASSWORD,
+          email: NPM_EMAIL,
+        },
+      }
+    )
+    .json();
+
+  // Store token
+  authEnv.NPM_TOKEN = response.token;
 }
-
-export const url = `http://${REGISTRY_HOST}:${REGISTRY_PORT}/`;
-
-export const authEnv = {
-  npm_config_registry: url, // eslint-disable-line camelcase
-  NPM_USERNAME,
-  NPM_PASSWORD,
-  NPM_EMAIL,
-};
 
 /**
  * Stop and remote the `npm-registry-docker` Docker container.

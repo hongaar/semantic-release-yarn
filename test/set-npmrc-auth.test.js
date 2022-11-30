@@ -22,10 +22,6 @@ test.beforeEach(async (t) => {
   // Stub the logger
   t.context.log = stub();
   t.context.logger = { log: t.context.log };
-
-  // @todo we can probably remove this
-  // clearModule("rc");
-  // clearModule("../dist/set-npmrc-auth.js");
 });
 
 test.after.always(() => {
@@ -51,34 +47,6 @@ test.serial('Set auth with "NPM_TOKEN"', async (t) => {
   );
   t.deepEqual(t.context.log.args[1], [`Wrote NPM_TOKEN to ${npmrc}`]);
 });
-
-test.serial(
-  'Set auth with "NPM_USERNAME", "NPM_PASSWORD" and "NPM_EMAIL"',
-  async (t) => {
-    const npmrc = file({ name: ".npmrc" });
-    const env = {
-      NPM_USERNAME: "npm_username",
-      NPM_PASSWORD: "npm_pasword",
-      NPM_EMAIL: "npm_email",
-    };
-
-    await (
-      await import("../dist/set-npmrc-auth.js")
-    ).setNpmrcAuth(npmrc, "http://custom.registry.com", {
-      cwd,
-      env,
-      logger: t.context.logger,
-    });
-
-    t.is(
-      (await fs.readFile(npmrc)).toString(),
-      `_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`
-    );
-    t.deepEqual(t.context.log.args[1], [
-      `Wrote NPM_USERNAME, NPM_PASSWORD and NPM_EMAIL to ${npmrc}`,
-    ]);
-  }
-);
 
 test.serial('Preserve home ".npmrc"', async (t) => {
   const npmrc = file({ name: ".npmrc" });

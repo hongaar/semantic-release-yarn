@@ -13,7 +13,6 @@ import type {
 import { getPkg } from "./get-pkg.js";
 import { prepare as prepareNpm } from "./prepare.js";
 import { publish as publishNpm } from "./publish.js";
-import { setLegacyToken } from "./set-legacy-token.js";
 import { verifyAuth } from "./verify-auth.js";
 import { verifyConfig } from "./verify-config.js";
 
@@ -58,8 +57,6 @@ async function verifyConditions(
 
   const errors = verifyConfig(pluginConfig);
 
-  setLegacyToken(context);
-
   try {
     const pkg = await getPkg(pluginConfig, context);
 
@@ -80,8 +77,6 @@ async function verifyConditions(
 
 async function prepare(pluginConfig: PluginConfig, context: PrepareContext) {
   const errors = verified ? [] : verifyConfig(pluginConfig);
-
-  setLegacyToken(context);
 
   try {
     // Reload package.json in case a previous external step updated it
@@ -108,8 +103,6 @@ async function prepare(pluginConfig: PluginConfig, context: PrepareContext) {
 async function publish(pluginConfig: PluginConfig, context: PublishContext) {
   let pkg;
   const errors = verified ? [] : verifyConfig(pluginConfig);
-
-  setLegacyToken(context);
 
   try {
     // Reload package.json in case a previous external step updated it
@@ -142,8 +135,6 @@ async function addChannel(
 ) {
   let pkg;
   const errors = verified ? [] : verifyConfig(pluginConfig);
-
-  setLegacyToken(context);
 
   try {
     // Reload package.json in case a previous external step updated it

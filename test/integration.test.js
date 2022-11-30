@@ -12,10 +12,6 @@ const testEnv = {
   ...process.env,
   ...authEnv,
   npm_config_registry: _url,
-  LEGACY_TOKEN: Buffer.from(
-    `${authEnv.NPM_USERNAME}:${authEnv.NPM_PASSWORD}`,
-    "utf8"
-  ).toString("base64"),
 };
 
 test.before(async () => {
