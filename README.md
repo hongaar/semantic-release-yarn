@@ -109,7 +109,8 @@ configuration in `.yarnrc.yml` and `NPM_CONFIG_REGISTRY`:
 }
 ```
 
-> ⚠️ The `@semantic-release/npm` plugin supports setting the `publishConfig.tag`
+> ⚠️  
+> The `@semantic-release/npm` plugin supports setting the `publishConfig.tag`
 > option. However, Yarn 2
 > [doesn't seem to](https://github.com/yarnpkg/berry/issues?q=publishConfig+tag) >
 > [support this](https://yarnpkg.com/configuration/manifest#publishConfig).
