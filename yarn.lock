@@ -984,15 +984,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/es-aggregate-error@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@types/es-aggregate-error@npm:1.0.2"
-  dependencies:
-    "@types/node": "*"
-  checksum: 076fd59b595f33c8c7e7eb68ec55bd43cf8b2cf7bbc6778e25d7ae1a5fa0538a0a56f149015f403d7bbcefe59f1d8182351685b59c1fe719fd46d0dd8a9737fa
-  languageName: node
-  linkType: hard
-
 "@types/fs-extra@npm:9.0.13":
   version: 9.0.13
   resolution: "@types/fs-extra@npm:9.0.13"
@@ -1105,13 +1096,6 @@ __metadata:
   version: 7.3.13
   resolution: "@types/semver@npm:7.3.13"
   checksum: 00c0724d54757c2f4bc60b5032fe91cda6410e48689633d5f35ece8a0a66445e3e57fa1d6e07eb780f792e82ac542948ec4d0b76eb3484297b79bd18b8cf1cb0
-  languageName: node
-  linkType: hard
-
-"@types/tmp@npm:^0":
-  version: 0.2.3
-  resolution: "@types/tmp@npm:0.2.3"
-  checksum: 0ca45e99b3b3c6959d5c4f4555f73c8007db540cfb0fbbb9373217f9ab85e67eef75193f51a1d6564b0ee6c6f5ffa259d1034d7f7530a5b7ce80acb94cfc4daa
   languageName: node
   linkType: hard
 
@@ -6020,7 +6004,6 @@ __metadata:
     "@semantic-release/error": ^3.0.0
     "@semantic-release/git": 10.0.1
     "@types/env-ci": 3.1.1
-    "@types/es-aggregate-error": 1.0.2
     "@types/fs-extra": 9.0.13
     "@types/lodash": 4.14.190
     "@types/node": 18.11.9
@@ -6029,7 +6012,6 @@ __metadata:
     "@types/registry-auth-token": 4.2.1
     "@types/semantic-release": 17.2.4
     "@types/semver": 7.3.13
-    "@types/tmp": ^0
     aggregate-error: ^3.0.0
     ava: 4.2.0
     codecov: 3.8.3

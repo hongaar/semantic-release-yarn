@@ -4,7 +4,10 @@
 > **This plugin is work in progress.**
 
 [**semantic-release**](https://github.com/semantic-release/semantic-release)
-plugin to publish a [npm](https://www.npmjs.com) package with yarn.
+plugin to publish a [npm](https://www.npmjs.com) package with
+[yarn](https://yarnpkg.com).
+
+> ⚠️ Please note this plugin only works with Yarn 2 and higher.
 
 | Step               | Description                                                                                                                      |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
