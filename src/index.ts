@@ -1,7 +1,6 @@
 import AggregateError from "aggregate-error";
 import _ from "lodash";
 import type { PackageJson } from "read-pkg";
-import tempy from "tempy";
 import { addChannel as addChannelNpm } from "./add-channel.js";
 import { PLUGIN_NAME } from "./definitions/constants.js";
 import type {
@@ -24,7 +23,6 @@ export type PluginConfig = {
 
 let verified: boolean;
 let prepared: boolean;
-const yarnrc = tempy.file({ name: ".yarnrc.yml" });
 
 async function verifyConditions(
   pluginConfig: PluginConfig,
@@ -60,9 +58,10 @@ async function verifyConditions(
   try {
     const pkg = await getPkg(pluginConfig, context);
 
-    // Verify the npm authentication only if `npmPublish` is not false and `pkg.private` is not `true`
+    // Verify the npm authentication only if `npmPublish` is not false and
+    // `pkg.private` is not`true`
     if (pluginConfig.npmPublish !== false && pkg.private !== true) {
-      await verifyAuth(yarnrc, pkg, context);
+      await verifyAuth(pkg, context);
     }
   } catch (error: any) {
     errors.push(...error);

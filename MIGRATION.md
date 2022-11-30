@@ -1,5 +1,13 @@
 # Migration log
 
+## Yarn conversion
+
+Possibly unneeded deps:
+
+- tempy (only in --dev)
+- rc
+- normalize-url
+
 ## TypeScript conversion
 
 - `definitions/errors.ts` removed dynamic import of `package.json` (due to TS

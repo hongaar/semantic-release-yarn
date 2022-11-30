@@ -1,30 +1,23 @@
-import path from "node:path";
-import rc from "rc";
 import type { PackageJson } from "read-pkg";
-import getRegistryUrl from "registry-auth-token/registry-url.js";
+import { DEFAULT_NPM_REGISTRY } from "./definitions/constants.js";
 import type { CommonContext } from "./definitions/context.js";
+import type { Yarnrc } from "./definitions/yarnrc.js";
 
 export function getRegistry(
-  { publishConfig: { registry } = {}, name }: PackageJson,
-  { cwd, env }: CommonContext
+  { publishConfig }: PackageJson,
+  { npmRegistryServer, npmPublishRegistry }: Yarnrc,
+  { env }: CommonContext
 ) {
-  rc(
-    "npm",
-    { registry: "https://registry.npmjs.org/" },
-    { config: env["NPM_CONFIG_USERCONFIG"] || path.resolve(cwd, ".yarnrc.yml") }
-  );
+  const publishConfigRegistry = publishConfig?.["registry"] as
+    | string
+    | undefined;
 
-  return (registry ||
-    env["NPM_CONFIG_REGISTRY"] ||
-    getRegistryUrl(
-      name!.split("/")[0]!,
-      rc(
-        "npm",
-        { registry: "https://registry.npmjs.org/" },
-        {
-          config:
-            env["NPM_CONFIG_USERCONFIG"] || path.resolve(cwd, ".yarnrc.yml"),
-        }
-      ) as any
-    )) as string;
+  return (
+    publishConfigRegistry ||
+    env["YARN_NPM_PUBLISH_REGISTRY"] ||
+    npmPublishRegistry ||
+    env["YARN_NPM_REGISTRY_SERVER"] ||
+    npmRegistryServer ||
+    DEFAULT_NPM_REGISTRY
+  );
 }

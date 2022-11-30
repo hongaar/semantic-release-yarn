@@ -11,12 +11,12 @@ plugin to publish a [npm](https://www.npmjs.com) package with
 > ⚠️  
 > Please note this plugin only works with **Yarn 2** and higher.
 
-| Step               | Description                                                                                                                                                                |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `verifyConditions` | Verify Yarn 2 or higher is installed, verify the presence of the `NPM_TOKEN` environment variable or an `.yarnrc.yml` file, and verify the authentication method is valid. |
-| `prepare`          | Update the `package.json` version and [create](https://yarnpkg.com/cli/pack) the package tarball.                                                                          |
-| `addChannel`       | [Add a tag](https://yarnpkg.com/cli/npm/tag/add) for the release.                                                                                                          |
-| `publish`          | [Publish](https://yarnpkg.com/cli/npm/publish) to the npm registry.                                                                                                        |
+| Step               | Description                                                                                                                                                                                |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `verifyConditions` | Verify Yarn 2 or higher is installed, verify the presence of an NPM auth token (either in an environment variable or an `.yarnrc.yml` file) and verify the authentication method is valid. |
+| `prepare`          | Update the `package.json` version and [create](https://yarnpkg.com/cli/pack) the package tarball.                                                                                          |
+| `addChannel`       | [Add a tag](https://yarnpkg.com/cli/npm/tag/add) for the release.                                                                                                                          |
+| `publish`          | [Publish](https://yarnpkg.com/cli/npm/publish) to the npm registry.                                                                                                                        |
 
 ## Intended audience
 
@@ -61,8 +61,9 @@ The NPM authentication configuration is **required** and can be set either via
 [environment variables](#environment-variables) or the
 [`.yarnrc.yml`](#yarn-configuration) file.
 
-The options set in an existing `.yarnrc.yml` file will take precedence over
-environment variables.
+The configuration set by environment variables will take precedence over
+configuration set in an existing `.yarnrc.yml` file as detailed in
+[Yarnrc files](https://yarnpkg.com/configuration/yarnrc)
 
 > ⚠️  
 > When
@@ -80,11 +81,20 @@ environment variables.
 
 ### Environment variables
 
-| Variable                | Description                                                            |
-| ----------------------- | ---------------------------------------------------------------------- |
-| `NPM_TOKEN`             | [NPM token](https://docs.npmjs.com/creating-and-viewing-access-tokens) |
-| `NPM_CONFIG_REGISTRY`   | NPM registry to use                                                    |
-| `NPM_CONFIG_USERCONFIG` | Path to non-default `.yarnrc.yml` file                                 |
+| Variable                    | Description                                                                                                                                                                           |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `YARN_NPM_AUTH_TOKEN`       | [NPM token](https://docs.npmjs.com/creating-and-viewing-access-tokens). Translates to the [npmAuthToken](https://yarnpkg.com/configuration/yarnrc#npmAuthToken) `.yarnrc.yml` option. |
+| `YARN_NPM_PUBLISH_REGISTRY` | NPM registry to use. Translates to the [npmPublishRegistry](https://yarnpkg.com/configuration/yarnrc#npmPublishRegistry) `.yarnrc.yml` option.                                        |
+
+Other valid `.yarnrc.yml` options could be specified as environment variables as
+mentioned in the [Yarnrc files](https://yarnpkg.com/configuration/yarnrc)
+documentation:
+
+> Finally, note that most settings can also be defined through environment
+> variables (at least for the simpler ones; arrays and objects aren't supported
+> yet). To do this, just prefix the names and write them in snake case:
+> YARN_CACHE_FOLDER will set the cache folder (such values will overwrite any
+> that might have been defined in the RC files - use them sparingly).
 
 ### Yarn configuration
 
@@ -93,13 +103,13 @@ configuration from a `.yarnrc.yml` file if present. See
 [Yarnrc files](https://yarnpkg.com/configuration/yarnrc) for the option list.
 
 The NPM registry to publish to can be configured via the
-[environment variable](#environment-variables) `NPM_CONFIG_REGISTRY` and will
-take precedence over the configuration in `.yarnrc.yml`.
+[environment variable](#environment-variables) `YARN_NPM_PUBLISH_REGISTRY` and
+will take precedence over the configuration in `.yarnrc.yml`.
 
 The
 [`registry`](https://yarnpkg.com/configuration/manifest#publishConfig.registry)
 can be configured in the `package.json` and will take precedence over the
-configuration in `.yarnrc.yml` and `NPM_CONFIG_REGISTRY`:
+configuration in `.yarnrc.yml` and `YARN_NPM_PUBLISH_REGISTRY`:
 
 ```json
 {
