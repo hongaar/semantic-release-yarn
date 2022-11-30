@@ -4778,6 +4778,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"normalize-url@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "normalize-url@npm:8.0.0"
+  checksum: 24c20b75ebfd526d8453084692720b49d111c63c0911f1b7447427829597841eef5a8ba3f6bb93d6654007b991c1f5cd85da2c907800e439e2e2ec6c2abd0fc0
+  languageName: node
+  linkType: hard
+
 "npm-audit-report@npm:^3.0.0":
   version: 3.0.0
   resolution: "npm-audit-report@npm:3.0.0"
@@ -6044,7 +6051,7 @@ __metadata:
     lodash: ^4.17.15
     moker: 0.4.4
     nerf-dart: ^1.0.0
-    normalize-url: ^6.0.0
+    normalize-url: ^8.0.0
     npm: ^8.3.0
     nyc: 15.1.0
     p-retry: 4.6.2
