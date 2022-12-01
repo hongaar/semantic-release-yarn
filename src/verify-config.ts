@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { getError } from "./get-error.js";
+import { ErrorDefinition, getError } from "./get-error.js";
 import type { PluginConfig } from "./index.js";
 
 const isNonEmptyString = (value: unknown) =>
@@ -31,7 +31,7 @@ export function verifyConfig({
         getError(`EINVALID${option.toUpperCase()}` as any, { [option]: value }),
       ];
     },
-    [] as Error[]
+    [] as ErrorDefinition[]
   );
 
   return errors;
