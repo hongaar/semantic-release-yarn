@@ -1,98 +1,124 @@
-import test from "ava";
-import fs from "fs-extra";
-import { resolve } from "node:path";
-import { directory } from "tempy";
-import { getRegistry } from "../dist/get-registry.js";
+import { getRegistry } from "../src/get-registry.js";
 
-test("Get default registry", (t) => {
-  const cwd = directory();
-  t.is(
-    getRegistry({ name: "package-name" }, { cwd, env: {} }),
-    "https://registry.npmjs.org/"
+test("Get default registry", async () => {
+  expect(getRegistry({}, {}, {})).toBe("https://registry.npmjs.org");
+  expect(getRegistry({ publishConfig: {} }, {}, {})).toBe(
+    "https://registry.npmjs.org"
   );
-  t.is(
-    getRegistry({ name: "package-name", publishConfig: {} }, { cwd, env: {} }),
-    "https://registry.npmjs.org/"
+  expect(getRegistry({}, { npmPublishRegistry: "" }, {})).toBe(
+    "https://registry.npmjs.org"
   );
-});
-
-test('Get the registry configured in ".yarnrc.yml" and normalize trailing slash', async (t) => {
-  const cwd = directory();
-  await fs.appendFile(
-    resolve(cwd, ".yarnrc.yml"),
-    "registry = https://custom1.registry.com"
+  expect(getRegistry({}, { npmRegistryServer: "" }, {})).toBe(
+    "https://registry.npmjs.org"
   );
-
-  t.is(
-    getRegistry({ name: "package-name" }, { cwd, env: {} }),
-    "https://custom1.registry.com/"
+  expect(getRegistry({}, {}, { env: {} })).toBe("https://registry.npmjs.org");
+  expect(getRegistry({}, {}, { env: { YARN_NPM_PUBLISH_REGISTRY: "" } })).toBe(
+    "https://registry.npmjs.org"
+  );
+  expect(getRegistry({}, {}, { env: { YARN_NPM_REGISTRY_SERVER: "" } })).toBe(
+    "https://registry.npmjs.org"
   );
 });
 
-test('Get the registry configured from "publishConfig"', async (t) => {
-  const cwd = directory();
-  await fs.appendFile(
-    resolve(cwd, ".yarnrc.yml"),
-    "registry = https://custom2.registry.com"
-  );
-
-  t.is(
+test("Get registry from yarnrc", async () => {
+  expect(
     getRegistry(
+      {},
       {
-        name: "package-name",
-        publishConfig: { registry: "https://custom3.registry.com/" },
+        npmPublishRegistry: "https://custom1.registry.com",
       },
-      { cwd, env: {} }
-    ),
-    "https://custom3.registry.com/"
-  );
-});
-
-test('Get the registry configured in "NPM_CONFIG_REGISTRY"', (t) => {
-  const cwd = directory();
-
-  t.is(
+      {}
+    )
+  ).toBe("https://custom1.registry.com");
+  expect(
     getRegistry(
-      { name: "package-name" },
-      { cwd, env: { NPM_CONFIG_REGISTRY: "https://custom1.registry.com/" } }
-    ),
-    "https://custom1.registry.com/"
-  );
+      {},
+      {
+        npmRegistryServer: "https://custom1.registry.com",
+      },
+      {}
+    )
+  ).toBe("https://custom1.registry.com");
+  expect(
+    getRegistry(
+      {},
+      {
+        npmPublishRegistry: "https://custom1.registry.com",
+        npmRegistryServer: "https://custom2.registry.com",
+      },
+      {}
+    )
+  ).toBe("https://custom1.registry.com");
 });
 
-test('Get the registry configured in ".yarnrc.yml" for scoped package', async (t) => {
-  const cwd = directory();
-  await fs.appendFile(
-    resolve(cwd, ".yarnrc.yml"),
-    "@scope:registry = https://custom3.registry.com"
-  );
-
-  t.is(
-    getRegistry({ name: "@scope/package-name" }, { cwd, env: {} }),
-    "https://custom3.registry.com/"
-  );
-});
-
-test.serial(
-  'Get the registry configured via "NPM_CONFIG_USERCONFIG" for scoped package',
-  async (t) => {
-    const cwd = directory();
-    await fs.appendFile(
-      resolve(cwd, ".custom-npmrc"),
-      "@scope:registry = https://custom4.registry.com"
-    );
-
-    t.is(
-      getRegistry(
-        {
-          name: "@scope/package-name",
+test("Get registry from environment variables", async () => {
+  expect(
+    getRegistry(
+      {},
+      {},
+      {
+        env: { YARN_NPM_PUBLISH_REGISTRY: "https://custom1.registry.com" },
+      }
+    )
+  ).toBe("https://custom1.registry.com");
+  expect(
+    getRegistry(
+      {},
+      {},
+      {
+        env: { YARN_NPM_REGISTRY_SERVER: "https://custom1.registry.com" },
+      }
+    )
+  ).toBe("https://custom1.registry.com");
+  expect(
+    getRegistry(
+      {},
+      {},
+      {
+        env: {
+          YARN_NPM_PUBLISH_REGISTRY: "https://custom1.registry.com",
+          YARN_NPM_REGISTRY_SERVER: "https://custom2.registry.com",
         },
-        {
-          cwd,
-          env: { NPM_CONFIG_USERCONFIG: resolve(cwd, ".custom-npmrc") },
-        }
-      ),
-      "https://custom4.registry.com/"
-    );
-  }
-);
+      }
+    )
+  ).toBe("https://custom1.registry.com");
+});
+
+test("Get registry from publishConfig", async () => {
+  expect(
+    getRegistry(
+      { publishConfig: { registry: "https://custom1.registry.com" } },
+      {},
+      {}
+    )
+  ).toBe("https://custom1.registry.com");
+});
+
+test("Precedence: publishConfig > environment variables > yarnrc", async () => {
+  expect(
+    getRegistry(
+      { publishConfig: { registry: "https://custom1.registry.com" } },
+      {
+        npmPublishRegistry: "https://custom2.registry.com",
+      },
+      {
+        env: {
+          YARN_NPM_PUBLISH_REGISTRY: "https://custom3.registry.com",
+        },
+      }
+    )
+  ).toBe("https://custom1.registry.com");
+  expect(
+    getRegistry(
+      {},
+      {
+        npmPublishRegistry: "https://custom1.registry.com",
+      },
+      {
+        env: {
+          YARN_NPM_PUBLISH_REGISTRY: "https://custom2.registry.com",
+        },
+      }
+    )
+  ).toBe("https://custom2.registry.com");
+});
