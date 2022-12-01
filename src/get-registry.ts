@@ -6,7 +6,7 @@ import type { Yarnrc } from "./definitions/yarnrc.js";
 export function getRegistry(
   { publishConfig }: PackageJson,
   { npmRegistryServer, npmPublishRegistry }: Yarnrc,
-  { env }: CommonContext
+  { env }: { env?: CommonContext["env"] }
 ) {
   const publishConfigRegistry = publishConfig?.["registry"] as
     | string
@@ -14,9 +14,9 @@ export function getRegistry(
 
   return (
     publishConfigRegistry ||
-    env["YARN_NPM_PUBLISH_REGISTRY"] ||
+    env?.["YARN_NPM_PUBLISH_REGISTRY"] ||
     npmPublishRegistry ||
-    env["YARN_NPM_REGISTRY_SERVER"] ||
+    env?.["YARN_NPM_REGISTRY_SERVER"] ||
     npmRegistryServer ||
     DEFAULT_NPM_REGISTRY
   );

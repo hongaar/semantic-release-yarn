@@ -6,16 +6,22 @@ import type { Yarnrc } from "./definitions/yarnrc.js";
 export function getToken(
   registry: string,
   { npmRegistries, npmAuthToken }: Yarnrc,
-  { env }: CommonContext
+  { env }: { env?: CommonContext["env"] }
 ) {
   // @todo implement yarnrc.npmScopes
 
   const registryId = toNerfDart(registry);
 
   // Lookup in yarnrc.npmRegistries
-  if (npmRegistries?.[registryId]?.npmAuthToken) {
-    return npmRegistries[registryId]!.npmAuthToken!;
+  const entry =
+    npmRegistries &&
+    Object.entries(npmRegistries).find(([id, { npmAuthToken }]) => {
+      return toNerfDart(id) === registryId && npmAuthToken;
+    });
+
+  if (entry) {
+    return npmRegistries[entry[0]]!.npmAuthToken!;
   }
 
-  return env["YARN_NPM_AUTH_TOKEN"] || npmAuthToken;
+  return env?.["YARN_NPM_AUTH_TOKEN"] || npmAuthToken;
 }
