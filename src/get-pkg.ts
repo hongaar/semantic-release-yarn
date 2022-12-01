@@ -7,7 +7,7 @@ import type { PluginConfig } from "./index.js";
 
 export async function getPkg(
   { pkgRoot }: PluginConfig,
-  { cwd }: CommonContext
+  { cwd }: { cwd: CommonContext["cwd"] }
 ) {
   try {
     const pkg = await readPkg({
