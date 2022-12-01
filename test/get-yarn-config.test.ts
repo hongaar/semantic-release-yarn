@@ -44,7 +44,7 @@ test("Read from .yarnrc.yml in parent directory", async () => {
   expect(yarnrc).toHaveProperty("enableColors", true);
 });
 
-test("Read from .yarnrc.yml in parent directory", async () => {
+test("Read from .yarnrc.yml in current directory", async () => {
   const { logger } = createContext();
   const parent = directory();
   const cwd = resolve(parent, "subdir");
