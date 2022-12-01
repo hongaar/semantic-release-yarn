@@ -24,16 +24,16 @@ test("Verify name and version then return parsed package.json from a sub-directo
   expect(pkg.version).toBe(result.version);
 });
 
-test.only("Throw error if missing package.json", async () => {
+test("Throw error if missing package.json", async () => {
   const cwd = directory();
 
   expect.assertions(2);
   try {
     await getPkg({}, { cwd });
-  } catch (error: any) {
-    console.log(error);
-    expect(error[0].name).toBe("SemanticReleaseError");
-    expect(error[0].code).toBe("ENOPKG");
+  } catch (e: any) {
+    const [error] = e;
+    expect(error.name).toBe("SemanticReleaseError");
+    expect(error.code).toBe("ENOPKG");
   }
 });
 
@@ -44,7 +44,8 @@ test("Throw error if missing package name", async () => {
   expect.assertions(2);
   try {
     await getPkg({}, { cwd });
-  } catch (error: any) {
+  } catch (e: any) {
+    const [error] = e;
     expect(error.name).toBe("SemanticReleaseError");
     expect(error.code).toBe("ENOPKGNAME");
   }
@@ -57,7 +58,8 @@ test("Throw error if package.json is malformed", async () => {
   expect.assertions(1);
   try {
     await getPkg({}, { cwd });
-  } catch (error: any) {
+  } catch (e: any) {
+    const [error] = e;
     expect(error.name).toBe("JSONError");
   }
 });
