@@ -1,7 +1,7 @@
 import execa from "execa";
 import { verifyYarn } from "../src/verify-yarn.js";
-import { createContext } from "./helpers/createContext.js";
-import { mockExeca } from "./helpers/createExecaImplementation.js";
+import { createContext } from "./helpers/create-context.js";
+import { mockExeca } from "./helpers/create-execa-implementation.js";
 
 jest.mock("execa");
 

@@ -1,3 +1,4 @@
+import { spy } from "sinon";
 import { WritableStreamBuffer } from "stream-buffers";
 import { directory } from "tempy";
 import type { BranchSpec } from "../../src/definitions/context.js";
@@ -5,7 +6,7 @@ import type { BranchSpec } from "../../src/definitions/context.js";
 export function createContext() {
   return {
     cwd: directory(),
-    logger: { log: jest.fn(), error: jest.fn(), success: jest.fn() },
+    logger: { log: spy(), error: spy(), success: spy() },
     stdout: new WritableStreamBuffer(),
     stderr: new WritableStreamBuffer(),
     env: {},

@@ -4,11 +4,11 @@ import yaml from "js-yaml";
 import { resolve } from "node:path";
 import type { Yarnrc } from "../src/definitions/yarnrc.js";
 import { verifyAuth } from "../src/verify-auth.js";
-import { createContext } from "./helpers/createContext.js";
+import { createContext } from "./helpers/create-context.js";
 import {
   mockExeca,
   mockExecaError,
-} from "./helpers/createExecaImplementation.js";
+} from "./helpers/create-execa-implementation.js";
 
 jest.mock("execa");
 

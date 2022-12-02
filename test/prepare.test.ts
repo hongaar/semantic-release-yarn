@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import { resolve } from "node:path";
 import { prepare } from "../src/prepare.js";
-import { createContext } from "./helpers/createContext.js";
+import { createContext } from "./helpers/create-context.js";
 
 test("Update package.json", async () => {
   const context = createContext();

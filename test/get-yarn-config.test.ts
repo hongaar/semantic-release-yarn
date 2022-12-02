@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 import { directory } from "tempy";
 import type { Yarnrc } from "../src/definitions/yarnrc.js";
 import { getYarnConfig } from "../src/get-yarn-config.js";
-import { createContext } from "./helpers/createContext.js";
+import { createContext } from "./helpers/create-context.js";
 
 test("Read from .yarnrc.yml", async () => {
   const { cwd, logger } = createContext();

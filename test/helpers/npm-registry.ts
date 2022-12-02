@@ -14,7 +14,7 @@ const NPM_USERNAME = "integration";
 const NPM_PASSWORD = "suchsecure";
 const NPM_EMAIL = "integration@test.com";
 const docker = new Docker();
-let container;
+let container: Docker.Container;
 
 export const url = `http://${REGISTRY_HOST}:${REGISTRY_PORT}/`;
 
@@ -32,17 +32,29 @@ export async function start() {
   container = await docker.createContainer({
     Tty: true,
     Image: IMAGE,
-    PortBindings: {
-      [`${REGISTRY_PORT}/tcp`]: [{ HostPort: `${REGISTRY_PORT}` }],
+    HostConfig: {
+      PortBindings: {
+        [`${REGISTRY_PORT}/tcp`]: [{ HostPort: `${REGISTRY_PORT}` }],
+      },
     },
   });
 
+  /**
+   * Due to Jest unable to properly work with ESM (???) we get an error if we
+   * use import.meta.url here due to this error:
+   * > The 'import.meta' meta-property is only allowed when the '--module'
+   * > option is 'es2020', 'es2022', 'esnext', 'system', 'node16', or 'nodenext'
+   * Alternative for now is to assume cwd is project root 🤷
+   * ESM code: resolve(dirname(fileURLToPath(import.meta.url)), "config.yaml"),
+   */
   await execa("docker", [
     "cp",
     resolve(dirname(fileURLToPath(import.meta.url)), "config.yaml"),
     `${container.id}:/verdaccio/conf/config.yaml`,
   ]);
   await container.start();
+
+  // @todo arbitrary - alternative?
   await delay(4000);
 
   try {
@@ -77,7 +89,7 @@ export async function start() {
     .json();
 
   // Store token
-  authEnv.NPM_TOKEN = response.token;
+  authEnv.NPM_TOKEN = (response as any).token;
 }
 
 /**

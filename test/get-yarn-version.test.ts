@@ -3,11 +3,11 @@ import {
   getYarnMajorVersion,
   getYarnVersion,
 } from "../src/get-yarn-version.js";
-import { createContext } from "./helpers/createContext.js";
+import { createContext } from "./helpers/create-context.js";
 import {
   mockExeca,
   mockExecaError,
-} from "./helpers/createExecaImplementation.js";
+} from "./helpers/create-execa-implementation.js";
 
 jest.mock("execa");
 
