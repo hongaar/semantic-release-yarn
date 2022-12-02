@@ -1,6 +1,5 @@
 import fs from "fs-extra";
 import { resolve } from "node:path";
-// import { directory, file } from "tempy";
 import { prepare } from "../src/prepare.js";
 import { createContext } from "./helpers/createContext.js";
 

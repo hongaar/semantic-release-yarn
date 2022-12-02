@@ -2,11 +2,16 @@
 
 ## Yarn conversion
 
+- ESM dependencies (in node_modules) cause problems with jest. Configuration for
+  js/ts esm/cjs jest/ts-jest/babel is infuriatingly complex 😤
 - We need version plugin. Any side-effects of installing it on the fly?
 - Possibly unneeded deps:
-  - tempy (only in --dev)
-  - rc
-  - normalize-url
+  - ~~tempy (only in --dev)~~
+  - ~~rc~~
+  - ~~normalize-url~~
+  - codecov
+  - nyc
+  - ava
   - sinon
 
 ## TypeScript conversion
