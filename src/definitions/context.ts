@@ -128,8 +128,9 @@ export type Tag = {
 
 // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/lib/get-release-to-add.js#LL51C9-L56C25
 export type Release = {
+  version: string;
   // https://github.com/sindresorhus/semver-diff#semverdiffversiona-versionb
-  type:
+  type?:
     | "major"
     | "premajor"
     | "minor"
@@ -139,9 +140,8 @@ export type Release = {
     | "prerelease"
     | "build"
     | undefined;
-  version: string;
-  channel: string | null;
-  gitTag: string;
-  name: string;
-  gitHead: string;
+  channel?: string | null;
+  gitTag?: string;
+  name?: string;
+  gitHead?: string;
 };

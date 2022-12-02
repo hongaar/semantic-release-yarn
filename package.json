@@ -35,12 +35,11 @@
     "build:watch": "yarn build && tsc --watch",
     "prepublish": "yarn build",
     "release": "semantic-release",
-    "_comment": "remove 👇 these lines",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "_comment": "remove 👇 these lines",
     "test:legacy": "nyc ava -v",
-    "pretest": "npm run lint",
-    "codecov": "codecov -f coverage/coverage-final.json",
-    "test:watch": "jest --watch"
+    "codecov": "codecov -f coverage/coverage-final.json"
   },
   "engines": {
     "node": ">=16 || ^14.17"
@@ -117,7 +116,7 @@
     ],
     "all": true
   },
-  "packageManager": "yarn@3.3.0",
+  "packageManager": "yarn@2.4.3",
   "moker": {
     "plugins": [
       "typescript",

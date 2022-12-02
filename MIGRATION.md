@@ -2,11 +2,12 @@
 
 ## Yarn conversion
 
-Possibly unneeded deps:
-
-- tempy (only in --dev)
-- rc
-- normalize-url
+- We need version plugin. Any side-effects of installing it on the fly?
+- Possibly unneeded deps:
+  - tempy (only in --dev)
+  - rc
+  - normalize-url
+  - sinon
 
 ## TypeScript conversion
 

@@ -1,9 +1,9 @@
 import AggregateError from "aggregate-error";
-import path from "path";
+import { resolve } from "node:path";
 import readPkg from "read-pkg";
 import type { CommonContext } from "./definitions/context.js";
+import type { PluginConfig } from "./definitions/pluginConfig.js";
 import { getError } from "./get-error.js";
-import type { PluginConfig } from "./index.js";
 
 export async function getPkg(
   { pkgRoot }: PluginConfig,
@@ -11,7 +11,7 @@ export async function getPkg(
 ) {
   try {
     const pkg = await readPkg({
-      cwd: pkgRoot ? path.resolve(cwd, String(pkgRoot)) : cwd,
+      cwd: pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd,
     });
 
     if (!pkg.name) {

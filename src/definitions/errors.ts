@@ -79,3 +79,14 @@ export function ENOPKG() {
 Please follow the [npm guideline](https://docs.npmjs.com/getting-started/creating-node-modules) to create a valid \`package.json\` file.`,
   };
 }
+
+export function EINVALIDYARN({ version }: { version: string }) {
+  return {
+    message: "Incompatible Yarn version detected.",
+    details: `The version of Yarn that you are using is not compatible. Please refer to [the README](${linkify(
+      "README.md#install"
+    )}) to review which versions of Yarn are currently supported
+
+Your version of Yarn is \`${version}\`.`,
+  };
+}

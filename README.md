@@ -8,9 +8,6 @@
 plugin to publish a [npm](https://www.npmjs.com) package with
 [yarn](https://yarnpkg.com).
 
-> ⚠️  
-> Please note this plugin only works with **Yarn 2** and higher.
-
 | Step               | Description                                                                                                                                                                                |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `verifyConditions` | Verify Yarn 2 or higher is installed, verify the presence of an NPM auth token (either in an environment variable or an `.yarnrc.yml` file) and verify the authentication method is valid. |
@@ -35,6 +32,9 @@ As an added bonus, this plugin will also publish some simple monorepo patterns
 ```bash
 yarn add --dev semantic-release-yarn
 ```
+
+> ⚠️  
+> Please note this plugin only works with **Yarn 2** and higher.
 
 ## Usage
 

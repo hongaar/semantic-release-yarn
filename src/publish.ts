@@ -2,13 +2,12 @@ import execa from "execa";
 import path from "node:path";
 import type { PackageJson } from "read-pkg";
 import type { PublishContext } from "./definitions/context.js";
+import type { PluginConfig } from "./definitions/pluginConfig.js";
 import { getChannel } from "./get-channel.js";
 import { getRegistry } from "./get-registry.js";
 import { getReleaseInfo } from "./get-release-info.js";
-import type { PluginConfig } from "./index.js";
 
 export async function publish(
-  npmrc: string,
   { npmPublish, pkgRoot }: PluginConfig,
   pkg: PackageJson,
   context: PublishContext

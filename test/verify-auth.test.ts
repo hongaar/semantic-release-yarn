@@ -5,6 +5,12 @@ import { resolve } from "node:path";
 import type { Yarnrc } from "../src/definitions/yarnrc.js";
 import { verifyAuth } from "../src/verify-auth.js";
 import { createContext } from "./helpers/createContext.js";
+import {
+  mockExeca,
+  mockExecaError,
+} from "./helpers/createExecaImplementation.js";
+
+jest.mock("execa");
 
 test("No token", async () => {
   const context = createContext();
@@ -32,18 +38,7 @@ test("Invalid token", async () => {
     } as Yarnrc)
   );
 
-  // @ts-ignore
-  execa.mockImplementation(() => {
-    const res = Promise.reject({
-      exitCode: 1,
-      failed: true,
-    });
-    // @ts-ignore
-    res.stdout = { pipe: jest.fn() };
-    // @ts-ignore
-    res.stderr = { pipe: jest.fn() };
-    return res;
-  });
+  mockExecaError(execa);
 
   expect.assertions(2);
   try {
@@ -64,22 +59,7 @@ test("Valid token", async () => {
     } as Yarnrc)
   );
 
-  // @ts-ignore
-  execa.mockImplementation(() => {
-    const res = Promise.resolve({
-      exitCode: 0,
-      failed: false,
-    });
-    // @ts-ignore
-    res.stdout = { pipe: jest.fn() };
-    // @ts-ignore
-    res.stderr = { pipe: jest.fn() };
-    return res;
-  });
+  mockExeca(execa);
 
-  expect.assertions(1);
-  try {
-    await verifyAuth({}, context);
-    expect(true).toBe(true);
-  } catch {}
+  await expect(verifyAuth({}, context)).resolves.toBe(undefined);
 });

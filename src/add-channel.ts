@@ -1,13 +1,12 @@
 import execa from "execa";
 import type { PackageJson } from "read-pkg";
 import type { AddChannelContext } from "./definitions/context.js";
+import type { PluginConfig } from "./definitions/pluginConfig.js";
 import { getChannel } from "./get-channel.js";
 import { getRegistry } from "./get-registry.js";
 import { getReleaseInfo } from "./get-release-info.js";
-import type { PluginConfig } from "./index.js";
 
 export async function addChannel(
-  npmrc: string,
   { npmPublish }: PluginConfig,
   pkg: PackageJson,
   context: AddChannelContext
