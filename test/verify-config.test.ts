@@ -1,3 +1,4 @@
+import test from "ava";
 import { verifyConfig } from "../src/verify-config.js";
 
 test('Verify "npmPublish", "tarballDir" and "pkgRoot" options', async () => {
@@ -11,8 +12,8 @@ test('Return SemanticReleaseError if "npmPublish" option is not a Boolean', asyn
   const [error, ...errors] = verifyConfig({ npmPublish } as any);
 
   expect(errors).toHaveLength(0);
-  expect(error!.name).toBe("SemanticReleaseError");
-  expect(error!.code).toBe("EINVALIDNPMPUBLISH");
+  t.is(error!.name, "SemanticReleaseError");
+  t.is(error!.code, "EINVALIDNPMPUBLISH");
 });
 
 test('Return SemanticReleaseError if "tarballDir" option is not a String', async () => {
@@ -20,8 +21,8 @@ test('Return SemanticReleaseError if "tarballDir" option is not a String', async
   const [error, ...errors] = verifyConfig({ tarballDir } as any);
 
   expect(errors).toHaveLength(0);
-  expect(error!.name).toBe("SemanticReleaseError");
-  expect(error!.code).toBe("EINVALIDTARBALLDIR");
+  t.is(error!.name, "SemanticReleaseError");
+  t.is(error!.code, "EINVALIDTARBALLDIR");
 });
 
 test('Return SemanticReleaseError if "pkgRoot" option is not a String', async () => {
@@ -29,8 +30,8 @@ test('Return SemanticReleaseError if "pkgRoot" option is not a String', async ()
   const [error, ...errors] = verifyConfig({ pkgRoot } as any);
 
   expect(errors).toHaveLength(0);
-  expect(error!.name).toBe("SemanticReleaseError");
-  expect(error!.code).toBe("EINVALIDPKGROOT");
+  t.is(error!.name, "SemanticReleaseError");
+  t.is(error!.code, "EINVALIDPKGROOT");
 });
 
 test("Return SemanticReleaseError Array if multiple config are invalid", async () => {
@@ -43,12 +44,12 @@ test("Return SemanticReleaseError Array if multiple config are invalid", async (
     pkgRoot,
   } as any);
 
-  expect(error1!.name).toBe("SemanticReleaseError");
-  expect(error1!.code).toBe("EINVALIDNPMPUBLISH");
+  t.is(error1!.name, "SemanticReleaseError");
+  t.is(error1!.code, "EINVALIDNPMPUBLISH");
 
-  expect(error2!.name).toBe("SemanticReleaseError");
-  expect(error2!.code).toBe("EINVALIDTARBALLDIR");
+  t.is(error2!.name, "SemanticReleaseError");
+  t.is(error2!.code, "EINVALIDTARBALLDIR");
 
-  expect(error3!.name).toBe("SemanticReleaseError");
-  expect(error3!.code).toBe("EINVALIDPKGROOT");
+  t.is(error3!.name, "SemanticReleaseError");
+  t.is(error3!.code, "EINVALIDPKGROOT");
 });

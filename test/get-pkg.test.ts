@@ -1,65 +1,56 @@
+import test from "ava";
 import fs from "fs-extra";
 import { resolve } from "node:path";
 import { directory } from "tempy";
 import { getPkg } from "../src/get-pkg.js";
 
-test("Verify name and version then return parsed package.json", async () => {
+test("Verify name and version then return parsed package.json", async (t) => {
   const cwd = directory();
   const pkg = { name: "package", version: "0.0.0" };
   await fs.outputJson(resolve(cwd, "package.json"), pkg);
 
   const result = await getPkg({}, { cwd });
-  expect(pkg.name).toBe(result.name);
-  expect(pkg.version).toBe(result.version);
+
+  t.is(pkg.name, result.name);
+  t.is(pkg.version, result.version);
 });
 
-test("Verify name and version then return parsed package.json from a sub-directory", async () => {
+test("Verify name and version then return parsed package.json from a sub-directory", async (t) => {
   const cwd = directory();
   const pkgRoot = "dist";
   const pkg = { name: "package", version: "0.0.0" };
   await fs.outputJson(resolve(cwd, pkgRoot, "package.json"), pkg);
 
   const result = await getPkg({ pkgRoot }, { cwd });
-  expect(pkg.name).toBe(result.name);
-  expect(pkg.version).toBe(result.version);
+
+  t.is(pkg.name, result.name);
+  t.is(pkg.version, result.version);
 });
 
-test("Throw error if missing package.json", async () => {
+test("Throw error if missing package.json", async (t) => {
   const cwd = directory();
 
-  expect.assertions(2);
-  try {
-    await getPkg({}, { cwd });
-  } catch (e: any) {
-    const [error] = e;
-    expect(error.name).toBe("SemanticReleaseError");
-    expect(error.code).toBe("ENOPKG");
-  }
+  const [error] = await t.throwsAsync<any>(getPkg({}, { cwd }));
+
+  t.is(error.name, "SemanticReleaseError");
+  t.is(error.code, "ENOPKG");
 });
 
-test("Throw error if missing package name", async () => {
+test("Throw error if missing package name", async (t) => {
   const cwd = directory();
   await fs.outputJson(resolve(cwd, "package.json"), { version: "0.0.0" });
 
-  expect.assertions(2);
-  try {
-    await getPkg({}, { cwd });
-  } catch (e: any) {
-    const [error] = e;
-    expect(error.name).toBe("SemanticReleaseError");
-    expect(error.code).toBe("ENOPKGNAME");
-  }
+  const [error] = await t.throwsAsync<any>(getPkg({}, { cwd }));
+
+  t.is(error.name, "SemanticReleaseError");
+  t.is(error.code, "ENOPKGNAME");
 });
 
-test("Throw error if package.json is malformed", async () => {
+test("Throw error if package.json is malformed", async (t) => {
   const cwd = directory();
   await fs.writeFile(resolve(cwd, "package.json"), "{name: 'package',}");
 
-  expect.assertions(1);
-  try {
-    await getPkg({}, { cwd });
-  } catch (e: any) {
-    const [error] = e;
-    expect(error.name).toBe("JSONError");
-  }
+  const [error] = await t.throwsAsync<any>(getPkg({}, { cwd }));
+
+  t.is(error.name, "JSONError");
 });

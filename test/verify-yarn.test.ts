@@ -1,3 +1,4 @@
+import test from "ava";
 import execa from "execa";
 import { verifyYarn } from "../src/verify-yarn.js";
 import { createContext } from "./helpers/create-context.js";
@@ -15,8 +16,8 @@ test("Yarn (1.20.19)", async () => {
     await verifyYarn(context);
   } catch (e: any) {
     const [error] = e;
-    expect(error.name).toBe("SemanticReleaseError");
-    expect(error.code).toBe("EINVALIDYARN");
+    t.is(error.name, "SemanticReleaseError");
+    t.is(error.code, "EINVALIDYARN");
   }
 });
 

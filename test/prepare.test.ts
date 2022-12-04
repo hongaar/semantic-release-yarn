@@ -1,3 +1,4 @@
+import test from "ava";
 import fs from "fs-extra";
 import { resolve } from "node:path";
 import { prepare } from "../src/prepare.js";
@@ -21,7 +22,7 @@ test("Update package.json", async () => {
   );
 
   // Verify package.json has been updated
-  expect((await fs.readJson(packagePath)).version).toBe("1.0.0");
+  t.is((await fs.readJson(packagePath)).version, "1.0.0");
 
   // Verify the logger has been called with the version plugin call
   expect(context.logger.log).toHaveBeenNthCalledWith(
@@ -58,7 +59,7 @@ test("Update package.json in a sub-directory", async () => {
   );
 
   // Verify package.json has been updated
-  expect((await fs.readJson(packagePath)).version).toBe("1.0.0");
+  t.is((await fs.readJson(packagePath)).version, "1.0.0");
 
   // Verify the logger has been called with the version updated
   expect(context.logger.log).toHaveBeenNthCalledWith(
@@ -87,7 +88,7 @@ test("Create the package tarball", async () => {
   );
 
   // Verify package.json has been updated
-  expect((await fs.readJson(packagePath)).version).toBe("1.0.0");
+  t.is((await fs.readJson(packagePath)).version, "1.0.0");
 
   // Verify the logger has been called with the version updated
   expect(context.logger.log).toHaveBeenNthCalledWith(
@@ -128,7 +129,7 @@ test("Create the package tarball in the current directory", async () => {
   );
 
   // Verify the package has been created in the "tarballDir" directory
-  expect(await fs.pathExists(resolve(cwd, "my-pkg-1.0.0.tgz"))).toBe(true);
+  t.is(await fs.pathExists(resolve(cwd, "my-pkg-1.0.0.tgz")), true);
 
   // Verify the logger has been called with the version updated
   expect(context.logger.log).toHaveBeenNthCalledWith(

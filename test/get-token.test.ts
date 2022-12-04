@@ -1,13 +1,15 @@
+import test from "ava";
 import { getToken } from "../src/get-token.js";
 
-test("Get token from npmAuthToken", async () => {
-  expect(
-    getToken("https://registry.npmjs.org", { npmAuthToken: "token" }, {})
-  ).toBe("token");
+test("Get token from npmAuthToken", (t) => {
+  t.is(
+    getToken("https://registry.npmjs.org", { npmAuthToken: "token" }, {}),
+    "token"
+  );
 });
 
-test("Get token from environment variable", async () => {
-  expect(
+test("Get token from environment variable", (t) => {
+  t.is(
     getToken(
       "https://registry.npmjs.org",
       {},
@@ -16,12 +18,13 @@ test("Get token from environment variable", async () => {
           YARN_NPM_AUTH_TOKEN: "token",
         },
       }
-    )
-  ).toBe("token");
+    ),
+    "token"
+  );
 });
 
-test("Get token from registries list", async () => {
-  expect(
+test("Get token from registries list", (t) => {
+  t.is(
     getToken(
       "https://registry.npmjs.org",
       {
@@ -32,12 +35,13 @@ test("Get token from registries list", async () => {
         },
       },
       {}
-    )
-  ).toBe("token");
+    ),
+    "token"
+  );
 });
 
-test("Precedence: registries list > environment variable > npmAuthToken", async () => {
-  expect(
+test("Precedence: registries list > environment variable > npmAuthToken", (t) => {
+  t.is(
     getToken(
       "https://registry.npmjs.org",
       {
@@ -53,9 +57,10 @@ test("Precedence: registries list > environment variable > npmAuthToken", async 
           YARN_NPM_AUTH_TOKEN: "token3",
         },
       }
-    )
-  ).toBe("token2");
-  expect(
+    ),
+    "token2"
+  );
+  t.is(
     getToken(
       "https://registry.npmjs.org",
       {
@@ -66,6 +71,7 @@ test("Precedence: registries list > environment variable > npmAuthToken", async 
           YARN_NPM_AUTH_TOKEN: "token3",
         },
       }
-    )
-  ).toBe("token3");
+    ),
+    "token3"
+  );
 });

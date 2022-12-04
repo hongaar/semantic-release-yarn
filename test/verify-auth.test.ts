@@ -1,3 +1,4 @@
+import test from "ava";
 import execa from "execa";
 import fs from "fs-extra";
 import yaml from "js-yaml";
@@ -24,8 +25,8 @@ test("No token", async () => {
     await verifyAuth({}, context);
   } catch (e: any) {
     const [error] = e;
-    expect(error.name).toBe("SemanticReleaseError");
-    expect(error.code).toBe("ENONPMTOKEN");
+    t.is(error.name, "SemanticReleaseError");
+    t.is(error.code, "ENONPMTOKEN");
   }
 });
 
@@ -45,8 +46,8 @@ test("Invalid token", async () => {
     await verifyAuth({}, context);
   } catch (e: any) {
     const [error] = e;
-    expect(error.name).toBe("SemanticReleaseError");
-    expect(error.code).toBe("EINVALIDNPMTOKEN");
+    t.is(error.name, "SemanticReleaseError");
+    t.is(error.code, "EINVALIDNPMTOKEN");
   }
 });
 

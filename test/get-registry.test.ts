@@ -1,45 +1,53 @@
+import test from "ava";
 import { getRegistry } from "../src/get-registry.js";
 
-test("Get default registry", async () => {
-  expect(getRegistry({}, {}, {})).toBe("https://registry.npmjs.org");
-  expect(getRegistry({ publishConfig: {} }, {}, {})).toBe(
+test("Get default registry", async (t) => {
+  t.is(getRegistry({}, {}, {}), "https://registry.npmjs.org");
+  t.is(
+    getRegistry({ publishConfig: {} }, {}, {}),
     "https://registry.npmjs.org"
   );
-  expect(getRegistry({}, { npmPublishRegistry: "" }, {})).toBe(
+  t.is(
+    getRegistry({}, { npmPublishRegistry: "" }, {}),
     "https://registry.npmjs.org"
   );
-  expect(getRegistry({}, { npmRegistryServer: "" }, {})).toBe(
+  t.is(
+    getRegistry({}, { npmRegistryServer: "" }, {}),
     "https://registry.npmjs.org"
   );
-  expect(getRegistry({}, {}, { env: {} })).toBe("https://registry.npmjs.org");
-  expect(getRegistry({}, {}, { env: { YARN_NPM_PUBLISH_REGISTRY: "" } })).toBe(
+  t.is(getRegistry({}, {}, { env: {} }), "https://registry.npmjs.org");
+  t.is(
+    getRegistry({}, {}, { env: { YARN_NPM_PUBLISH_REGISTRY: "" } }),
     "https://registry.npmjs.org"
   );
-  expect(getRegistry({}, {}, { env: { YARN_NPM_REGISTRY_SERVER: "" } })).toBe(
+  t.is(
+    getRegistry({}, {}, { env: { YARN_NPM_REGISTRY_SERVER: "" } }),
     "https://registry.npmjs.org"
   );
 });
 
-test("Get registry from yarnrc", async () => {
-  expect(
+test("Get registry from yarnrc", async (t) => {
+  t.is(
     getRegistry(
       {},
       {
         npmPublishRegistry: "https://custom1.registry.com",
       },
       {}
-    )
-  ).toBe("https://custom1.registry.com");
-  expect(
+    ),
+    "https://custom1.registry.com"
+  );
+  t.is(
     getRegistry(
       {},
       {
         npmRegistryServer: "https://custom1.registry.com",
       },
       {}
-    )
-  ).toBe("https://custom1.registry.com");
-  expect(
+    ),
+    "https://custom1.registry.com"
+  );
+  t.is(
     getRegistry(
       {},
       {
@@ -47,30 +55,33 @@ test("Get registry from yarnrc", async () => {
         npmRegistryServer: "https://custom2.registry.com",
       },
       {}
-    )
-  ).toBe("https://custom1.registry.com");
+    ),
+    "https://custom1.registry.com"
+  );
 });
 
-test("Get registry from environment variables", async () => {
-  expect(
+test("Get registry from environment variables", async (t) => {
+  t.is(
     getRegistry(
       {},
       {},
       {
         env: { YARN_NPM_PUBLISH_REGISTRY: "https://custom1.registry.com" },
       }
-    )
-  ).toBe("https://custom1.registry.com");
-  expect(
+    ),
+    "https://custom1.registry.com"
+  );
+  t.is(
     getRegistry(
       {},
       {},
       {
         env: { YARN_NPM_REGISTRY_SERVER: "https://custom1.registry.com" },
       }
-    )
-  ).toBe("https://custom1.registry.com");
-  expect(
+    ),
+    "https://custom1.registry.com"
+  );
+  t.is(
     getRegistry(
       {},
       {},
@@ -80,22 +91,24 @@ test("Get registry from environment variables", async () => {
           YARN_NPM_REGISTRY_SERVER: "https://custom2.registry.com",
         },
       }
-    )
-  ).toBe("https://custom1.registry.com");
+    ),
+    "https://custom1.registry.com"
+  );
 });
 
-test("Get registry from publishConfig", async () => {
-  expect(
+test("Get registry from publishConfig", async (t) => {
+  t.is(
     getRegistry(
       { publishConfig: { registry: "https://custom1.registry.com" } },
       {},
       {}
-    )
-  ).toBe("https://custom1.registry.com");
+    ),
+    "https://custom1.registry.com"
+  );
 });
 
-test("Precedence: publishConfig > environment variables > yarnrc", async () => {
-  expect(
+test("Precedence: publishConfig > environment variables > yarnrc", async (t) => {
+  t.is(
     getRegistry(
       { publishConfig: { registry: "https://custom1.registry.com" } },
       {
@@ -106,9 +119,10 @@ test("Precedence: publishConfig > environment variables > yarnrc", async () => {
           YARN_NPM_PUBLISH_REGISTRY: "https://custom3.registry.com",
         },
       }
-    )
-  ).toBe("https://custom1.registry.com");
-  expect(
+    ),
+    "https://custom1.registry.com"
+  );
+  t.is(
     getRegistry(
       {},
       {
@@ -119,6 +133,7 @@ test("Precedence: publishConfig > environment variables > yarnrc", async () => {
           YARN_NPM_PUBLISH_REGISTRY: "https://custom2.registry.com",
         },
       }
-    )
-  ).toBe("https://custom2.registry.com");
+    ),
+    "https://custom2.registry.com"
+  );
 });

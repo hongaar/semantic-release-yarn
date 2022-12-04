@@ -35,10 +35,11 @@
     "build:watch": "yarn build && tsc --watch",
     "prepublish": "yarn build",
     "release": "semantic-release",
-    "test": "jest",
-    "test:watch": "jest --watch",
     "_comment": "remove 👇 these lines",
-    "test:legacy": "nyc ava -v",
+    "test:jest": "jest",
+    "test:jest:watch": "jest --watch",
+    "test:ava": "nyc ava -v",
+    "test:ava:watch": "nyc ava -v --watch",
     "codecov": "codecov -f coverage/coverage-final.json"
   },
   "engines": {
@@ -91,6 +92,7 @@
     "sinon": "15.0.0",
     "stream-buffers": "3.0.2",
     "tempy": "1.0.1",
+    "to-ava": "^1.2.8",
     "ts-jest": "29.0.3",
     "ts-node": "10.9.1",
     "typescript": "4.9.3"
