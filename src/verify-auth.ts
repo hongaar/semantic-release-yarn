@@ -1,5 +1,6 @@
 import AggregateError from "aggregate-error";
 import type { PackageJson } from "read-pkg";
+import { isDefaultRegistry } from "./definitions/constants.js";
 import type { CommonContext } from "./definitions/context.js";
 import execa from "./execa.js";
 import { getError } from "./get-error.js";
@@ -18,6 +19,10 @@ export async function verifyAuth(pkg: PackageJson, context: CommonContext) {
 
   if (!token) {
     throw new AggregateError([getError("ENONPMTOKEN", { registry })]);
+  }
+
+  if (!env["VERIFY_TOKEN"] && !isDefaultRegistry(registry)) {
+    return;
   }
 
   try {

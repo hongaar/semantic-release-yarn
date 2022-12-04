@@ -2,7 +2,6 @@ import test from "ava";
 import fs from "fs-extra";
 import yaml from "js-yaml";
 import { resolve } from "node:path";
-import "source-map-support/register.js";
 import type { Yarnrc } from "../src/definitions/yarnrc.js";
 import { verifyAuth } from "../src/verify-auth.js";
 import { createContext } from "./helpers/create-context.js";

@@ -111,8 +111,7 @@
       "prettier",
       "lint-staged",
       "husky",
-      "dependabot",
-      "jest"
+      "dependabot"
     ]
   },
   "lint-staged": {

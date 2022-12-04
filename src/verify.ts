@@ -1,3 +1,4 @@
+import AggregateError from "aggregate-error";
 import type { VerifyConditionsContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
 import { getPkg } from "./get-pkg.js";
