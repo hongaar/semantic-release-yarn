@@ -1,5 +1,6 @@
 import type { ExecaError, ExecaReturnValue } from "execa";
-import { mockExec, restoreExec } from "../../src/exec.js";
+import execa from "execa";
+import { setExecaImplementation } from "../../src/execa.js";
 
 const DEFAULT_PAYLOAD = {
   command: "mock cmd",
@@ -56,13 +57,13 @@ function createExecaResult(
 }
 
 export function mockExeca(payload: Partial<ExecaReturnValue> = {}) {
-  mockExec(createExecaResult(payload));
+  setExecaImplementation(() => createExecaResult(payload));
 }
 
 export function mockExecaError(
   payload: Partial<ExecaReturnValue & ExecaError> = {}
 ) {
-  mockExec(
+  setExecaImplementation(() =>
     createExecaResult({
       ...payload,
       exitCode: 1,
@@ -72,5 +73,5 @@ export function mockExecaError(
 }
 
 export function restoreExeca() {
-  restoreExec();
+  setExecaImplementation(execa);
 }

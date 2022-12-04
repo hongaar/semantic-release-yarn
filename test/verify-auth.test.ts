@@ -1,8 +1,8 @@
 import test from "ava";
-import execa from "execa";
 import fs from "fs-extra";
 import yaml from "js-yaml";
 import { resolve } from "node:path";
+import "source-map-support/register.js";
 import type { Yarnrc } from "../src/definitions/yarnrc.js";
 import { verifyAuth } from "../src/verify-auth.js";
 import { createContext } from "./helpers/create-context.js";
@@ -11,26 +11,20 @@ import {
   mockExecaError,
 } from "./helpers/create-execa-implementation.js";
 
-jest.mock("execa");
-
-test("No token", async () => {
+test.serial("No token", async (t) => {
   const context = createContext();
   await fs.outputFile(
     resolve(context.cwd, ".yarnrc.yml"),
     yaml.dump({} as Yarnrc)
   );
 
-  expect.assertions(2);
-  try {
-    await verifyAuth({}, context);
-  } catch (e: any) {
-    const [error] = e;
-    t.is(error.name, "SemanticReleaseError");
-    t.is(error.code, "ENONPMTOKEN");
-  }
+  const [error] = await t.throwsAsync<any>(verifyAuth({}, context));
+
+  t.is(error.name, "SemanticReleaseError");
+  t.is(error.code, "ENONPMTOKEN");
 });
 
-test("Invalid token", async () => {
+test.serial("Invalid token", async (t) => {
   const context = createContext();
   await fs.outputFile(
     resolve(context.cwd, ".yarnrc.yml"),
@@ -39,19 +33,15 @@ test("Invalid token", async () => {
     } as Yarnrc)
   );
 
-  mockExecaError(execa);
+  mockExecaError();
 
-  expect.assertions(2);
-  try {
-    await verifyAuth({}, context);
-  } catch (e: any) {
-    const [error] = e;
-    t.is(error.name, "SemanticReleaseError");
-    t.is(error.code, "EINVALIDNPMTOKEN");
-  }
+  const [error] = await t.throwsAsync<any>(verifyAuth({}, context));
+
+  t.is(error.name, "SemanticReleaseError");
+  t.is(error.code, "EINVALIDNPMTOKEN");
 });
 
-test("Valid token", async () => {
+test.serial("Valid token", async (t) => {
   const context = createContext();
   await fs.outputFile(
     resolve(context.cwd, ".yarnrc.yml"),
@@ -60,7 +50,7 @@ test("Valid token", async () => {
     } as Yarnrc)
   );
 
-  mockExeca(execa);
+  mockExeca();
 
-  await expect(verifyAuth({}, context)).resolves.toBe(undefined);
+  await t.notThrowsAsync(verifyAuth({}, context));
 });

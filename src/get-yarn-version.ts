@@ -1,5 +1,5 @@
-import execa from "execa";
 import type { CommonContext } from "./definitions/context.js";
+import execa from "./execa.js";
 
 export async function getYarnVersion({ cwd }: { cwd: CommonContext["cwd"] }) {
   try {

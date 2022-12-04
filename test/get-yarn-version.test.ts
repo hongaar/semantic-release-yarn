@@ -1,9 +1,15 @@
 import test from "ava";
+import {
+  getYarnMajorVersion,
+  getYarnVersion,
+} from "../src/get-yarn-version.js";
 import { createContext } from "./helpers/create-context.js";
-import { getYarnVersion } from "../src/get-yarn-version.js";
-import { mockExeca } from "./helpers/create-execa-implementation.js";
+import {
+  mockExeca,
+  mockExecaError,
+} from "./helpers/create-execa-implementation.js";
 
-test("Get Yarn version", async (t) => {
+test.serial("Get Yarn version", async (t) => {
   const context = createContext();
 
   mockExeca({ stdout: "2.4.3" });
@@ -11,50 +17,35 @@ test("Get Yarn version", async (t) => {
   t.is(await getYarnVersion(context), "2.4.3");
 });
 
-// test("Yarn not installed", async () => {
-//   const context = createContext();
+test.serial("Yarn not installed", async (t) => {
+  const context = createContext();
 
-//   mockExecaError(execa);
+  mockExecaError();
 
-//   expect.assertions(2);
-//   try {
-//     await getYarnVersion(context);
-//   } catch (error: any) {
-//     t.is(error.name, "Error");
-//     expect(error.message).toBe(
-//       "Could not determine Yarn version. Is Yarn installed?"
-//     );
-//   }
-// });
+  const error = await t.throwsAsync<any>(getYarnVersion(context));
 
-// test("Yarn with empty output", async () => {
-//   const context = createContext();
+  t.is(error.name, "Error");
+  t.is(error.message, "Could not determine Yarn version. Is Yarn installed?");
+});
 
-//   mockExeca(execa, { stdout: "" });
+test.serial("Yarn with empty output", async (t) => {
+  const context = createContext();
 
-//   expect.assertions(2);
-//   try {
-//     await getYarnMajorVersion(context);
-//   } catch (error: any) {
-//     t.is(error.name, "Error");
-//     expect(error.message).toBe(
-//       'Could not determine Yarn major version, got ""'
-//     );
-//   }
-// });
+  mockExeca({ stdout: "" });
 
-// test.each(["a.b.c", "invalid"])("Yarn invalid output (%s)", async (stdout) => {
-//   const context = createContext();
+  const error = await t.throwsAsync<any>(getYarnMajorVersion(context));
 
-//   mockExeca(execa, { stdout });
+  t.is(error.name, "Error");
+  t.is(error.message, 'Could not determine Yarn major version, got ""');
+});
 
-//   expect.assertions(2);
-//   try {
-//     await getYarnMajorVersion(context);
-//   } catch (error: any) {
-//     t.is(error.name, "Error");
-//     expect(error.message).toBe(
-//       `Could not determine Yarn major version, got "${stdout}"`
-//     );
-//   }
-// });
+test.serial("Yarn invalid output", async (t) => {
+  const context = createContext();
+
+  mockExeca({ stdout: "invalid" });
+
+  const error = await t.throwsAsync<any>(getYarnMajorVersion(context));
+
+  t.is(error.name, "Error");
+  t.is(error.message, 'Could not determine Yarn major version, got "invalid"');
+});

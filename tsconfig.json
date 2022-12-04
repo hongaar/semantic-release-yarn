@@ -22,6 +22,7 @@
     "noUnusedParameters": true,
     "importsNotUsedAsValues": "error",
     "declaration": true,
+    "sourceMap": true,
     "rootDir": "src",
     "outDir": "dist",
     "declarationDir": "types"

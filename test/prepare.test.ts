@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 import { prepare } from "../src/prepare.js";
 import { createContext } from "./helpers/create-context.js";
 
-test("Update package.json", async () => {
+test("Update package.json", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const packagePath = resolve(cwd, "package.json");
@@ -25,22 +25,20 @@ test("Update package.json", async () => {
   t.is((await fs.readJson(packagePath)).version, "1.0.0");
 
   // Verify the logger has been called with the version plugin call
-  expect(context.logger.log).toHaveBeenNthCalledWith(
-    1,
+  t.deepEqual(context.logger.log.args[0], [
     "Installing Yarn version plugin in %s",
-    cwd
-  );
+    cwd,
+  ]);
 
   // Verify the logger has been called with the version updated
-  expect(context.logger.log).toHaveBeenNthCalledWith(
-    2,
+  t.deepEqual(context.logger.log.args[1], [
     "Write version %s to package.json in %s",
     "1.0.0",
-    cwd
-  );
+    cwd,
+  ]);
 });
 
-test("Update package.json in a sub-directory", async () => {
+test("Update package.json in a sub-directory", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const pkgRoot = "dist";
@@ -62,15 +60,14 @@ test("Update package.json in a sub-directory", async () => {
   t.is((await fs.readJson(packagePath)).version, "1.0.0");
 
   // Verify the logger has been called with the version updated
-  expect(context.logger.log).toHaveBeenNthCalledWith(
-    2,
+  t.deepEqual(context.logger.log.args[1], [
     "Write version %s to package.json in %s",
     "1.0.0",
-    resolve(cwd, pkgRoot)
-  );
+    resolve(cwd, pkgRoot),
+  ]);
 });
 
-test("Create the package tarball", async () => {
+test("Create the package tarball", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const packagePath = resolve(cwd, "package.json");
@@ -91,27 +88,23 @@ test("Create the package tarball", async () => {
   t.is((await fs.readJson(packagePath)).version, "1.0.0");
 
   // Verify the logger has been called with the version updated
-  expect(context.logger.log).toHaveBeenNthCalledWith(
-    2,
+  t.deepEqual(context.logger.log.args[1], [
     "Write version %s to package.json in %s",
     "1.0.0",
-    cwd
-  );
+    cwd,
+  ]);
 
   // Verify the package has been created in the "tarballDir" directory
-  expect(await fs.pathExists(resolve(cwd, "tarball/my-pkg-1.0.0.tgz"))).toBe(
-    true
-  );
+  t.true(await fs.pathExists(resolve(cwd, "tarball/my-pkg-1.0.0.tgz")));
 
   // Verify the logger has been called with the version updated
-  expect(context.logger.log).toHaveBeenNthCalledWith(
-    3,
+  t.deepEqual(context.logger.log.args[2], [
     "Creating package tarball in %s",
-    "tarball"
-  );
+    "tarball",
+  ]);
 });
 
-test("Create the package tarball in the current directory", async () => {
+test("Create the package tarball in the current directory", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const packagePath = resolve(cwd, "package.json");
@@ -132,14 +125,13 @@ test("Create the package tarball in the current directory", async () => {
   t.is(await fs.pathExists(resolve(cwd, "my-pkg-1.0.0.tgz")), true);
 
   // Verify the logger has been called with the version updated
-  expect(context.logger.log).toHaveBeenNthCalledWith(
-    3,
+  t.deepEqual(context.logger.log.args[2], [
     "Creating package tarball in %s",
-    "."
-  );
+    ".",
+  ]);
 });
 
-test("Create the package tarball with package.json in sub-dir", async () => {
+test("Create the package tarball with package.json in sub-dir", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const pkgRoot = "dist";
@@ -158,7 +150,5 @@ test("Create the package tarball with package.json in sub-dir", async () => {
   );
 
   // Verify the package has been created in the "tarballDir" directory
-  expect(await fs.pathExists(resolve(cwd, "tarball/my-pkg-1.0.0.tgz"))).toBe(
-    true
-  );
+  t.true(await fs.pathExists(resolve(cwd, "tarball/my-pkg-1.0.0.tgz")));
 });

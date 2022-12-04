@@ -1,30 +1,23 @@
 import test from "ava";
-import execa from "execa";
 import { verifyYarn } from "../src/verify-yarn.js";
 import { createContext } from "./helpers/create-context.js";
 import { mockExeca } from "./helpers/create-execa-implementation.js";
 
-jest.mock("execa");
-
-test("Yarn (1.20.19)", async () => {
+test.serial("Yarn (1.20.19)", async (t) => {
   const context = createContext();
 
-  mockExeca(execa, { stdout: "1.20.19" });
+  mockExeca({ stdout: "1.20.19" });
 
-  expect.assertions(2);
-  try {
-    await verifyYarn(context);
-  } catch (e: any) {
-    const [error] = e;
-    t.is(error.name, "SemanticReleaseError");
-    t.is(error.code, "EINVALIDYARN");
-  }
+  const [error] = await t.throwsAsync<any>(verifyYarn(context));
+
+  t.is(error.name, "SemanticReleaseError");
+  t.is(error.code, "EINVALIDYARN");
 });
 
-test.each(["2.4.3", "3.3.0", "4.0.0"])("Yarn (%s)", async (stdout) => {
+test.serial("Yarn (2.4.3)", async (t) => {
   const context = createContext();
 
-  mockExeca(execa, { stdout });
+  mockExeca({ stdout: "2.4.3" });
 
-  await expect(verifyYarn(context)).resolves.toBe(undefined);
+  await t.notThrowsAsync(verifyYarn(context));
 });
