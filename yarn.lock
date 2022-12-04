@@ -5482,7 +5482,7 @@ __metadata:
     cosmiconfig: ^8.0.0
     delay: 5.0.0
     dockerode: 3.3.4
-    execa: ^5.0.0
+    execa: ^6.1.0
     fs-extra: ^10.0.0
     get-stream: 6.0.1
     got: 11.8.5

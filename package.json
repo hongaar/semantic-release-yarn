@@ -46,7 +46,7 @@
     "@semantic-release/error": "^3.0.0",
     "aggregate-error": "^3.0.0",
     "cosmiconfig": "^8.0.0",
-    "execa": "^5.0.0",
+    "execa": "^6.1.0",
     "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.15",
