@@ -1,4 +1,4 @@
-import delay from "delay";
+// import delay from "delay";
 import Docker from "dockerode";
 import execa from "execa";
 import getStream from "get-stream";
@@ -14,7 +14,14 @@ const NPM_USERNAME = "integration";
 const NPM_PASSWORD = "suchsecure";
 const NPM_EMAIL = "integration@test.com";
 const docker = new Docker();
-let container;
+let container: Docker.Container;
+
+export const url = `http://${REGISTRY_HOST}:${REGISTRY_PORT}/`;
+
+export const authEnv = {
+  npm_config_registry: url, // eslint-disable-line camelcase
+  YARN_NPM_AUTH_TOKEN: undefined,
+};
 
 /**
  * Download the `npm-registry-docker` Docker image, create a new container and start it.
@@ -25,8 +32,10 @@ export async function start() {
   container = await docker.createContainer({
     Tty: true,
     Image: IMAGE,
-    PortBindings: {
-      [`${REGISTRY_PORT}/tcp`]: [{ HostPort: `${REGISTRY_PORT}` }],
+    HostConfig: {
+      PortBindings: {
+        [`${REGISTRY_PORT}/tcp`]: [{ HostPort: `${REGISTRY_PORT}` }],
+      },
     },
   });
 
@@ -35,8 +44,11 @@ export async function start() {
     resolve(dirname(fileURLToPath(import.meta.url)), "config.yaml"),
     `${container.id}:/verdaccio/conf/config.yaml`,
   ]);
+
   await container.start();
-  await delay(4000);
+
+  // @todo arbitrary - alternative?
+  // await delay(4000);
 
   try {
     // Wait for the registry to be ready
@@ -53,30 +65,25 @@ export async function start() {
   }
 
   // Create user
-  await got(
-    `http://${REGISTRY_HOST}:${REGISTRY_PORT}/-/user/org.couchdb.user:${NPM_USERNAME}`,
-    {
-      method: "PUT",
-      json: {
-        _id: `org.couchdb.user:${NPM_USERNAME}`,
-        name: NPM_USERNAME,
-        roles: [],
-        type: "user",
-        password: NPM_PASSWORD,
-        email: NPM_EMAIL,
-      },
-    }
-  );
+  const response = await got
+    .put(
+      `http://${REGISTRY_HOST}:${REGISTRY_PORT}/-/user/org.couchdb.user:${NPM_USERNAME}`,
+      {
+        json: {
+          _id: `org.couchdb.user:${NPM_USERNAME}`,
+          name: NPM_USERNAME,
+          roles: [],
+          type: "user",
+          password: NPM_PASSWORD,
+          email: NPM_EMAIL,
+        },
+      }
+    )
+    .json();
+
+  // Store token
+  authEnv.YARN_NPM_AUTH_TOKEN = (response as any).token;
 }
-
-export const url = `http://${REGISTRY_HOST}:${REGISTRY_PORT}/`;
-
-export const authEnv = {
-  npm_config_registry: url, // eslint-disable-line camelcase
-  NPM_USERNAME,
-  NPM_PASSWORD,
-  NPM_EMAIL,
-};
 
 /**
  * Stop and remote the `npm-registry-docker` Docker container.

@@ -1,5 +1,6 @@
 import type { CiEnv } from "env-ci";
-import type { Commit, Config, Options } from "semantic-release";
+import type stream from "node:stream";
+import type { Commit, Options } from "semantic-release";
 
 // @todo these types need testing
 
@@ -14,8 +15,8 @@ export type CommonContext = {
   // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L256-L260
   cwd: string;
   env: typeof process.env;
-  stdout: NonNullable<Config["stdout"]>;
-  stderr: NonNullable<Config["stderr"]>;
+  stdout: stream.Writable;
+  stderr: stream.Writable;
   envCi: CiEnv;
 
   // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L262
@@ -112,13 +113,13 @@ export type FailContext = CommonContext & {
 };
 
 // @todo infer return type from https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/lib/branches/index.js#L70
-type BranchSpec = {
+export type BranchSpec = {
   name: string;
   tags?: Tag[];
 };
 
 // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L133
-type Tag = {
+export type Tag = {
   version?: string;
   channel?: string;
   gitTag?: string;
@@ -126,9 +127,10 @@ type Tag = {
 };
 
 // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/lib/get-release-to-add.js#LL51C9-L56C25
-type Release = {
+export type Release = {
+  version: string;
   // https://github.com/sindresorhus/semver-diff#semverdiffversiona-versionb
-  type:
+  type?:
     | "major"
     | "premajor"
     | "minor"
@@ -138,9 +140,8 @@ type Release = {
     | "prerelease"
     | "build"
     | undefined;
-  version: string;
-  channel: string | null;
-  gitTag: string;
-  name: string;
-  gitHead: string;
+  channel?: string | null;
+  gitTag?: string;
+  name?: string;
+  gitHead?: string;
 };

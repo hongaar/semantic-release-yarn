@@ -42,9 +42,9 @@ export function ENONPMTOKEN({ registry }: { registry: string }) {
     message: "No npm token specified.",
     details: `An [npm token](${linkify(
       "README.md#npm-registry-authentication"
-    )}) must be created and set in the \`NPM_TOKEN\` environment variable on your CI environment.
+    )}) must be created and set in the \`YARN_NPM_AUTH_TOKEN\` environment variable on your CI environment.
 
-Please make sure to create an [npm token](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) and to set it in the \`NPM_TOKEN\` environment variable on your CI environment. The token must allow to publish to the registry \`${registry}\`.`,
+Please make sure to create an [npm token](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) and to set it in the \`YARN_NPM_AUTH_TOKEN\` environment variable on your CI environment. The token must allow to publish to the registry \`${registry}\`.`,
   };
 }
 
@@ -53,12 +53,12 @@ export function EINVALIDNPMTOKEN({ registry }: { registry: string }) {
     message: "Invalid npm token.",
     details: `The [npm token](${linkify(
       "README.md#npm-registry-authentication"
-    )}) configured in the \`NPM_TOKEN\` environment variable must be a valid [token](https://docs.npmjs.com/getting-started/working_with_tokens) allowing to publish to the registry \`${registry}\`.
+    )}) configured in the \`YARN_NPM_AUTH_TOKEN\` environment variable must be a valid [token](https://docs.npmjs.com/getting-started/working_with_tokens) allowing to publish to the registry \`${registry}\`.
 
 If you are using Two Factor Authentication for your account, set its level to ["Authorization only"](https://docs.npmjs.com/getting-started/using-two-factor-authentication#levels-of-authentication) in your account settings. **semantic-release** cannot publish with the default "
 Authorization and writes" level.
 
-Please make sure to set the \`NPM_TOKEN\` environment variable in your CI with the exact value of the npm token.`,
+Please make sure to set the \`YARN_NPM_AUTH_TOKEN\` environment variable in your CI with the exact value of the npm token.`,
   };
 }
 
@@ -77,5 +77,16 @@ export function ENOPKG() {
     details: `A [package.json file](https://docs.npmjs.com/files/package.json) at the root of your project is required to release on npm.
 
 Please follow the [npm guideline](https://docs.npmjs.com/getting-started/creating-node-modules) to create a valid \`package.json\` file.`,
+  };
+}
+
+export function EINVALIDYARN({ version }: { version: string }) {
+  return {
+    message: "Incompatible Yarn version detected.",
+    details: `The version of Yarn that you are using is not compatible. Please refer to [the README](${linkify(
+      "README.md#install"
+    )}) to review which versions of Yarn are currently supported
+
+Your version of Yarn is \`${version}\`.`,
   };
 }
