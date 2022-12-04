@@ -1,11 +1,12 @@
 import test from "ava";
 import { createContext } from "./helpers/create-context.js";
-// import { mockExeca } from "./helpers/create-execa-implementation.js";
+import { getYarnVersion } from "../src/get-yarn-version.js";
+import { mockExeca } from "./helpers/create-execa-implementation.js";
 
 test("Get Yarn version", async (t) => {
   const context = createContext();
 
-  // mockExeca(execa, { stdout: "2.4.3" });
+  mockExeca({ stdout: "2.4.3" });
 
   t.is(await getYarnVersion(context), "2.4.3");
 });

@@ -1,4 +1,5 @@
 import type { ExecaError, ExecaReturnValue } from "execa";
+import { mockExec, restoreExec } from "../../src/exec.js";
 
 const DEFAULT_PAYLOAD = {
   command: "mock cmd",
@@ -23,7 +24,7 @@ const DEFAULT_ERROR = {
     "Command failed with ENOENT: unknown command spawn unknown ENOENT",
 };
 
-export function createExecaResult(
+function createExecaResult(
   payload: Partial<ExecaReturnValue & ExecaError> = {}
 ) {
   let promise;
@@ -46,28 +47,22 @@ export function createExecaResult(
   }
 
   // @ts-ignore
-  promise.stdout = { pipe: jest.fn() };
+  promise.stdout = { pipe: () => {} };
 
   // @ts-ignore
-  promise.stderr = { pipe: jest.fn() };
+  promise.stderr = { pipe: () => {} };
 
   return promise;
 }
 
-export function mockExeca(
-  instance: any,
-  payload: Partial<ExecaReturnValue> = {}
-) {
-  (instance as jest.MockInstance<any, any>).mockImplementation(() =>
-    createExecaResult(payload)
-  );
+export function mockExeca(payload: Partial<ExecaReturnValue> = {}) {
+  mockExec(createExecaResult(payload));
 }
 
 export function mockExecaError(
-  instance: any,
   payload: Partial<ExecaReturnValue & ExecaError> = {}
 ) {
-  (instance as jest.MockInstance<any, any>).mockImplementation(() =>
+  mockExec(
     createExecaResult({
       ...payload,
       exitCode: 1,
@@ -76,6 +71,6 @@ export function mockExecaError(
   );
 }
 
-export function restoreExeca(instance: any) {
-  (instance as jest.MockInstance<any, any>).mockRestore();
+export function restoreExeca() {
+  restoreExec();
 }
