@@ -29,13 +29,12 @@ export async function publish(
     const distTag = getChannel(channel!);
 
     logger.log(
-      `Publishing version ${version} to npm registry on dist-tag ${distTag}`
+      `Publishing version ${version} to npm registry ${registry} on dist-tag ${distTag}`
     );
-    const result = execa(
-      "npm",
-      ["publish", basePath, "--tag", distTag, "--registry", registry],
-      { cwd, env, preferLocal: true }
-    );
+    const result = execa("yarn", ["npm", "publish", "--tag", distTag], {
+      cwd: basePath,
+      env,
+    });
     result.stdout!.pipe(stdout, { end: false });
     result.stderr!.pipe(stderr, { end: false });
     await result;

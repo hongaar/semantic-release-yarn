@@ -2,8 +2,9 @@ import test from "ava";
 import { execa } from "execa";
 import fs from "fs-extra";
 import { resolve } from "node:path";
+import { defaultRegistries } from "../src/definitions/constants.js";
 import { createContext } from "./helpers/create-context.js";
-import { authEnv, start, stop, url } from "./helpers/npm-registry.js";
+import { authEnv, start, url } from "./helpers/npm-registry.js";
 
 let mod: typeof import("../src/index.js");
 
@@ -11,17 +12,19 @@ let mod: typeof import("../src/index.js");
 const testEnv = {
   ...process.env,
   ...authEnv,
-  npm_config_registry: url,
 };
 
 test.before(async () => {
   // Start the local NPM registry
   await start();
+
+  // Add testing registry to list of default registries
+  defaultRegistries.push(url);
 });
 
 test.after.always(async () => {
   // Stop the local NPM registry
-  await stop();
+  // await stop(); // @todo
 });
 
 test.beforeEach(async () => {
@@ -80,7 +83,6 @@ test("Throws error if NPM token is invalid", async (t) => {
   const { cwd } = context;
   const env = {
     YARN_NPM_AUTH_TOKEN: "wrong_token",
-    VERIFY_TOKEN: "1",
   };
   const pkg = {
     name: "published",
@@ -130,7 +132,7 @@ test("Skip auth validation if the registry configured is not the default one", a
   );
 });
 
-test("Verify npm auth and package", async (t) => {
+test.only("Verify npm auth and package", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const pkg = {
@@ -139,6 +141,8 @@ test("Verify npm auth and package", async (t) => {
     publishConfig: { registry: url },
   };
   await fs.outputJson(resolve(cwd, "package.json"), pkg);
+
+  console.log({ authEnv });
 
   await t.notThrowsAsync(
     mod.verifyConditions(
@@ -169,31 +173,6 @@ test("Verify npm auth and package from a sub-directory", async (t) => {
         ...context,
         env: authEnv,
         options: {},
-      }
-    )
-  );
-});
-
-test('Verify npm auth and package with "npm_config_registry" env var set by yarn', async (t) => {
-  const context = createContext();
-  const { cwd } = context;
-  const pkg = {
-    name: "valid-token",
-    version: "0.0.0-dev",
-    publishConfig: { registry: url },
-  };
-  await fs.outputJson(resolve(cwd, "package.json"), pkg);
-
-  await t.notThrowsAsync(
-    mod.verifyConditions(
-      {},
-      {
-        ...context,
-        env: {
-          ...authEnv,
-          npm_config_registry: "https://registry.yarnpkg.com",
-        },
-        options: { publish: [] },
       }
     )
   );
@@ -241,7 +220,7 @@ test("Throw SemanticReleaseError Array if config option are not valid in verifyC
   t.is(errors[3].code, "ENOPKG");
 });
 
-test.failing("Publish the package", async (t) => {
+test("Publish the package", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = authEnv;
@@ -279,7 +258,7 @@ test.failing("Publish the package", async (t) => {
   );
 });
 
-test.failing("Publish the package on a dist-tag", async (t) => {
+test.only("Publish the package on a dist-tag", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = { ...authEnv };
@@ -317,7 +296,7 @@ test.failing("Publish the package on a dist-tag", async (t) => {
   );
 });
 
-test.failing("Publish the package from a sub-directory", async (t) => {
+test("Publish the package from a sub-directory", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = authEnv;
@@ -844,88 +823,85 @@ test("Throw SemanticReleaseError Array if config option are not valid in addChan
   t.is(errors[3].code, "ENOPKG");
 });
 
-test.failing(
-  "Verify token and set up auth only on the fist call, then prepare on prepare call only",
-  async (t) => {
-    const context = createContext();
-    const { cwd } = context;
-    const env = authEnv;
-    const pkg = {
-      name: "test-module",
-      version: "0.0.0-dev",
-      publishConfig: { registry: url },
-    };
-    await fs.outputJson(resolve(cwd, "package.json"), pkg);
+test("Verify token and set up auth only on the fist call, then prepare on prepare call only", async (t) => {
+  const context = createContext();
+  const { cwd } = context;
+  const env = authEnv;
+  const pkg = {
+    name: "test-module",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  };
+  await fs.outputJson(resolve(cwd, "package.json"), pkg);
 
-    await t.notThrowsAsync(
-      mod.verifyConditions(
-        {},
-        {
-          ...context,
-          env,
-          options: {},
-        }
-      )
-    );
-    await mod.prepare(
+  await t.notThrowsAsync(
+    mod.verifyConditions(
       {},
       {
         ...context,
         env,
         options: {},
-        releases: [],
-        commits: [],
-        lastRelease: { version: "0.0.0" },
-        nextRelease: { version: "1.0.0" },
       }
-    );
+    )
+  );
+  await mod.prepare(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      nextRelease: { version: "1.0.0" },
+    }
+  );
 
-    let result = await mod.publish(
-      {},
-      {
-        ...context,
-        env,
-        options: {},
-        releases: [],
-        commits: [],
-        lastRelease: { version: "0.0.0" },
-        nextRelease: { channel: "next", version: "1.0.0" },
-      }
-    );
-    t.deepEqual(result, {
-      name: "npm package (@next dist-tag)",
-      url: undefined,
-      channel: "next",
-    });
-    t.is(
-      (await execa("npm", ["view", pkg.name, "dist-tags.next"], { cwd, env }))
-        .stdout,
-      "1.0.0"
-    );
+  let result = await mod.publish(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      nextRelease: { channel: "next", version: "1.0.0" },
+    }
+  );
+  t.deepEqual(result, {
+    name: "npm package (@next dist-tag)",
+    url: undefined,
+    channel: "next",
+  });
+  t.is(
+    (await execa("npm", ["view", pkg.name, "dist-tags.next"], { cwd, env }))
+      .stdout,
+    "1.0.0"
+  );
 
-    result = await mod.addChannel(
-      {},
-      {
-        ...context,
-        env,
-        options: {},
-        releases: [],
-        commits: [],
-        lastRelease: { version: "0.0.0" },
-        currentRelease: { version: "1.0.0" },
-        nextRelease: { version: "1.0.0" },
-      }
-    );
+  result = await mod.addChannel(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      currentRelease: { version: "1.0.0" },
+      nextRelease: { version: "1.0.0" },
+    }
+  );
 
-    t.deepEqual(result, {
-      name: "npm package (@latest dist-tag)",
-      url: undefined,
-      channel: "latest",
-    });
-    t.is(
-      (await execa("npm", ["view", pkg.name, "dist-tags.latest"], { cwd, env }))
-        .stdout,
-      "1.0.0"
-    );
-  }
-);
+  t.deepEqual(result, {
+    name: "npm package (@latest dist-tag)",
+    url: undefined,
+    channel: "latest",
+  });
+  t.is(
+    (await execa("npm", ["view", pkg.name, "dist-tags.latest"], { cwd, env }))
+      .stdout,
+    "1.0.0"
+  );
+});

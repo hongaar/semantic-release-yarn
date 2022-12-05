@@ -39,7 +39,6 @@ export async function prepare(
       {
         cwd: basePath,
         env,
-        preferLocal: true,
       }
     );
     packResult.stdout!.pipe(stdout, { end: false });

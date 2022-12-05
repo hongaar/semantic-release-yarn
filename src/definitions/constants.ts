@@ -9,8 +9,10 @@ export const PLUGIN_GIT_BRANCH = "main";
 export const DEFAULT_NPM_REGISTRY = "https://registry.npmjs.org";
 export const DEFAULT_YARN_REGISTRY = "https://registry.yarnpkg.com";
 
+export const defaultRegistries = [DEFAULT_NPM_REGISTRY, DEFAULT_YARN_REGISTRY];
+
 export function isDefaultRegistry(registry: string) {
-  return [DEFAULT_NPM_REGISTRY, DEFAULT_YARN_REGISTRY].some(
+  return defaultRegistries.some(
     (defaultRegistry) => toNerfDart(defaultRegistry) === toNerfDart(registry)
   );
 }

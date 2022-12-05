@@ -21,7 +21,7 @@ export async function verifyAuth(pkg: PackageJson, context: CommonContext) {
     throw new AggregateError([getError("ENONPMTOKEN", { registry })]);
   }
 
-  if (!env["VERIFY_TOKEN"] && !isDefaultRegistry(registry)) {
+  if (!isDefaultRegistry(registry)) {
     return;
   }
 
