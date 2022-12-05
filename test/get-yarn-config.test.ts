@@ -2,7 +2,7 @@ import test from "ava";
 import fs from "fs-extra";
 import yaml from "js-yaml";
 import { resolve } from "node:path";
-import { directory } from "tempy";
+import { temporaryDirectory } from "tempy";
 import type { Yarnrc } from "../src/definitions/yarnrc.js";
 import { getYarnConfig } from "../src/get-yarn-config.js";
 import { createContext } from "./helpers/create-context.js";
@@ -21,7 +21,7 @@ test("Read from .yarnrc.yml", async (t) => {
 
 test("Read from .yarnrc.yml in parent directory", async (t) => {
   const { logger } = createContext();
-  const parent = directory();
+  const parent = temporaryDirectory();
   const cwd = resolve(parent, "subdir");
   await fs.outputFile(
     resolve(cwd, ".yarnrc.yml"),
@@ -42,7 +42,7 @@ test("Read from .yarnrc.yml in parent directory", async (t) => {
 
 test("Read from .yarnrc.yml in current directory", async (t) => {
   const { logger } = createContext();
-  const parent = directory();
+  const parent = temporaryDirectory();
   const cwd = resolve(parent, "subdir");
   await fs.outputFile(
     resolve(cwd, ".yarnrc.yml"),

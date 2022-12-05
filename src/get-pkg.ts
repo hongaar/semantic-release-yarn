@@ -1,6 +1,5 @@
-import AggregateError from "aggregate-error";
 import { resolve } from "node:path";
-import readPkg from "read-pkg";
+import { readPackage } from "read-pkg";
 import type { CommonContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
 import { getError } from "./get-error.js";
@@ -10,7 +9,7 @@ export async function getPkg(
   { cwd }: { cwd: CommonContext["cwd"] }
 ) {
   try {
-    const pkg = await readPkg({
+    const pkg = await readPackage({
       cwd: pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd,
     });
 
@@ -21,9 +20,9 @@ export async function getPkg(
     return pkg;
   } catch (error: any) {
     if (error.code === "ENOENT") {
-      throw new AggregateError([getError("ENOPKG")]);
+      throw getError("ENOPKG");
     }
 
-    throw new AggregateError([error]);
+    throw error;
   }
 }

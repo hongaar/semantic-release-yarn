@@ -1,13 +1,13 @@
-import ogExeca from "execa";
+import { execa as ogExeca, Options } from "execa";
 
 let execImplementation: typeof ogExeca;
 
 setExecaImplementation(ogExeca);
 
-export default function execa(
+export function execa(
   file: string,
   args?: readonly string[],
-  options?: ogExeca.Options
+  options?: Options
 ) {
   return execImplementation(file, args, options);
 }

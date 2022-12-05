@@ -1,5 +1,5 @@
 import type { ExecaError, ExecaReturnValue } from "execa";
-import execa from "execa";
+import { execa } from "execa";
 import { setExecaImplementation } from "../../src/execa.js";
 
 const DEFAULT_PAYLOAD = {

@@ -8,7 +8,9 @@ test.serial("Yarn (1.20.19)", async (t) => {
 
   mockExeca({ stdout: "1.20.19" });
 
-  const [error] = await t.throwsAsync<any>(verifyYarn(context));
+  const {
+    errors: [error],
+  } = await t.throwsAsync<any>(verifyYarn(context));
 
   t.is(error.name, "SemanticReleaseError");
   t.is(error.code, "EINVALIDYARN");

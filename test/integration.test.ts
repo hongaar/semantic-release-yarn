@@ -1,5 +1,5 @@
 import test from "ava";
-import execa from "execa";
+import { execa } from "execa";
 import fs from "fs-extra";
 import { resolve } from "node:path";
 import { createContext } from "./helpers/create-context.js";
@@ -89,7 +89,9 @@ test("Throws error if NPM token is invalid", async (t) => {
   };
   await fs.outputJson(resolve(cwd, "package.json"), pkg);
 
-  const [error] = await t.throwsAsync<any>(
+  const {
+    errors: [error],
+  } = await t.throwsAsync<any>(
     mod.verifyConditions(
       {},
       {
@@ -208,7 +210,7 @@ test("Throw SemanticReleaseError Array if config option are not valid in verifyC
   const tarballDir = 42;
   const pkgRoot = 42;
 
-  const [...errors] = await t.throwsAsync<any>(
+  const { errors } = await t.throwsAsync<any>(
     mod.verifyConditions(
       {},
       {
@@ -493,7 +495,7 @@ test("Throw SemanticReleaseError Array if config option are not valid in publish
   const tarballDir = 42 as any;
   const pkgRoot = 42 as any;
 
-  const [...errors] = await t.throwsAsync<any>(
+  const { errors } = await t.throwsAsync<any>(
     mod.publish(
       { npmPublish, tarballDir, pkgRoot },
       {
@@ -586,7 +588,7 @@ test("Throw SemanticReleaseError Array if config option are not valid in prepare
   const tarballDir = 42 as any;
   const pkgRoot = 42 as any;
 
-  const [...errors] = await t.throwsAsync<any>(
+  const { errors } = await t.throwsAsync<any>(
     mod.prepare(
       { npmPublish, tarballDir, pkgRoot },
       {
@@ -814,7 +816,7 @@ test("Throw SemanticReleaseError Array if config option are not valid in addChan
   const tarballDir = 42 as any;
   const pkgRoot = 42 as any;
 
-  const [...errors] = await t.throwsAsync<any>(
+  const { errors } = await t.throwsAsync<any>(
     mod.addChannel(
       { npmPublish, tarballDir, pkgRoot },
       {

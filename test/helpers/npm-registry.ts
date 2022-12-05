@@ -1,6 +1,6 @@
 // import delay from "delay";
 import Docker from "dockerode";
-import execa from "execa";
+import { execa } from "execa";
 import getStream from "get-stream";
 import got from "got";
 import { dirname, resolve } from "node:path";
