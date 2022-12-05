@@ -1,8 +1,8 @@
-import execa from "execa";
 import fs from "fs-extra";
 import { resolve } from "node:path";
 import type { PrepareContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
+import { execa } from "./execa.js";
 
 const TARBALL_FILENAME = "%s-%v.tgz";
 

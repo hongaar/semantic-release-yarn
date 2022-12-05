@@ -10,10 +10,10 @@
   - ~~tempy (only in --dev)~~
   - ~~rc~~
   - ~~normalize-url~~
-  - codecov
-  - nyc
-  - ava
-  - sinon
+  - ~~codecov~~
+  - ~~nyc~~
+  - ~~ava (still needed)~~
+  - ~~sinon (still needed)~~
 
 ## TypeScript conversion
 

@@ -17,7 +17,9 @@ test.serial("No token", async (t) => {
     yaml.dump({} as Yarnrc)
   );
 
-  const [error] = await t.throwsAsync<any>(verifyAuth({}, context));
+  const {
+    errors: [error],
+  } = await t.throwsAsync<any>(verifyAuth({}, context));
 
   t.is(error.name, "SemanticReleaseError");
   t.is(error.code, "ENONPMTOKEN");
@@ -34,7 +36,9 @@ test.serial("Invalid token", async (t) => {
 
   mockExecaError();
 
-  const [error] = await t.throwsAsync<any>(verifyAuth({}, context));
+  const {
+    errors: [error],
+  } = await t.throwsAsync<any>(verifyAuth({}, context));
 
   t.is(error.name, "SemanticReleaseError");
   t.is(error.code, "EINVALIDNPMTOKEN");

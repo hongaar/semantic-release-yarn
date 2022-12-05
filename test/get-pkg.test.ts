@@ -1,11 +1,11 @@
 import test from "ava";
 import fs from "fs-extra";
 import { resolve } from "node:path";
-import { directory } from "tempy";
+import { temporaryDirectory } from "tempy";
 import { getPkg } from "../src/get-pkg.js";
 
 test("Verify name and version then return parsed package.json", async (t) => {
-  const cwd = directory();
+  const cwd = temporaryDirectory();
   const pkg = { name: "package", version: "0.0.0" };
   await fs.outputJson(resolve(cwd, "package.json"), pkg);
 
@@ -16,7 +16,7 @@ test("Verify name and version then return parsed package.json", async (t) => {
 });
 
 test("Verify name and version then return parsed package.json from a sub-directory", async (t) => {
-  const cwd = directory();
+  const cwd = temporaryDirectory();
   const pkgRoot = "dist";
   const pkg = { name: "package", version: "0.0.0" };
   await fs.outputJson(resolve(cwd, pkgRoot, "package.json"), pkg);
@@ -28,29 +28,29 @@ test("Verify name and version then return parsed package.json from a sub-directo
 });
 
 test("Throw error if missing package.json", async (t) => {
-  const cwd = directory();
+  const cwd = temporaryDirectory();
 
-  const [error] = await t.throwsAsync<any>(getPkg({}, { cwd }));
+  const error = await t.throwsAsync<any>(getPkg({}, { cwd }));
 
   t.is(error.name, "SemanticReleaseError");
   t.is(error.code, "ENOPKG");
 });
 
 test("Throw error if missing package name", async (t) => {
-  const cwd = directory();
+  const cwd = temporaryDirectory();
   await fs.outputJson(resolve(cwd, "package.json"), { version: "0.0.0" });
 
-  const [error] = await t.throwsAsync<any>(getPkg({}, { cwd }));
+  const error = await t.throwsAsync<any>(getPkg({}, { cwd }));
 
   t.is(error.name, "SemanticReleaseError");
   t.is(error.code, "ENOPKGNAME");
 });
 
 test("Throw error if package.json is malformed", async (t) => {
-  const cwd = directory();
+  const cwd = temporaryDirectory();
   await fs.writeFile(resolve(cwd, "package.json"), "{name: 'package',}");
 
-  const [error] = await t.throwsAsync<any>(getPkg({}, { cwd }));
+  const error = await t.throwsAsync<any>(getPkg({}, { cwd }));
 
   t.is(error.name, "JSONError");
 });

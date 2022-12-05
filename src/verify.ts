@@ -10,12 +10,12 @@ export async function verify(
   pluginConfig: PluginConfig,
   context: VerifyConditionsContext
 ) {
-  const errors = verifyConfig(pluginConfig);
+  let errors = verifyConfig(pluginConfig);
 
   try {
     verifyYarn(context);
   } catch (error: any) {
-    errors.push(...error);
+    errors = [...errors, ...(error.errors ? error.errors : [error])];
   }
 
   try {
@@ -27,7 +27,7 @@ export async function verify(
       await verifyAuth(pkg, context);
     }
   } catch (error: any) {
-    errors.push(...error);
+    errors = [...errors, ...(error.errors ? error.errors : [error])];
   }
 
   if (errors.length > 0) {

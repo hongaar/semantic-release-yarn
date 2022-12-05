@@ -2,7 +2,7 @@ import AggregateError from "aggregate-error";
 import type { PackageJson } from "read-pkg";
 import { isDefaultRegistry } from "./definitions/constants.js";
 import type { CommonContext } from "./definitions/context.js";
-import execa from "./execa.js";
+import { execa } from "./execa.js";
 import { getError } from "./get-error.js";
 import { getRegistry } from "./get-registry.js";
 import { getToken } from "./get-token.js";

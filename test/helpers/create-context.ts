@@ -1,11 +1,11 @@
 import { spy } from "sinon";
 import { WritableStreamBuffer } from "stream-buffers";
-import { directory } from "tempy";
+import { temporaryDirectory } from "tempy";
 import type { BranchSpec } from "../../src/definitions/context.js";
 
 export function createContext() {
   return {
-    cwd: directory(),
+    cwd: temporaryDirectory(),
     logger: { log: spy(), error: spy(), success: spy() },
     stdout: new WritableStreamBuffer(),
     stderr: new WritableStreamBuffer(),
