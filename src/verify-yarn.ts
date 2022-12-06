@@ -1,4 +1,4 @@
-import { container } from "./container.js";
+import { getImplementation } from "./container.js";
 import type { CommonContext } from "./definitions/context.js";
 import { getError } from "./get-error.js";
 import { getYarnMajorVersion } from "./get-yarn-version.js";
@@ -7,7 +7,7 @@ const MIN_YARN_VERSION = 2;
 
 export async function verifyYarn(context: CommonContext) {
   const { logger } = context;
-  const { AggregateError } = await container();
+  const AggregateError = await getImplementation("AggregateError");
 
   logger.log("Verify yarn version");
 

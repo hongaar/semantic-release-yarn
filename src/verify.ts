@@ -1,4 +1,4 @@
-import { container } from "./container.js";
+import { getImplementation } from "./container.js";
 import type { VerifyConditionsContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
 import { getPkg } from "./get-pkg.js";
@@ -10,7 +10,8 @@ export async function verify(
   pluginConfig: PluginConfig,
   context: VerifyConditionsContext
 ) {
-  const { AggregateError } = await container();
+  const AggregateError = await getImplementation("AggregateError");
+
   let errors = verifyConfig(pluginConfig);
 
   try {

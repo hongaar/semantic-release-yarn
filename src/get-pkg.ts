@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import { container } from "./container.js";
+import { getImplementation } from "./container.js";
 import type { CommonContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
 import { getError } from "./get-error.js";
@@ -8,7 +8,7 @@ export async function getPkg(
   { pkgRoot }: PluginConfig,
   { cwd }: { cwd: CommonContext["cwd"] }
 ) {
-  const { readPackage } = await container();
+  const readPackage = await getImplementation("readPackage");
 
   try {
     const pkg = await readPackage({

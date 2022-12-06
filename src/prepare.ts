@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import { resolve } from "node:path";
-import { container } from "./container.js";
+import { getImplementation } from "./container.js";
 import type { PrepareContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
 
@@ -11,7 +11,7 @@ export async function prepare(
   { cwd, env, stdout, stderr, nextRelease: { version }, logger }: PrepareContext
 ) {
   const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
-  const { execa } = await container();
+  const execa = await getImplementation("execa");
 
   logger.log("Installing Yarn version plugin in %s", basePath);
   const pluginImportResult = execa("yarn", ["plugin", "import", "version"], {

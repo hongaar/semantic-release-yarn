@@ -4,35 +4,37 @@ type Modules = {
   AggregateError: typeof import("aggregate-error").default;
 };
 
-const initialModules: Modules = {} as any;
-let modules: Modules = {} as any;
+const modules: Modules = {} as any;
 
-async function init() {
-  if (!initialModules.execa) {
-    initialModules.execa = (await import("execa")).execa;
-  }
-  if (!initialModules.readPackage) {
-    initialModules.readPackage = (await import("read-pkg")).readPackage;
-  }
-  if (!initialModules.AggregateError) {
-    initialModules.AggregateError = (await import("aggregate-error")).default;
+async function getDefaultImplementation<T extends keyof Modules>(
+  name: T
+): Promise<Modules[T]> {
+  switch (name) {
+    case "execa":
+      return (await import("execa")).execa as any;
+
+    case "readPackage":
+      return (await import("read-pkg")).readPackage as any;
+
+    case "AggregateError":
+      return (await import("aggregate-error")).default as any;
   }
 
-  modules = initialModules;
+  throw new Error("Unknown module");
 }
 
-export async function container() {
-  if (Object.entries(modules).length === 0) {
-    await init();
+export async function getImplementation<T extends keyof Modules>(name: T) {
+  if (!(name in modules)) {
+    await resetImplementation(name);
   }
 
-  return modules;
+  return modules[name];
 }
 
 export function setImplementation(name: keyof Modules, implementation: any) {
   modules[name] = implementation;
 }
 
-export function resetImplementation<T extends keyof Modules>(name: T) {
-  modules[name] = initialModules[name];
+export async function resetImplementation<T extends keyof Modules>(name: T) {
+  modules[name] = await getDefaultImplementation(name);
 }
