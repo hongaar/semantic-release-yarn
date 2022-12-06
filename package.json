@@ -33,11 +33,10 @@
     "clean": "rm -rf dist && rm -rf types",
     "build": "yarn clean && tsc",
     "build:watch": "yarn build && tsc --watch",
-    "prepublish": "yarn build",
-    "release": "semantic-release",
-    "_comment": "remove 👇 these lines",
     "test": "ava",
-    "test:watch": "ava --watch"
+    "test:watch": "ava --watch",
+    "prepublish": "yarn build",
+    "release": "semantic-release"
   },
   "engines": {
     "node": ">=16 || ^14.17"
