@@ -1,7 +1,3 @@
-> ⚠️  
-> **Do not use in production!**  
-> **This plugin is work in progress.**
-
 # semantic-release-yarn [![npm](https://img.shields.io/npm/v/semantic-release-yarn)](https://www.npmjs.com/package/semantic-release-yarn)
 
 [**semantic-release**](https://semantic-release.gitbook.io/semantic-release/)
@@ -21,11 +17,7 @@ Use this plugin if you want to use Yarn instead of the NPM CLI to publish your
 packages to the NPM registry.
 
 As an added bonus, this plugin will also publish some simple monorepo patterns
-(WIP).
-
-> 💡  
-> You could also use this plugin to publish packages which are using NPM for
-> dependency management.
+(currently WIP).
 
 ## Install
 
@@ -190,6 +182,18 @@ For example with the
   ]
 }
 ```
+
+## Roadmap / Todo
+
+- [ ] Monorepo support
+- [ ] Get rid of CJS build once
+      [upstream PR 2607](https://github.com/semantic-release/semantic-release/pull/2607)
+      lands
+- [ ] Since we're using the latest AggregateError package, `semantic-release` is
+      not picking up our error stack and we get a generic error message instead
+      of a well formatted one. Hope this can be fixed once
+      [upstream PR #2631](https://github.com/semantic-release/semantic-release/pull/2631)
+      lands
 
 ## Credits
 
