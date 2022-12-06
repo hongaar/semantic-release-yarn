@@ -1,7 +1,9 @@
+import { getImplementation } from "./container.js";
 import type { CommonContext } from "./definitions/context.js";
-import { execa } from "./execa.js";
 
 export async function getYarnVersion({ cwd }: { cwd: CommonContext["cwd"] }) {
+  const execa = await getImplementation("execa");
+
   try {
     return (await execa("yarn", ["--version"], { cwd })).stdout;
   } catch {

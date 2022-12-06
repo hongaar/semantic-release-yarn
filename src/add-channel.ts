@@ -1,7 +1,7 @@
 import type { PackageJson } from "read-pkg";
+import { getImplementation } from "./container.js";
 import type { AddChannelContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
-import { execa } from "./execa.js";
 import { getChannel } from "./get-channel.js";
 import { getRegistry } from "./get-registry.js";
 import { getReleaseInfo } from "./get-release-info.js";
@@ -20,6 +20,7 @@ export async function addChannel(
     nextRelease: { version, channel },
     logger,
   } = context;
+  const execa = await getImplementation("execa");
 
   if (npmPublish !== false && pkg.private !== true) {
     const yarnrc = await getYarnConfig(context);
