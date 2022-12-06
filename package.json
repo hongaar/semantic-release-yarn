@@ -71,7 +71,6 @@
     "@types/sinon": "10.0.13",
     "@types/stream-buffers": "3.0.4",
     "ava": "5.1.0",
-    "delay": "5.0.0",
     "dockerode": "3.3.4",
     "get-stream": "6.0.1",
     "got": "12.5.3",

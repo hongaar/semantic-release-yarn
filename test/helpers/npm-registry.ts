@@ -1,4 +1,3 @@
-// import delay from "delay";
 import Docker from "dockerode";
 import { execa } from "execa";
 import getStream from "get-stream";
@@ -47,9 +46,6 @@ export async function start() {
   ]);
 
   await container.start();
-
-  // @todo arbitrary - alternative?
-  // await delay(4000);
 
   try {
     // Wait for the registry to be ready

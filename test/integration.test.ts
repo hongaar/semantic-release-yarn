@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import { resolve } from "node:path";
 import { defaultRegistries } from "../src/definitions/constants.js";
 import { createContext } from "./helpers/create-context.js";
-import { authEnv, start, url } from "./helpers/npm-registry.js";
+import { authEnv, start, stop, url } from "./helpers/npm-registry.js";
 
 let mod: typeof import("../src/index.js");
 
@@ -24,7 +24,7 @@ test.before(async () => {
 
 test.after.always(async () => {
   // Stop the local NPM registry
-  // await stop(); // @todo
+  await stop();
 });
 
 test.beforeEach(async () => {
@@ -132,7 +132,7 @@ test("Skip auth validation if the registry configured is not the default one", a
   );
 });
 
-test.only("Verify npm auth and package", async (t) => {
+test("Verify npm auth and package", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const pkg = {
@@ -141,8 +141,6 @@ test.only("Verify npm auth and package", async (t) => {
     publishConfig: { registry: url },
   };
   await fs.outputJson(resolve(cwd, "package.json"), pkg);
-
-  console.log({ authEnv });
 
   await t.notThrowsAsync(
     mod.verifyConditions(
@@ -220,7 +218,7 @@ test("Throw SemanticReleaseError Array if config option are not valid in verifyC
   t.is(errors[3].code, "ENOPKG");
 });
 
-test("Publish the package", async (t) => {
+test.only("Publish the package", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = authEnv;
@@ -246,19 +244,24 @@ test("Publish the package", async (t) => {
 
   t.deepEqual(result, {
     name: "npm package (@latest dist-tag)",
-    url: undefined,
+    url: "https://www.npmjs.com/package/publish/v/1.0.0",
     channel: "latest",
   });
   t.is((await fs.readJson(resolve(cwd, "package.json"))).version, "1.0.0");
   t.false(await fs.pathExists(resolve(cwd, `${pkg.name}-1.0.0.tgz`)));
   t.is(
-    (await execa("npm", ["view", pkg.name, "version"], { cwd, env: testEnv }))
-      .stdout,
+    (
+      await execa(
+        "yarn",
+        ["npm", "info", pkg.name, "--fields", "version", "--json"],
+        { cwd, env: testEnv }
+      )
+    ).stdout,
     "1.0.0"
   );
 });
 
-test.only("Publish the package on a dist-tag", async (t) => {
+test("Publish the package on a dist-tag", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = { ...authEnv };
