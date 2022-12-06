@@ -1,5 +1,4 @@
 import test from "ava";
-import { execa } from "execa";
 import fs from "fs-extra";
 import { resolve } from "node:path";
 import { defaultRegistries } from "../src/definitions/constants.js";
@@ -698,9 +697,7 @@ test('Skip adding the package to a channel ("npmPublish" is false)', async (t) =
   );
 
   t.false(result);
-  await t.throwsAsync(
-    execa("npm", ["view", pkg.name, "version"], { cwd, env })
-  );
+  await t.throwsAsync(getPackageVersion(pkg.name, { cwd, env }));
 });
 
 test('Skip adding the package to a channel ("package.private" is true)', async (t) => {
