@@ -1,10 +1,9 @@
-import AggregateError from "aggregate-error";
 import { resolve } from "node:path";
 import type { PackageJson } from "read-pkg";
+import { container } from "./container.js";
 import { isDefaultRegistry } from "./definitions/constants.js";
 import type { CommonContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
-import { execa } from "./execa.js";
 import { getError } from "./get-error.js";
 import { getRegistry } from "./get-registry.js";
 import { getToken } from "./get-token.js";
@@ -17,6 +16,7 @@ export async function verifyAuth(
 ) {
   const { cwd, env, stdout, stderr, logger } = context;
   const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
+  const { execa, AggregateError } = await container();
 
   logger.log("Verify authentication");
 

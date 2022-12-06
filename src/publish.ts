@@ -1,8 +1,8 @@
 import { resolve } from "node:path";
 import type { PackageJson } from "read-pkg";
+import { container } from "./container.js";
 import type { PublishContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
-import { execa } from "./execa.js";
 import { getChannel } from "./get-channel.js";
 import { getRegistry } from "./get-registry.js";
 import { getReleaseInfo } from "./get-release-info.js";
@@ -21,6 +21,7 @@ export async function publish(
     nextRelease: { version, channel },
     logger,
   } = context;
+  const { execa } = await container();
 
   if (npmPublish !== false && pkg.private !== true) {
     const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
