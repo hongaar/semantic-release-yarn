@@ -27,22 +27,14 @@ export async function addChannel(
     const distTag = getChannel(channel!);
 
     logger.log(
-      `Adding version ${version} to npm registry on dist-tag ${distTag}`
+      `Adding version ${version} to npm registry ${registry} on dist-tag ${distTag}`
     );
     const result = execa(
-      "npm",
-      [
-        "dist-tag",
-        "add",
-        `${pkg.name}@${version}`,
-        distTag,
-        "--registry",
-        registry,
-      ],
+      "yarn",
+      ["npm", "tag", "add", `${pkg.name}@${version}`, distTag],
       {
         cwd,
         env,
-        preferLocal: true,
       }
     );
     result.stdout!.pipe(stdout, { end: false });

@@ -24,7 +24,7 @@ export async function verify(
     // Verify the npm authentication only if `npmPublish` is not false and
     // `pkg.private` is not`true`
     if (pluginConfig.npmPublish !== false && pkg.private !== true) {
-      await verifyAuth(pkg, context);
+      await verifyAuth(pluginConfig, pkg, context);
     }
   } catch (error: any) {
     errors = [...errors, ...(error.errors ? error.errors : [error])];

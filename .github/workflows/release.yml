@@ -3,7 +3,7 @@ name: release
 on:
   push:
     branches:
-      - main_DISABLED_FOR_NOW
+      - main
 
 jobs:
   release:

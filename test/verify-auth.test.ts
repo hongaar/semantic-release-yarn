@@ -19,7 +19,7 @@ test.serial("No token", async (t) => {
 
   const {
     errors: [error],
-  } = await t.throwsAsync<any>(verifyAuth({}, context));
+  } = await t.throwsAsync<any>(verifyAuth({}, {}, context));
 
   t.is(error.name, "SemanticReleaseError");
   t.is(error.code, "ENONPMTOKEN");
@@ -38,7 +38,7 @@ test.serial("Invalid token", async (t) => {
 
   const {
     errors: [error],
-  } = await t.throwsAsync<any>(verifyAuth({}, context));
+  } = await t.throwsAsync<any>(verifyAuth({}, {}, context));
 
   t.is(error.name, "SemanticReleaseError");
   t.is(error.code, "EINVALIDNPMTOKEN");
@@ -55,5 +55,5 @@ test.serial("Valid token", async (t) => {
 
   mockExeca();
 
-  await t.notThrowsAsync(verifyAuth({}, context));
+  await t.notThrowsAsync(verifyAuth({}, {}, context));
 });

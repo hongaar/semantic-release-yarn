@@ -1,4 +1,3 @@
-// import delay from "delay";
 import Docker from "dockerode";
 import { execa } from "execa";
 import getStream from "get-stream";
@@ -19,7 +18,9 @@ let container: Docker.Container;
 export const url = `http://${REGISTRY_HOST}:${REGISTRY_PORT}/`;
 
 export const authEnv = {
-  npm_config_registry: url, // eslint-disable-line camelcase
+  YARN_UNSAFE_HTTP_WHITELIST: REGISTRY_HOST,
+  YARN_NPM_REGISTRY_SERVER: url,
+  YARN_NPM_PUBLISH_REGISTRY: url,
   YARN_NPM_AUTH_TOKEN: undefined,
 };
 
@@ -46,9 +47,6 @@ export async function start() {
   ]);
 
   await container.start();
-
-  // @todo arbitrary - alternative?
-  // await delay(4000);
 
   try {
     // Wait for the registry to be ready

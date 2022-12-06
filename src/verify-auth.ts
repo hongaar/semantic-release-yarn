@@ -1,15 +1,22 @@
 import AggregateError from "aggregate-error";
+import { resolve } from "node:path";
 import type { PackageJson } from "read-pkg";
 import { isDefaultRegistry } from "./definitions/constants.js";
 import type { CommonContext } from "./definitions/context.js";
+import type { PluginConfig } from "./definitions/pluginConfig.js";
 import { execa } from "./execa.js";
 import { getError } from "./get-error.js";
 import { getRegistry } from "./get-registry.js";
 import { getToken } from "./get-token.js";
 import { getYarnConfig } from "./get-yarn-config.js";
 
-export async function verifyAuth(pkg: PackageJson, context: CommonContext) {
+export async function verifyAuth(
+  { pkgRoot }: PluginConfig,
+  pkg: PackageJson,
+  context: CommonContext
+) {
   const { cwd, env, stdout, stderr, logger } = context;
+  const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
 
   logger.log("Verify authentication");
 
@@ -21,14 +28,14 @@ export async function verifyAuth(pkg: PackageJson, context: CommonContext) {
     throw new AggregateError([getError("ENONPMTOKEN", { registry })]);
   }
 
-  if (!env["VERIFY_TOKEN"] && !isDefaultRegistry(registry)) {
+  if (!isDefaultRegistry(registry)) {
     return;
   }
 
   try {
     // @todo deal with npm npm whoami --scope if pkg is scoped
-    const whoamiResult = execa("yarn", ["npm whoami", "--publish"], {
-      cwd,
+    const whoamiResult = execa("yarn", ["npm", "whoami", "--publish"], {
+      cwd: basePath,
       env,
     });
     whoamiResult.stdout!.pipe(stdout, { end: false });

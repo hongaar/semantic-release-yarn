@@ -33,11 +33,10 @@
     "clean": "rm -rf dist && rm -rf types",
     "build": "yarn clean && tsc",
     "build:watch": "yarn build && tsc --watch",
-    "prepublish": "yarn build",
-    "release": "semantic-release",
-    "_comment": "remove 👇 these lines",
     "test": "ava",
-    "test:watch": "ava --watch"
+    "test:watch": "ava --watch",
+    "prepublish": "yarn build",
+    "release": "semantic-release"
   },
   "engines": {
     "node": ">=16 || ^14.17"
@@ -71,7 +70,6 @@
     "@types/sinon": "10.0.13",
     "@types/stream-buffers": "3.0.4",
     "ava": "5.1.0",
-    "delay": "5.0.0",
     "dockerode": "3.3.4",
     "get-stream": "6.0.1",
     "got": "12.5.3",
