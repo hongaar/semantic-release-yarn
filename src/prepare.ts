@@ -10,7 +10,7 @@ export async function prepare(
   { tarballDir, pkgRoot }: PluginConfig,
   { cwd, env, stdout, stderr, nextRelease: { version }, logger }: PrepareContext
 ) {
-  const basePath = pkgRoot ? resolve(cwd, pkgRoot) : cwd;
+  const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
 
   logger.log("Installing Yarn version plugin in %s", basePath);
   const pluginImportResult = execa("yarn", ["plugin", "import", "version"], {

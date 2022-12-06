@@ -1,4 +1,4 @@
-import path from "node:path";
+import { resolve } from "node:path";
 import type { PackageJson } from "read-pkg";
 import type { PublishContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
@@ -23,7 +23,7 @@ export async function publish(
   } = context;
 
   if (npmPublish !== false && pkg.private !== true) {
-    const basePath = pkgRoot ? path.resolve(cwd, pkgRoot) : cwd;
+    const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
     const yarnrc = await getYarnConfig(context);
     const registry = getRegistry(pkg, yarnrc, context);
     const distTag = getChannel(channel!);

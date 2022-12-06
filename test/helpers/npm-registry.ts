@@ -19,6 +19,7 @@ export const url = `http://${REGISTRY_HOST}:${REGISTRY_PORT}/`;
 
 export const authEnv = {
   YARN_UNSAFE_HTTP_WHITELIST: REGISTRY_HOST,
+  YARN_NPM_REGISTRY_SERVER: url,
   YARN_NPM_PUBLISH_REGISTRY: url,
   YARN_NPM_AUTH_TOKEN: undefined,
 };

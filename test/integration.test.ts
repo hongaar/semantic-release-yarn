@@ -4,6 +4,7 @@ import fs from "fs-extra";
 import { resolve } from "node:path";
 import { defaultRegistries } from "../src/definitions/constants.js";
 import { createContext } from "./helpers/create-context.js";
+import { getPackageTags, getPackageVersion } from "./helpers/npm-info.js";
 import { authEnv, start, stop, url } from "./helpers/npm-registry.js";
 
 let mod: typeof import("../src/index.js");
@@ -218,7 +219,7 @@ test("Throw SemanticReleaseError Array if config option are not valid in verifyC
   t.is(errors[3].code, "ENOPKG");
 });
 
-test.only("Publish the package", async (t) => {
+test("Publish the package", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = authEnv;
@@ -249,16 +250,7 @@ test.only("Publish the package", async (t) => {
   });
   t.is((await fs.readJson(resolve(cwd, "package.json"))).version, "1.0.0");
   t.false(await fs.pathExists(resolve(cwd, `${pkg.name}-1.0.0.tgz`)));
-  t.is(
-    (
-      await execa(
-        "yarn",
-        ["npm", "info", pkg.name, "--fields", "version", "--json"],
-        { cwd, env: testEnv }
-      )
-    ).stdout,
-    "1.0.0"
-  );
+  t.is(await getPackageVersion(pkg.name, { cwd, env: testEnv }), "1.0.0");
 });
 
 test("Publish the package on a dist-tag", async (t) => {
@@ -292,11 +284,7 @@ test("Publish the package on a dist-tag", async (t) => {
   });
   t.is((await fs.readJson(resolve(cwd, "package.json"))).version, "1.0.0");
   t.false(await fs.pathExists(resolve(cwd, `${pkg.name}-1.0.0.tgz`)));
-  t.is(
-    (await execa("npm", ["view", pkg.name, "version"], { cwd, env: testEnv }))
-      .stdout,
-    "1.0.0"
-  );
+  t.is(await getPackageVersion(pkg.name, { cwd, env: testEnv }), "1.0.0");
 });
 
 test("Publish the package from a sub-directory", async (t) => {
@@ -325,14 +313,16 @@ test("Publish the package from a sub-directory", async (t) => {
 
   t.deepEqual(result, {
     name: "npm package (@latest dist-tag)",
-    url: undefined,
+    url: "https://www.npmjs.com/package/publish-sub-dir/v/1.0.0",
     channel: "latest",
   });
   t.is((await fs.readJson(resolve(cwd, "dist/package.json"))).version, "1.0.0");
   t.false(await fs.pathExists(resolve(cwd, `${pkg.name}-1.0.0.tgz`)));
   t.is(
-    (await execa("npm", ["view", pkg.name, "version"], { cwd, env: testEnv }))
-      .stdout,
+    await getPackageVersion(pkg.name, {
+      cwd: resolve(cwd, "dist"),
+      env: testEnv,
+    }),
     "1.0.0"
   );
 });
@@ -364,9 +354,7 @@ test('Create the package and skip publish ("npmPublish" is false)', async (t) =>
   t.false(result);
   t.is((await fs.readJson(resolve(cwd, "package.json"))).version, "1.0.0");
   t.true(await fs.pathExists(resolve(cwd, `tarball/${pkg.name}-1.0.0.tgz`)));
-  await t.throwsAsync(
-    execa("npm", ["view", pkg.name, "version"], { cwd, env: testEnv })
-  );
+  await t.throwsAsync(getPackageVersion(pkg.name, { cwd, env: testEnv }));
 });
 
 test('Create the package and skip publish ("package.private" is true)', async (t) => {
@@ -397,9 +385,7 @@ test('Create the package and skip publish ("package.private" is true)', async (t
   t.false(result);
   t.is((await fs.readJson(resolve(cwd, "package.json"))).version, "1.0.0");
   t.true(await fs.pathExists(resolve(cwd, `tarball/${pkg.name}-1.0.0.tgz`)));
-  await t.throwsAsync(
-    execa("npm", ["view", pkg.name, "version"], { cwd, env: testEnv })
-  );
+  await t.throwsAsync(getPackageVersion(pkg.name, { cwd, env: testEnv }));
 });
 
 test('Create the package and skip publish from a sub-directory ("npmPublish" is false)', async (t) => {
@@ -429,9 +415,7 @@ test('Create the package and skip publish from a sub-directory ("npmPublish" is 
   t.false(result);
   t.is((await fs.readJson(resolve(cwd, "dist/package.json"))).version, "1.0.0");
   t.true(await fs.pathExists(resolve(cwd, `tarball/${pkg.name}-1.0.0.tgz`)));
-  await t.throwsAsync(
-    execa("npm", ["view", pkg.name, "version"], { cwd, env: testEnv })
-  );
+  await t.throwsAsync(getPackageVersion(pkg.name, { cwd, env: testEnv }));
 });
 
 test('Create the package and skip publish from a sub-directory ("package.private" is true)', async (t) => {
@@ -462,9 +446,7 @@ test('Create the package and skip publish from a sub-directory ("package.private
   t.false(result);
   t.is((await fs.readJson(resolve(cwd, "dist/package.json"))).version, "1.0.0");
   t.true(await fs.pathExists(resolve(cwd, `tarball/${pkg.name}-1.0.0.tgz`)));
-  await t.throwsAsync(
-    execa("npm", ["view", pkg.name, "version"], { cwd, env: testEnv })
-  );
+  await t.throwsAsync(getPackageVersion(pkg.name, { cwd, env: testEnv }));
 });
 
 test("Throw SemanticReleaseError Array if config option are not valid in publish", async (t) => {
@@ -597,7 +579,7 @@ test("Throw SemanticReleaseError Array if config option are not valid in prepare
   t.is(errors[3].code, "ENOPKG");
 });
 
-test.failing("Publish the package and add to default dist-tag", async (t) => {
+test("Publish the package and add to default dist-tag", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = authEnv;
@@ -637,17 +619,13 @@ test.failing("Publish the package and add to default dist-tag", async (t) => {
 
   t.deepEqual(result, {
     name: "npm package (@latest dist-tag)",
-    url: undefined,
+    url: "https://www.npmjs.com/package/add-channel/v/1.0.0",
     channel: "latest",
   });
-  t.is(
-    (await execa("npm", ["view", pkg.name, "dist-tags.latest"], { cwd, env }))
-      .stdout,
-    "1.0.0"
-  );
+  t.is((await getPackageTags(pkg.name, { cwd, env }))["latest"], "1.0.0");
 });
 
-test.failing("Publish the package and add to lts dist-tag", async (t) => {
+test("Publish the package and add to lts dist-tag", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = authEnv;
@@ -687,13 +665,11 @@ test.failing("Publish the package and add to lts dist-tag", async (t) => {
 
   t.deepEqual(result, {
     name: "npm package (@release-1.x dist-tag)",
-    url: undefined,
+    url: "https://www.npmjs.com/package/add-channel-legacy/v/1.0.0",
     channel: "release-1.x",
   });
-  t.is(
-    (await execa("npm", ["view", pkg.name, "dist-tags"], { cwd, env })).stdout,
-    "{ latest: '1.0.0', 'release-1.x': '1.0.0' }"
-  );
+  t.is((await getPackageTags(pkg.name, { cwd, env }))["latest"], "1.0.0");
+  t.is((await getPackageTags(pkg.name, { cwd, env }))["release-1.x"], "1.0.0");
 });
 
 test('Skip adding the package to a channel ("npmPublish" is false)', async (t) => {
@@ -754,9 +730,7 @@ test('Skip adding the package to a channel ("package.private" is true)', async (
   );
 
   t.false(result);
-  await t.throwsAsync(
-    execa("npm", ["view", pkg.name, "version"], { cwd, env })
-  );
+  await t.throwsAsync(getPackageVersion(pkg.name, { cwd, env }));
 });
 
 test("Create the package in addChannel step", async (t) => {
@@ -874,14 +848,10 @@ test("Verify token and set up auth only on the fist call, then prepare on prepar
   );
   t.deepEqual(result, {
     name: "npm package (@next dist-tag)",
-    url: undefined,
+    url: "https://www.npmjs.com/package/test-module/v/1.0.0",
     channel: "next",
   });
-  t.is(
-    (await execa("npm", ["view", pkg.name, "dist-tags.next"], { cwd, env }))
-      .stdout,
-    "1.0.0"
-  );
+  t.is((await getPackageTags(pkg.name, { cwd, env }))["next"], "1.0.0");
 
   result = await mod.addChannel(
     {},
@@ -899,12 +869,8 @@ test("Verify token and set up auth only on the fist call, then prepare on prepar
 
   t.deepEqual(result, {
     name: "npm package (@latest dist-tag)",
-    url: undefined,
+    url: "https://www.npmjs.com/package/test-module/v/1.0.0",
     channel: "latest",
   });
-  t.is(
-    (await execa("npm", ["view", pkg.name, "dist-tags.latest"], { cwd, env }))
-      .stdout,
-    "1.0.0"
-  );
+  t.is((await getPackageTags(pkg.name, { cwd, env }))["latest"], "1.0.0");
 });
