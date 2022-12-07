@@ -31,7 +31,6 @@
     "dist"
   ],
   "scripts": {
-    "postinstall": "husky install",
     "format": "prettier --write --ignore-unknown .",
     "format:check": "prettier --check --ignore-unknown .",
     "clean": "rm -rf dist",

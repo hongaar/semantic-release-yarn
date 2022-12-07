@@ -26,7 +26,8 @@ As an added bonus, this plugin will also publish some simple monorepo patterns.
   - [Plugin options](#plugin-options)
 - [Examples](#examples)
 - [Plugin steps](#plugin-steps)
-- [Roadmap](#roadmap)
+- [Development](#development)
+  - [Roadmap](#roadmap)
 - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -210,7 +211,17 @@ For example with the
 | `addChannel`       | [Add a tag](https://yarnpkg.com/cli/npm/tag/add) for the release.                                                                                                                          |
 | `publish`          | [Publish](https://yarnpkg.com/cli/npm/publish) to the npm registry.                                                                                                                        |
 
-## Roadmap
+## Development
+
+After cloning this repository, optionally install
+[husky](https://typicode.github.io/husky/) so you never commit incorrectly
+formatted code:
+
+```bash
+yarn husky install
+```
+
+### Roadmap
 
 - [ ] Monorepo support
   - [x] Support for fixed versions
