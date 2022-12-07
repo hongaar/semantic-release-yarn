@@ -38,7 +38,7 @@ As an added bonus, this plugin will also publish some simple monorepo patterns.
 yarn add --dev semantic-release-yarn
 ```
 
-> ⚠️  
+> **Note**  
 > Please note this plugin only works with **Yarn 2** and higher.
 
 ## Usage
@@ -64,13 +64,13 @@ The NPM authentication configuration is **required** and can be set either via
 [environment variables](#environment-variables) or the
 [`.yarnrc.yml`](#yarnrcyml-file) file.
 
-> ⚠️  
+> **Note**  
 > When
 > [two-factor authentication](https://docs.npmjs.com/configuring-two-factor-authentication)
 > is enabled on your NPM account and enabled for writes (default setting), the
 > token needs to be of type **Automation**.
 
-> ⚠️  
+> **Note**  
 > Only the
 > [`npmAuthToken`](https://yarnpkg.com/configuration/yarnrc/#npmAuthToken) is
 > supported. The legacy
@@ -110,7 +110,7 @@ Just prefix the names and write them in snake case. Refer to the
 [Yarnrc files](https://yarnpkg.com/configuration/yarnrc) documentation to see
 all options.
 
-> ⚠️  
+> **Note**  
 > The configuration set by environment variables will take precedence over
 > configuration set in the `.yarnrc.yml` file.
 
@@ -135,7 +135,7 @@ configuration in environment variables and the `.yarnrc.yml` file.
 }
 ```
 
-> ⚠️  
+> **Note**  
 > The `@semantic-release/npm` plugin supports setting the `publishConfig.tag`
 > option. However, Yarn 2
 > [doesn't seem to](https://github.com/yarnpkg/berry/issues?q=publishConfig+tag) >
@@ -169,7 +169,7 @@ for example:
 | `pkgRoot`    | Directory path to publish.                                                                                       | `.`                                                                                                                              |
 | `tarballDir` | Directory path in which to write the package tarball. If `false` the tarball is not kept on the file system.     | `false`                                                                                                                          |
 
-> ⚠️  
+> **Note**  
 > The `pkgRoot` directory must contain a `package.json`. The version will be
 > updated only in the `package.json` within the `pkgRoot` directory.
 
