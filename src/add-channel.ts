@@ -1,3 +1,4 @@
+import { resolve } from "node:path";
 import type { PackageJson } from "read-pkg";
 import { getImplementation } from "./container.js";
 import type { AddChannelContext } from "./definitions/context.js";
@@ -6,9 +7,10 @@ import { getChannel } from "./get-channel.js";
 import { getRegistry } from "./get-registry.js";
 import { getReleaseInfo } from "./get-release-info.js";
 import { getYarnConfig } from "./get-yarn-config.js";
+import { reasonToNotPublish, shouldPublish } from "./should-publish.js";
 
 export async function addChannel(
-  { npmPublish }: PluginConfig,
+  pluginConfig: PluginConfig,
   pkg: PackageJson,
   context: AddChannelContext
 ) {
@@ -20,12 +22,20 @@ export async function addChannel(
     nextRelease: { version, channel },
     logger,
   } = context;
+  const { pkgRoot } = pluginConfig;
   const execa = await getImplementation("execa");
 
-  if (npmPublish !== false && pkg.private !== true) {
+  if (shouldPublish(pluginConfig, pkg)) {
+    const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
     const yarnrc = await getYarnConfig(context);
     const registry = getRegistry(pkg, yarnrc, context);
     const distTag = getChannel(channel!);
+    const isMonorepo = typeof pkg.workspaces !== "undefined";
+
+    if (isMonorepo) {
+      logger.log(`Adding npm tags to monorepo workspaces is not supported yet`);
+      return false;
+    }
 
     logger.log(
       `Adding version ${version} to npm registry ${registry} on dist-tag ${distTag}`
@@ -34,7 +44,7 @@ export async function addChannel(
       "yarn",
       ["npm", "tag", "add", `${pkg.name}@${version}`, distTag],
       {
-        cwd,
+        cwd: basePath,
         env,
       }
     );
@@ -49,11 +59,9 @@ export async function addChannel(
     return getReleaseInfo(pkg, context, distTag, registry);
   }
 
-  logger.log(
-    `Skip adding to npm channel as ${
-      npmPublish === false ? "npmPublish" : "package.json's private property"
-    } is ${npmPublish !== false}`
-  );
+  const reason = reasonToNotPublish(pluginConfig, pkg);
+
+  logger.log(`Skip adding to npm channel as ${reason}`);
 
   return false;
 }

@@ -8,8 +8,7 @@ Use this plugin instead of the default
 [@semantic-release/npm](https://github.com/semantic-release/npm) if you want to
 use Yarn instead of the NPM CLI to publish your packages to the NPM registry.
 
-As an added bonus, this plugin will also publish some simple monorepo patterns
-(currently WIP).
+As an added bonus, this plugin will also publish some simple monorepo patterns.
 
 ## Table of contents
 
@@ -19,6 +18,7 @@ As an added bonus, this plugin will also publish some simple monorepo patterns
 - [Install](#install)
 - [Usage](#usage)
 - [NPM registry authentication](#npm-registry-authentication)
+- [Monorepo support](#monorepo-support)
 - [Configuration](#configuration)
   - [Environment variables](#environment-variables)
   - [`.yarnrc.yml` file](#yarnrcyml-file)
@@ -76,6 +76,24 @@ The NPM authentication configuration is **required** and can be set either via
 > [`npmAuthIdent`](https://yarnpkg.com/configuration/yarnrc/#npmAuthIdent)
 > (`username:password`) authentication is strongly discouraged and not supported
 > by this plugin.
+
+## Monorepo support
+
+Currently, simple monorepo versioning and publishing is supported. All
+workspaces versions will be aligned (a.k.a. fixed/locked mode) and when a new
+release is due, all workspaces will be published to the NPM registry.
+
+Monorepos are detected by the presence of a
+[`workspaces`](https://yarnpkg.com/configuration/manifest#workspaces) option in
+the root `package.json` file:
+
+```json
+{
+  "workspaces": ["packages/*"]
+}
+```
+
+See [our roadmap](#roadmap) for further implementation status.
 
 ## Configuration
 
@@ -195,6 +213,12 @@ For example with the
 ## Roadmap
 
 - [ ] Monorepo support
+  - [x] Support for fixed versions
+  - [x] Support for private/non-private root package
+  - [ ] Support for channels (added failing tests)
+  - [ ] Support for release information for each workspace
+  - [ ] Support for independant versions (probably impossible without custom
+        analyze-commits plugin)
 - [ ] Get rid of CJS build once
       [upstream PR 2607](https://github.com/semantic-release/semantic-release/pull/2607)
       lands
