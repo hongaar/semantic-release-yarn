@@ -39,6 +39,7 @@
     "build:cjs": "tsc --module commonjs --moduleResolution nodenext --outDir dist/cjs && yarn convert-extension cjs dist/cjs/ && rm dist/cjs/*.map",
     "build:esm": "tsc --outDir dist/esm",
     "test": "ava",
+    "doctoc": "doctoc README.md",
     "prepublish": "yarn build",
     "release": "semantic-release"
   },
@@ -76,6 +77,7 @@
     "ava": "5.1.0",
     "convert-extension": "0.3.0",
     "dockerode": "3.3.4",
+    "doctoc": "2.2.1",
     "get-stream": "6.0.1",
     "got": "12.5.3",
     "husky": "8.0.2",
@@ -114,7 +116,8 @@
       "prettier",
       "lint-staged",
       "husky",
-      "dependabot"
+      "dependabot",
+      "doctoc"
     ]
   },
   "lint-staged": {

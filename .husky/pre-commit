@@ -2,3 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 yarn lint-staged
+yarn doctoc && git add README.md
+yarn prettier --write README.md && git add README.md

@@ -2,22 +2,34 @@
 
 [**semantic-release**](https://semantic-release.gitbook.io/semantic-release/)
 plugin to publish a [npm](https://www.npmjs.com) package with
-[yarn](https://yarnpkg.com).
+[Yarn](https://yarnpkg.com).
 
-| Step               | Description                                                                                                                                                                                |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `verifyConditions` | Verify Yarn 2 or higher is installed, verify the presence of an NPM auth token (either in an environment variable or an `.yarnrc.yml` file) and verify the authentication method is valid. |
-| `prepare`          | Update the `package.json` version and [create](https://yarnpkg.com/cli/pack) the package tarball.                                                                                          |
-| `addChannel`       | [Add a tag](https://yarnpkg.com/cli/npm/tag/add) for the release.                                                                                                                          |
-| `publish`          | [Publish](https://yarnpkg.com/cli/npm/publish) to the npm registry.                                                                                                                        |
-
-## Intended audience
-
-Use this plugin if you want to use Yarn instead of the NPM CLI to publish your
-packages to the NPM registry.
+Use this plugin instead of the default
+[@semantic-release/npm](https://github.com/semantic-release/npm) if you want to
+use Yarn instead of the NPM CLI to publish your packages to the NPM registry.
 
 As an added bonus, this plugin will also publish some simple monorepo patterns
 (currently WIP).
+
+## Table of contents
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Install](#install)
+- [Usage](#usage)
+- [NPM registry authentication](#npm-registry-authentication)
+- [Configuration](#configuration)
+  - [Environment variables](#environment-variables)
+  - [`.yarnrc.yml` file](#yarnrcyml-file)
+  - [`package.json` file](#packagejson-file)
+  - [Plugin options](#plugin-options)
+- [Examples](#examples)
+- [Plugin steps](#plugin-steps)
+- [Roadmap](#roadmap)
+- [Credits](#credits)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Install
 
@@ -45,17 +57,11 @@ for example:
 }
 ```
 
-## Configuration
-
-### NPM registry authentication
+## NPM registry authentication
 
 The NPM authentication configuration is **required** and can be set either via
 [environment variables](#environment-variables) or the
 [`.yarnrc.yml`](#yarn-configuration) file.
-
-The configuration set by environment variables will take precedence over
-configuration set in an existing `.yarnrc.yml` file as detailed in
-[Yarnrc files](https://yarnpkg.com/configuration/yarnrc)
 
 > ⚠️  
 > When
@@ -71,6 +77,8 @@ configuration set in an existing `.yarnrc.yml` file as detailed in
 > (`username:password`) authentication is strongly discouraged and not supported
 > by this plugin.
 
+## Configuration
+
 ### Environment variables
 
 | Variable                    | Description                                                                                                                                                                           |
@@ -78,30 +86,27 @@ configuration set in an existing `.yarnrc.yml` file as detailed in
 | `YARN_NPM_AUTH_TOKEN`       | [NPM token](https://docs.npmjs.com/creating-and-viewing-access-tokens). Translates to the [npmAuthToken](https://yarnpkg.com/configuration/yarnrc#npmAuthToken) `.yarnrc.yml` option. |
 | `YARN_NPM_PUBLISH_REGISTRY` | NPM registry to use. Translates to the [npmPublishRegistry](https://yarnpkg.com/configuration/yarnrc#npmPublishRegistry) `.yarnrc.yml` option.                                        |
 
-Other valid `.yarnrc.yml` options could be specified as environment variables as
-mentioned in the [Yarnrc files](https://yarnpkg.com/configuration/yarnrc)
-documentation:
+Most other Yarn options could be specified as environment variables as well.
+Just prefix the names and write them in snake case. Refer to the
+[Yarnrc files](https://yarnpkg.com/configuration/yarnrc) documentation to see
+all options.
 
-> Finally, note that most settings can also be defined through environment
-> variables (at least for the simpler ones; arrays and objects aren't supported
-> yet). To do this, just prefix the names and write them in snake case:
-> YARN_CACHE_FOLDER will set the cache folder (such values will overwrite any
-> that might have been defined in the RC files - use them sparingly).
+> ⚠️  
+> The configuration set by environment variables will take precedence over
+> configuration set in the `.yarnrc.yml` file.
 
-### Yarn configuration
+### `.yarnrc.yml` file
 
-The plugin uses the [`yarn` CLI](https://yarnpkg.com/cli) which will read the
-configuration from a `.yarnrc.yml` file if present. See
-[Yarnrc files](https://yarnpkg.com/configuration/yarnrc) for the option list.
+Options can also be set in a `.yarnrc.yml` file. See
+[Yarnrc files](https://yarnpkg.com/configuration/yarnrc) for the complete list
+of option.
 
-The NPM registry to publish to can be configured via the
-[environment variable](#environment-variables) `YARN_NPM_PUBLISH_REGISTRY` and
-will take precedence over the configuration in `.yarnrc.yml`.
+### `package.json` file
 
 The
 [`registry`](https://yarnpkg.com/configuration/manifest#publishConfig.registry)
 can be configured in the `package.json` and will take precedence over the
-configuration in `.yarnrc.yml` and `YARN_NPM_PUBLISH_REGISTRY`:
+configuration in environment variables and the `.yarnrc.yml` file.
 
 ```json
 {
@@ -145,16 +150,11 @@ for example:
 | `pkgRoot`    | Directory path to publish.                                                                                       | `.`                                                                                                                              |
 | `tarballDir` | Directory path in which to write the package tarball. If `false` the tarball is not kept on the file system.     | `false`                                                                                                                          |
 
-**Note**: The `pkgRoot` directory must contain a `package.json`. The version
-will be updated only in the `package.json` within the `pkgRoot` directory.
+> ⚠️  
+> The `pkgRoot` directory must contain a `package.json`. The version will be
+> updated only in the `package.json` within the `pkgRoot` directory.
 
-**Note**: If you use a
-[shareable configuration](https://semantic-release.gitbook.io/semantic-release/usage/shareable-configurations)
-that defines one of these options you can set it to `false` in your
-[**semantic-release** configuration](https://semantic-release.gitbook.io/semantic-release/usage/configuration)
-in order to use the default value.
-
-### Examples
+## Examples
 
 The `npmPublish` and `tarballDir` option can be used to skip the publishing to
 the NPM registry and instead release the package tarball with another plugin.
@@ -183,7 +183,16 @@ For example with the
 }
 ```
 
-## Roadmap / Todo
+## Plugin steps
+
+| Step               | Description                                                                                                                                                                                |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `verifyConditions` | Verify Yarn 2 or higher is installed, verify the presence of an NPM auth token (either in an environment variable or an `.yarnrc.yml` file) and verify the authentication method is valid. |
+| `prepare`          | Update the `package.json` version and [create](https://yarnpkg.com/cli/pack) the package tarball.                                                                                          |
+| `addChannel`       | [Add a tag](https://yarnpkg.com/cli/npm/tag/add) for the release.                                                                                                                          |
+| `publish`          | [Publish](https://yarnpkg.com/cli/npm/publish) to the npm registry.                                                                                                                        |
+
+## Roadmap
 
 - [ ] Monorepo support
 - [ ] Get rid of CJS build once
