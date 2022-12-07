@@ -58,7 +58,9 @@ export async function prepare(
     await verify(pluginConfig, context);
   }
 
-  await prepareNpm(pluginConfig, context);
+  const pkg = await getPkg(pluginConfig, context);
+
+  await prepareNpm(pluginConfig, pkg, context);
 
   prepared = true;
 }
@@ -71,11 +73,11 @@ export async function publish(
     await verify(pluginConfig, context);
   }
 
-  if (!prepared) {
-    await prepareNpm(pluginConfig, context);
-  }
-
   const pkg = await getPkg(pluginConfig, context);
+
+  if (!prepared) {
+    await prepareNpm(pluginConfig, pkg, context);
+  }
 
   return publishNpm(pluginConfig, pkg, context);
 }

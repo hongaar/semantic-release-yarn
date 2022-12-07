@@ -2,6 +2,7 @@ import { getImplementation } from "./container.js";
 import type { VerifyConditionsContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
 import { getPkg } from "./get-pkg.js";
+import { shouldPublish } from "./should-publish.js";
 import { verifyAuth } from "./verify-auth.js";
 import { verifyConfig } from "./verify-config.js";
 import { verifyYarn } from "./verify-yarn.js";
@@ -23,9 +24,7 @@ export async function verify(
   try {
     const pkg = await getPkg(pluginConfig, context);
 
-    // Verify the npm authentication only if `npmPublish` is not false and
-    // `pkg.private` is not`true`
-    if (pluginConfig.npmPublish !== false && pkg.private !== true) {
+    if (shouldPublish(pluginConfig, pkg)) {
       await verifyAuth(pluginConfig, pkg, context);
     }
   } catch (error: any) {

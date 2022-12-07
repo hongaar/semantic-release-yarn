@@ -871,3 +871,380 @@ test("Verify token and set up auth only on the fist call, then prepare on prepar
   });
   t.is((await getPackageTags(pkg.name, { cwd, env }))["latest"], "1.0.0");
 });
+
+test("Publish monorepo packages", async (t) => {
+  const context = createContext();
+  const { cwd } = context;
+  const env = authEnv;
+  const packagePath = resolve(cwd, "package.json");
+  const workspaceAPath = resolve(cwd, "workspace-a", "package.json");
+  const workspaceBPath = resolve(cwd, "workspace-b", "package.json");
+  await fs.outputJson(packagePath, {
+    name: "monorepo",
+    private: true,
+    workspaces: ["workspace-a", "workspace-b"],
+  });
+  await fs.outputJson(workspaceAPath, {
+    name: "monorepo-workspace-a",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+  await fs.outputJson(workspaceBPath, {
+    name: "monorepo-workspace-b",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+
+  const result = await mod.publish(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      nextRelease: { version: "1.0.0" },
+    }
+  );
+
+  // @todo: how to reflect each workspace in the result?
+  t.deepEqual(result, {
+    name: "npm package (@latest dist-tag)",
+    url: "https://www.npmjs.com/package/monorepo/v/1.0.0",
+    channel: "latest",
+  });
+  t.falsy((await fs.readJson(packagePath)).version);
+  t.is((await fs.readJson(workspaceAPath)).version, "1.0.0");
+  t.is((await fs.readJson(workspaceBPath)).version, "1.0.0");
+  t.false(await fs.pathExists(resolve(cwd, `monorepo-1.0.0.tgz`)));
+  t.false(await fs.pathExists(resolve(cwd, `monorepo-workspace-a-1.0.0.tgz`)));
+  t.false(await fs.pathExists(resolve(cwd, `monorepo-workspace-b-1.0.0.tgz`)));
+  await t.throwsAsync(getPackageVersion("monorepo", { cwd, env: testEnv }));
+  t.is(
+    await getPackageVersion("monorepo-workspace-a", { cwd, env: testEnv }),
+    "1.0.0"
+  );
+  t.is(
+    await getPackageVersion("monorepo-workspace-b", { cwd, env: testEnv }),
+    "1.0.0"
+  );
+});
+
+test("Publish non-private monorepo packages", async (t) => {
+  const context = createContext();
+  const { cwd } = context;
+  const env = authEnv;
+  const packagePath = resolve(cwd, "package.json");
+  const workspaceAPath = resolve(cwd, "workspace-a", "package.json");
+  const workspaceBPath = resolve(cwd, "workspace-b", "package.json");
+  await fs.outputJson(packagePath, {
+    name: "monorepo-non-private",
+    version: "0.0.0-dev",
+    workspaces: ["workspace-a", "workspace-b"],
+  });
+  await fs.outputJson(workspaceAPath, {
+    name: "monorepo-non-private-workspace-a",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+  await fs.outputJson(workspaceBPath, {
+    name: "monorepo-non-private-workspace-b",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+
+  const result = await mod.publish(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      nextRelease: { version: "1.0.0" },
+    }
+  );
+
+  // @todo: how to reflect each workspace in the result?
+  t.deepEqual(result, {
+    name: "npm package (@latest dist-tag)",
+    url: "https://www.npmjs.com/package/monorepo-non-private/v/1.0.0",
+    channel: "latest",
+  });
+  t.is((await fs.readJson(packagePath)).version, "1.0.0");
+  t.is((await fs.readJson(workspaceAPath)).version, "1.0.0");
+  t.is((await fs.readJson(workspaceBPath)).version, "1.0.0");
+  t.false(await fs.pathExists(resolve(cwd, `monorepo-non-private-1.0.0.tgz`)));
+  t.false(
+    await fs.pathExists(
+      resolve(cwd, `monorepo-non-private-workspace-a-1.0.0.tgz`)
+    )
+  );
+  t.false(
+    await fs.pathExists(
+      resolve(cwd, `monorepo-non-private-workspace-b-1.0.0.tgz`)
+    )
+  );
+  t.is(
+    await getPackageVersion("monorepo-non-private", { cwd, env: testEnv }),
+    "1.0.0"
+  );
+  t.is(
+    await getPackageVersion("monorepo-non-private-workspace-a", {
+      cwd,
+      env: testEnv,
+    }),
+    "1.0.0"
+  );
+  t.is(
+    await getPackageVersion("monorepo-non-private-workspace-b", {
+      cwd,
+      env: testEnv,
+    }),
+    "1.0.0"
+  );
+});
+
+test("Publish monorepo packages on a dist-tag", async (t) => {
+  const context = createContext();
+  const { cwd } = context;
+  const env = { ...authEnv };
+  const packagePath = resolve(cwd, "package.json");
+  const workspaceAPath = resolve(cwd, "workspace-a", "package.json");
+  const workspaceBPath = resolve(cwd, "workspace-b", "package.json");
+  await fs.outputJson(packagePath, {
+    name: "monorepo-publish-tag",
+    private: true,
+    workspaces: ["workspace-a", "workspace-b"],
+  });
+  await fs.outputJson(workspaceAPath, {
+    name: "monorepo-publish-tag-workspace-a",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+  await fs.outputJson(workspaceBPath, {
+    name: "monorepo-publish-tag-workspace-b",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+
+  const result = await mod.publish(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      nextRelease: { channel: "next", version: "1.0.0" },
+    }
+  );
+
+  // @todo: how to reflect each workspace in the result?
+  t.deepEqual(result, {
+    name: "npm package (@next dist-tag)",
+    url: "https://www.npmjs.com/package/monorepo-publish-tag/v/1.0.0",
+    channel: "next",
+  });
+  t.falsy((await fs.readJson(resolve(cwd, "package.json"))).version);
+  t.false(await fs.pathExists(resolve(cwd, `monorepo-publish-tag-1.0.0.tgz`)));
+  t.false(
+    await fs.pathExists(
+      resolve(cwd, `monorepo-publish-tag-workspace-a-1.0.0.tgz`)
+    )
+  );
+  t.false(
+    await fs.pathExists(
+      resolve(cwd, `monorepo-publish-tag-workspace-b-1.0.0.tgz`)
+    )
+  );
+  await t.throwsAsync(
+    getPackageVersion("monorepo-publish-tag", { cwd, env: testEnv })
+  );
+  t.is(
+    await getPackageVersion("monorepo-publish-tag-workspace-a", {
+      cwd,
+      env: testEnv,
+    }),
+    "1.0.0"
+  );
+  t.is(
+    await getPackageVersion("monorepo-publish-tag-workspace-b", {
+      cwd,
+      env: testEnv,
+    }),
+    "1.0.0"
+  );
+});
+
+test.failing(
+  "Publish monorepo packages and add to default dist-tag",
+  async (t) => {
+    const context = createContext();
+    const { cwd } = context;
+    const env = authEnv;
+    const packagePath = resolve(cwd, "package.json");
+    const workspaceAPath = resolve(cwd, "workspace-a", "package.json");
+    const workspaceBPath = resolve(cwd, "workspace-b", "package.json");
+    await fs.outputJson(packagePath, {
+      name: "monorepo-add-channel",
+      private: true,
+      workspaces: ["workspace-a", "workspace-b"],
+    });
+    await fs.outputJson(workspaceAPath, {
+      name: "monorepo-add-channel-workspace-a",
+      version: "0.0.0-dev",
+      publishConfig: { registry: url },
+    });
+    await fs.outputJson(workspaceBPath, {
+      name: "monorepo-add-channel-workspace-b",
+      version: "0.0.0-dev",
+      publishConfig: { registry: url },
+    });
+
+    await mod.publish(
+      {},
+      {
+        ...context,
+        env,
+        options: {},
+        releases: [],
+        commits: [],
+        lastRelease: { version: "0.0.0" },
+        nextRelease: { channel: "next", version: "1.0.0" },
+      }
+    );
+
+    const result = await mod.addChannel(
+      {},
+      {
+        ...context,
+        env,
+        options: {},
+        releases: [],
+        commits: [],
+        lastRelease: { version: "0.0.0" },
+        currentRelease: { version: "1.0.0" },
+        nextRelease: { version: "1.0.0" },
+      }
+    );
+
+    t.deepEqual(result, {
+      name: "npm package (@latest dist-tag)",
+      url: "https://www.npmjs.com/package/monorepo-add-channel/v/1.0.0",
+      channel: "latest",
+    });
+    await t.throwsAsync(getPackageTags("monorepo-add-channel", { cwd, env }));
+    t.is(
+      (await getPackageTags("monorepo-add-channel-workspace-a", { cwd, env }))[
+        "latest"
+      ],
+      "1.0.0"
+    );
+    t.is(
+      (await getPackageTags("monorepo-add-channel-workspace-b", { cwd, env }))[
+        "latest"
+      ],
+      "1.0.0"
+    );
+  }
+);
+
+test.failing("Publish monorepo packages and add to lts dist-tag", async (t) => {
+  const context = createContext();
+  const { cwd } = context;
+  const env = authEnv;
+  const packagePath = resolve(cwd, "package.json");
+  const workspaceAPath = resolve(cwd, "workspace-a", "package.json");
+  const workspaceBPath = resolve(cwd, "workspace-b", "package.json");
+  await fs.outputJson(packagePath, {
+    name: "monorepo-add-channel-legacy",
+    private: true,
+    workspaces: ["workspace-a", "workspace-b"],
+  });
+  await fs.outputJson(workspaceAPath, {
+    name: "monorepo-add-channel-legacy-workspace-a",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+  await fs.outputJson(workspaceBPath, {
+    name: "monorepo-add-channel-legacy-workspace-b",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+
+  await mod.publish(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      nextRelease: { channel: "latest", version: "1.0.0" },
+    }
+  );
+
+  const result = await mod.addChannel(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      currentRelease: { version: "1.0.0" },
+      nextRelease: { channel: "1.x", version: "1.0.0" },
+    }
+  );
+
+  t.deepEqual(result, {
+    name: "npm package (@release-1.x dist-tag)",
+    url: "https://www.npmjs.com/package/monorepo-add-channel-legacy/v/1.0.0",
+    channel: "release-1.x",
+  });
+  await t.throwsAsync(
+    getPackageTags("monorepo-add-channel-legacy", { cwd, env })
+  );
+  t.is(
+    (
+      await getPackageTags("monorepo-add-channel-legacy-workspace-a", {
+        cwd,
+        env,
+      })
+    )["latest"],
+    "1.0.0"
+  );
+  t.is(
+    (
+      await getPackageTags("monorepo-add-channel-legacy-workspace-b", {
+        cwd,
+        env,
+      })
+    )["latest"],
+    "1.0.0"
+  );
+  t.is(
+    (
+      await getPackageTags("monorepo-add-channel-legacy-workspace-a", {
+        cwd,
+        env,
+      })
+    )["release-1.x"],
+    "1.0.0"
+  );
+  t.is(
+    (
+      await getPackageTags("monorepo-add-channel-legacy-workspace-b", {
+        cwd,
+        env,
+      })
+    )["release-1.x"],
+    "1.0.0"
+  );
+});
