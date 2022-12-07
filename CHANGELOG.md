@@ -1,3 +1,10 @@
+## [0.1.1](https://github.com/hongaar/semantic-release-yarn/compare/v0.1.0...v0.1.1) (2022-12-07)
+
+### Bug Fixes
+
+- doctoc and readme
+  ([754f612](https://github.com/hongaar/semantic-release-yarn/commit/754f6121b8085443913275a03888105a59465187))
+
 # [0.1.0](https://github.com/hongaar/semantic-release-yarn/compare/v0.0.0...v0.1.0) (2022-12-06)
 
 ### Bug Fixes
