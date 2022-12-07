@@ -61,7 +61,7 @@ for example:
 
 The NPM authentication configuration is **required** and can be set either via
 [environment variables](#environment-variables) or the
-[`.yarnrc.yml`](#yarn-configuration) file.
+[`.yarnrc.yml`](#yarnrcyml-file) file.
 
 > ⚠️  
 > When
