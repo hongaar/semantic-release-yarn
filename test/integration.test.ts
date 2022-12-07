@@ -931,7 +931,7 @@ test("Publish monorepo packages", async (t) => {
   );
 });
 
-test.only("Publish non-private monorepo packages", async (t) => {
+test("Publish non-private monorepo packages", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = authEnv;
