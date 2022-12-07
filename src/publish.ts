@@ -50,7 +50,7 @@ export async function publish(
       await pluginImportResult;
 
       logger.log("Running `yarn install` in %s", basePath);
-      const yarnInstallResult = execa("yarn", ["install"], {
+      const yarnInstallResult = execa("yarn", ["install", "--no-immutable"], {
         cwd: basePath,
         env,
       });
