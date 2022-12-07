@@ -1,3 +1,11 @@
+# [0.2.0](https://github.com/hongaar/semantic-release-yarn/compare/v0.1.1...v0.2.0) (2022-12-07)
+
+### Features
+
+- first iteration of monorepo support
+  ([#15](https://github.com/hongaar/semantic-release-yarn/issues/15))
+  ([cef4440](https://github.com/hongaar/semantic-release-yarn/commit/cef4440d883dfaafbe6b58811444ae774c3341f6))
+
 ## [0.1.1](https://github.com/hongaar/semantic-release-yarn/compare/v0.1.0...v0.1.1) (2022-12-07)
 
 ### Bug Fixes
