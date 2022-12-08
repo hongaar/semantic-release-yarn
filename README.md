@@ -240,7 +240,7 @@ yarn husky install
 - [ ] Monorepo support
   - [x] Support for fixed versions
   - [x] Support for private/non-private root package
-  - [ ] Support for channels (added failing tests)
+  - [x] Support for channels
   - [ ] Support for release information for each workspace
   - [ ] Support for independant versions (probably impossible without custom
         analyze-commits plugin)
