@@ -37,6 +37,21 @@ Your configuration for the "pkgRoot" option is "${pkgRoot}".`,
   };
 }
 
+export function EINVALIDMAINWORKSPACE({
+  mainWorkspace,
+}: {
+  mainWorkspace: unknown;
+}) {
+  return {
+    message: 'Invalid "mainWorkspace" option.',
+    details: `The [mainWorkspace option](${linkify(
+      "README.md#plugin-options"
+    )}) option, if defined, must be a "String".
+
+Your configuration for the "mainWorkspace" option is "${mainWorkspace}".`,
+  };
+}
+
 export function ENONPMTOKEN({ registry }: { registry: string }) {
   return {
     message: "No NPM access token specified.",

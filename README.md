@@ -103,6 +103,11 @@ the root `package.json` file, for example:
 }
 ```
 
+You can set the `mainWorkspace` [plugin option](#plugin-options) to use in
+notifications of new releases (e.g. in issue and pull request comments made by
+the [@semantic-release/github](https://github.com/semantic-release/github)
+plugin.
+
 See [our roadmap](#roadmap) for further implementation status.
 
 ## Configuration
@@ -170,11 +175,12 @@ for example:
 }
 ```
 
-| Options      | Description                                                                                                      | Default                                                                                                                          |
-| ------------ | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `npmPublish` | Whether to publish the NPM package to the registry. If `false` the `package.json` version will still be updated. | `false` if the `package.json` [private](https://docs.npmjs.com/files/package.json#private) property is `true`, `true` otherwise. |
-| `pkgRoot`    | Directory path to publish.                                                                                       | `.`                                                                                                                              |
-| `tarballDir` | Directory path in which to write the package tarball. If `false` the tarball is not kept on the file system.     | `false`                                                                                                                          |
+| Options         | Description                                                                                                      | Default                                                                                                                          |
+| --------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `npmPublish`    | Whether to publish the NPM package to the registry. If `false` the `package.json` version will still be updated. | `false` if the `package.json` [private](https://docs.npmjs.com/files/package.json#private) property is `true`, `true` otherwise. |
+| `pkgRoot`       | Directory path to publish.                                                                                       | `.`                                                                                                                              |
+| `tarballDir`    | Directory path in which to write the package tarball. If `false` the tarball is not kept on the file system.     | `false`                                                                                                                          |
+| `mainWorkspace` | Name of monorepo workspace to be used in release info                                                            |                                                                                                                                  |
 
 > **Note**: the `pkgRoot` directory must contain a `package.json`. The version
 > will be updated only in the `package.json` within the `pkgRoot` directory.
