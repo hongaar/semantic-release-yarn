@@ -1,3 +1,10 @@
+## [0.2.3](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.2...v0.2.3) (2022-12-08)
+
+
+### Bug Fixes
+
+* set persist-credentials to false ([1024133](https://github.com/hongaar/semantic-release-yarn/commit/10241337f366a8a0c023a7876b7fb7323f716cc7))
+
 ## [0.2.2](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.1...v0.2.2) (2022-12-08)
 
 
