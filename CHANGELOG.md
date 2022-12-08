@@ -1,3 +1,15 @@
+# [0.3.0](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.3...v0.3.0) (2022-12-08)
+
+
+### Bug Fixes
+
+* verify ([#20](https://github.com/hongaar/semantic-release-yarn/issues/20)) ([bf0a7e8](https://github.com/hongaar/semantic-release-yarn/commit/bf0a7e8c0b0f2c2191261d6389b1577d37ae24ab))
+
+
+### Features
+
+* monorepo notifications and channels ([#19](https://github.com/hongaar/semantic-release-yarn/issues/19)) ([5f5ac71](https://github.com/hongaar/semantic-release-yarn/commit/5f5ac716a10ed9251da9d008fa7054ff39b45609))
+
 ## [0.2.3](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.2...v0.2.3) (2022-12-08)
 
 

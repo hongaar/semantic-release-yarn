@@ -1,7 +1,7 @@
 {
   "name": "semantic-release-yarn",
   "description": "semantic-release plugin to publish a npm package with yarn",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "license": "MIT",
   "author": "Joram van den Boezem <joram@vandenboezem.nl> (https://joram.dev)",
   "contributors": [
