@@ -23,7 +23,7 @@ export async function getYarnConfig({
     return {};
   }
 
-  logger.log("Reading yarn config from %s", result.files.join(", "));
+  logger.log('Reading yarn config from "%s"', result.files.join(", "));
 
   return result.config;
 }

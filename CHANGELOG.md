@@ -1,9 +1,9 @@
 ## [0.2.1](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.0...v0.2.1) (2022-12-07)
 
-
 ### Bug Fixes
 
-* don't run husky install on postinstall ([6d541a4](https://github.com/hongaar/semantic-release-yarn/commit/6d541a479afdf63062c51d05ba414d2477421f2b))
+- don't run husky install on postinstall
+  ([6d541a4](https://github.com/hongaar/semantic-release-yarn/commit/6d541a479afdf63062c51d05ba414d2477421f2b))
 
 # [0.2.0](https://github.com/hongaar/semantic-release-yarn/compare/v0.1.1...v0.2.0) (2022-12-07)
 
