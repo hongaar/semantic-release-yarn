@@ -1083,81 +1083,78 @@ test("Publish monorepo packages on a dist-tag", async (t) => {
   );
 });
 
-test.failing(
-  "Publish monorepo packages and add to default dist-tag",
-  async (t) => {
-    const context = createContext();
-    const { cwd } = context;
-    const env = authEnv;
-    const packagePath = resolve(cwd, "package.json");
-    const workspaceAPath = resolve(cwd, "workspace-a", "package.json");
-    const workspaceBPath = resolve(cwd, "workspace-b", "package.json");
-    await fs.outputJson(packagePath, {
-      name: "monorepo-add-channel",
-      private: true,
-      workspaces: ["workspace-a", "workspace-b"],
-    });
-    await fs.outputJson(workspaceAPath, {
-      name: "monorepo-add-channel-workspace-a",
-      version: "0.0.0-dev",
-      publishConfig: { registry: url },
-    });
-    await fs.outputJson(workspaceBPath, {
-      name: "monorepo-add-channel-workspace-b",
-      version: "0.0.0-dev",
-      publishConfig: { registry: url },
-    });
-    await execa("yarn", ["install", "--no-immutable"], { cwd });
+test("Publish monorepo packages and add to default dist-tag", async (t) => {
+  const context = createContext();
+  const { cwd } = context;
+  const env = authEnv;
+  const packagePath = resolve(cwd, "package.json");
+  const workspaceAPath = resolve(cwd, "workspace-a", "package.json");
+  const workspaceBPath = resolve(cwd, "workspace-b", "package.json");
+  await fs.outputJson(packagePath, {
+    name: "monorepo-add-channel",
+    private: true,
+    workspaces: ["workspace-a", "workspace-b"],
+  });
+  await fs.outputJson(workspaceAPath, {
+    name: "monorepo-add-channel-workspace-a",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+  await fs.outputJson(workspaceBPath, {
+    name: "monorepo-add-channel-workspace-b",
+    version: "0.0.0-dev",
+    publishConfig: { registry: url },
+  });
+  await execa("yarn", ["install", "--no-immutable"], { cwd });
 
-    await mod.publish(
-      {},
-      {
-        ...context,
-        env,
-        options: {},
-        releases: [],
-        commits: [],
-        lastRelease: { version: "0.0.0" },
-        nextRelease: { channel: "next", version: "1.0.0" },
-      }
-    );
+  await mod.publish(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      nextRelease: { channel: "next", version: "1.0.0" },
+    }
+  );
 
-    const result = await mod.addChannel(
-      {},
-      {
-        ...context,
-        env,
-        options: {},
-        releases: [],
-        commits: [],
-        lastRelease: { version: "0.0.0" },
-        currentRelease: { version: "1.0.0" },
-        nextRelease: { version: "1.0.0" },
-      }
-    );
+  const result = await mod.addChannel(
+    {},
+    {
+      ...context,
+      env,
+      options: {},
+      releases: [],
+      commits: [],
+      lastRelease: { version: "0.0.0" },
+      currentRelease: { version: "1.0.0" },
+      nextRelease: { version: "1.0.0" },
+    }
+  );
 
-    t.deepEqual(result, {
-      name: "npm package (@latest dist-tag)",
-      url: "https://www.npmjs.com/package/monorepo-add-channel/v/1.0.0",
-      channel: "latest",
-    });
-    await t.throwsAsync(getPackageTags("monorepo-add-channel", { cwd, env }));
-    t.is(
-      (await getPackageTags("monorepo-add-channel-workspace-a", { cwd, env }))[
-        "latest"
-      ],
-      "1.0.0"
-    );
-    t.is(
-      (await getPackageTags("monorepo-add-channel-workspace-b", { cwd, env }))[
-        "latest"
-      ],
-      "1.0.0"
-    );
-  }
-);
+  t.deepEqual(result, {
+    name: "npm package (@latest dist-tag)",
+    url: "https://www.npmjs.com/package/monorepo-add-channel/v/1.0.0",
+    channel: "latest",
+  });
+  await t.throwsAsync(getPackageTags("monorepo-add-channel", { cwd, env }));
+  t.is(
+    (await getPackageTags("monorepo-add-channel-workspace-a", { cwd, env }))[
+      "latest"
+    ],
+    "1.0.0"
+  );
+  t.is(
+    (await getPackageTags("monorepo-add-channel-workspace-b", { cwd, env }))[
+      "latest"
+    ],
+    "1.0.0"
+  );
+});
 
-test.failing("Publish monorepo packages and add to lts dist-tag", async (t) => {
+test("Publish monorepo packages and add to lts dist-tag", async (t) => {
   const context = createContext();
   const { cwd } = context;
   const env = authEnv;
