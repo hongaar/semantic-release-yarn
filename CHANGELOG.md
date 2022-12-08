@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.1...v0.2.2) (2022-12-08)
+
+
+### Bug Fixes
+
+* better logging ([#16](https://github.com/hongaar/semantic-release-yarn/issues/16)) ([4136a90](https://github.com/hongaar/semantic-release-yarn/commit/4136a907cb3b5919c2dc8d33391c8bf3e4b73270))
+* use PAT due to branch protection ([#17](https://github.com/hongaar/semantic-release-yarn/issues/17)) ([0576ddc](https://github.com/hongaar/semantic-release-yarn/commit/0576ddc1f1113b92e0a038e70dbe2258acfdd781))
+* use token with checkout action ([52c9d11](https://github.com/hongaar/semantic-release-yarn/commit/52c9d116019a4438fc7e58c1a812adb5d94ffb04))
+
 ## [0.2.1](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.0...v0.2.1) (2022-12-07)
 
 ### Bug Fixes
