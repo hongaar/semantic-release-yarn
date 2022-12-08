@@ -1,19 +1,25 @@
 import test from "ava";
 import { getToken } from "../src/get-token.js";
+import { createContext } from "./helpers/create-context.js";
 
 test("Get token from npmAuthToken", (t) => {
+  const context = createContext();
+
   t.is(
-    getToken("https://registry.npmjs.org", { npmAuthToken: "token" }, {}),
+    getToken("https://registry.npmjs.org", { npmAuthToken: "token" }, context),
     "token"
   );
 });
 
 test("Get token from environment variable", (t) => {
+  const context = createContext();
+
   t.is(
     getToken(
       "https://registry.npmjs.org",
       {},
       {
+        ...context,
         env: {
           YARN_NPM_AUTH_TOKEN: "token",
         },
@@ -24,6 +30,8 @@ test("Get token from environment variable", (t) => {
 });
 
 test("Get token from registries list", (t) => {
+  const context = createContext();
+
   t.is(
     getToken(
       "https://registry.npmjs.org",
@@ -34,13 +42,15 @@ test("Get token from registries list", (t) => {
           },
         },
       },
-      {}
+      context
     ),
     "token"
   );
 });
 
 test("Precedence: registries list > environment variable > npmAuthToken", (t) => {
+  const context = createContext();
+
   t.is(
     getToken(
       "https://registry.npmjs.org",
@@ -53,6 +63,7 @@ test("Precedence: registries list > environment variable > npmAuthToken", (t) =>
         },
       },
       {
+        ...context,
         env: {
           YARN_NPM_AUTH_TOKEN: "token3",
         },
@@ -67,6 +78,7 @@ test("Precedence: registries list > environment variable > npmAuthToken", (t) =>
         npmAuthToken: "token1",
       },
       {
+        ...context,
         env: {
           YARN_NPM_AUTH_TOKEN: "token3",
         },

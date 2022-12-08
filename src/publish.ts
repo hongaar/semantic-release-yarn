@@ -35,30 +35,6 @@ export async function publish(
       ? ["workspaces", "foreach", "--topological", "--verbose", "--no-private"]
       : [];
 
-    if (isMonorepo) {
-      logger.log("Installing Yarn workspace-tools plugin in %s", basePath);
-      const pluginImportResult = execa(
-        "yarn",
-        ["plugin", "import", "workspace-tools"],
-        {
-          cwd: basePath,
-          env,
-        }
-      );
-      pluginImportResult.stdout!.pipe(stdout, { end: false });
-      pluginImportResult.stderr!.pipe(stderr, { end: false });
-      await pluginImportResult;
-
-      logger.log("Running `yarn install` in %s", basePath);
-      const yarnInstallResult = execa("yarn", ["install", "--no-immutable"], {
-        cwd: basePath,
-        env,
-      });
-      yarnInstallResult.stdout!.pipe(stdout, { end: false });
-      yarnInstallResult.stderr!.pipe(stderr, { end: false });
-      await yarnInstallResult;
-    }
-
     logger.log(
       `Publishing version ${version} to npm registry ${registry} on dist-tag ${distTag}`
     );
@@ -75,7 +51,7 @@ export async function publish(
     await result;
 
     logger.log(
-      `Published ${pkg.name}@${version} to dist-tag @${distTag} on ${registry}`
+      `Published ${pkg.name}@${version} on ${registry} (with tag @${distTag})`
     );
 
     return getReleaseInfo(pkg, context, distTag, registry);

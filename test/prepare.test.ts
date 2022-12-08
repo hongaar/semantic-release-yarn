@@ -1,4 +1,5 @@
 import test from "ava";
+import { execa } from "execa";
 import fs from "fs-extra";
 import { resolve } from "node:path";
 import { prepare } from "../src/prepare.js";
@@ -24,13 +25,14 @@ test("Update package.json", async (t) => {
 
   // Verify the logger has been called with the version plugin call
   t.deepEqual(context.logger.log.args[0], [
-    "Installing Yarn version plugin in %s",
+    'Installing Yarn "%s" plugin in "%s"',
+    "version",
     cwd,
   ]);
 
   // Verify the logger has been called with the version updated
   t.deepEqual(context.logger.log.args[1], [
-    "Write version %s to package.json in %s",
+    'Write version "%s" to package.json in "%s"',
     "1.0.0",
     cwd,
   ]);
@@ -58,7 +60,7 @@ test("Update package.json in a sub-directory", async (t) => {
 
   // Verify the logger has been called with the version updated
   t.deepEqual(context.logger.log.args[1], [
-    "Write version %s to package.json in %s",
+    'Write version "%s" to package.json in "%s"',
     "1.0.0",
     resolve(cwd, pkgRoot),
   ]);
@@ -85,7 +87,7 @@ test("Create the package tarball", async (t) => {
 
   // Verify the logger has been called with the version updated
   t.deepEqual(context.logger.log.args[1], [
-    "Write version %s to package.json in %s",
+    'Write version "%s" to package.json in "%s"',
     "1.0.0",
     cwd,
   ]);
@@ -95,7 +97,7 @@ test("Create the package tarball", async (t) => {
 
   // Verify the logger has been called with the version updated
   t.deepEqual(context.logger.log.args[2], [
-    "Creating package tarball in %s",
+    'Creating package tarball in "%s"',
     "tarball",
   ]);
 });
@@ -120,7 +122,7 @@ test("Create the package tarball in the current directory", async (t) => {
 
   // Verify the logger has been called with the version updated
   t.deepEqual(context.logger.log.args[2], [
-    "Creating package tarball in %s",
+    'Creating package tarball in "%s"',
     ".",
   ]);
 });
@@ -164,6 +166,7 @@ test("Update monorepo package.json files", async (t) => {
     name: "workspace-b",
     version: "0.0.0-dev",
   });
+  await execa("yarn", ["install", "--no-immutable"], { cwd });
 
   await prepare({}, rootPkg, {
     ...context,
@@ -182,25 +185,22 @@ test("Update monorepo package.json files", async (t) => {
 
   // Verify the logger has been called with the workspace-tools plugin call
   t.deepEqual(context.logger.log.args[0], [
-    "Installing Yarn workspace-tools plugin in %s",
-    cwd,
-  ]);
-
-  // Verify the logger has been called with the yarn install call
-  t.deepEqual(context.logger.log.args[1], [
-    "Running `yarn install` in %s",
+    'Installing Yarn "%s" plugin in "%s"',
+    "workspace-tools",
     cwd,
   ]);
 
   // Verify the logger has been called with the version plugin call
-  t.deepEqual(context.logger.log.args[2], [
-    "Installing Yarn version plugin in %s",
+  // Verify the logger has been called with the workspace-tools plugin call
+  t.deepEqual(context.logger.log.args[1], [
+    'Installing Yarn "%s" plugin in "%s"',
+    "version",
     cwd,
   ]);
 
   // Verify the logger has been called with the version updated
-  t.deepEqual(context.logger.log.args[3], [
-    "Write version %s to package.json in %s",
+  t.deepEqual(context.logger.log.args[2], [
+    'Write version "%s" to package.json in "%s"',
     "1.0.0",
     cwd,
   ]);
@@ -225,6 +225,7 @@ test("Create the monorepo package tarballs", async (t) => {
     name: "workspace-b",
     version: "0.0.0-dev",
   });
+  await execa("yarn", ["install", "--no-immutable"], { cwd });
 
   await prepare({ tarballDir: "." }, rootPkg, {
     ...context,
@@ -239,8 +240,8 @@ test("Create the monorepo package tarballs", async (t) => {
   t.is(await fs.pathExists(resolve(cwd, "workspace-b-1.0.0.tgz")), true);
 
   // Verify the logger has been called with the version updated
-  t.deepEqual(context.logger.log.args[4], [
-    "Creating package tarball in %s",
+  t.deepEqual(context.logger.log.args[3], [
+    'Creating package tarball in "%s"',
     ".",
   ]);
 });

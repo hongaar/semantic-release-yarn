@@ -16,13 +16,13 @@ export async function getPkg(
     });
 
     if (!pkg.name) {
-      throw getError("ENOPKGNAME");
+      throw getError("ENOPKGNAME", undefined);
     }
 
     return pkg;
   } catch (error: any) {
     if (error.code === "ENOENT") {
-      throw getError("ENOPKG");
+      throw getError("ENOPKG", undefined);
     }
 
     throw error;

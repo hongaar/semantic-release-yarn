@@ -1,4 +1,5 @@
 import test from "ava";
+import { execa } from "execa";
 import fs from "fs-extra";
 import { resolve } from "node:path";
 import { defaultRegistries } from "../src/definitions/constants.js";
@@ -106,7 +107,6 @@ test("Throws error if NPM token is invalid", async (t) => {
 
   t.is(error.name, "SemanticReleaseError");
   t.is(error.code, "EINVALIDNPMTOKEN");
-  t.is(error.message, "Invalid npm token.");
 });
 
 test("Skip auth validation if the registry configured is not the default one", async (t) => {
@@ -894,6 +894,7 @@ test("Publish monorepo packages", async (t) => {
     version: "0.0.0-dev",
     publishConfig: { registry: url },
   });
+  await execa("yarn", ["install", "--no-immutable"], { cwd });
 
   const result = await mod.publish(
     {},
@@ -953,6 +954,7 @@ test("Publish non-private monorepo packages", async (t) => {
     version: "0.0.0-dev",
     publishConfig: { registry: url },
   });
+  await execa("yarn", ["install", "--no-immutable"], { cwd });
 
   const result = await mod.publish(
     {},
@@ -1029,6 +1031,7 @@ test("Publish monorepo packages on a dist-tag", async (t) => {
     version: "0.0.0-dev",
     publishConfig: { registry: url },
   });
+  await execa("yarn", ["install", "--no-immutable"], { cwd });
 
   const result = await mod.publish(
     {},
@@ -1104,6 +1107,7 @@ test.failing(
       version: "0.0.0-dev",
       publishConfig: { registry: url },
     });
+    await execa("yarn", ["install", "--no-immutable"], { cwd });
 
     await mod.publish(
       {},
@@ -1175,6 +1179,7 @@ test.failing("Publish monorepo packages and add to lts dist-tag", async (t) => {
     version: "0.0.0-dev",
     publishConfig: { registry: url },
   });
+  await execa("yarn", ["install", "--no-immutable"], { cwd });
 
   await mod.publish(
     {},

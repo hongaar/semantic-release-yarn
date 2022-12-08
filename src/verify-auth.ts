@@ -19,8 +19,6 @@ export async function verifyAuth(
   const execa = await getImplementation("execa");
   const AggregateError = await getImplementation("AggregateError");
 
-  logger.log("Verify authentication");
-
   const yarnrc = await getYarnConfig(context);
   const registry = getRegistry(pkg, yarnrc, context);
   const token = getToken(registry, yarnrc, context);
@@ -30,10 +28,18 @@ export async function verifyAuth(
   }
 
   if (!isDefaultRegistry(registry)) {
+    logger.log(
+      `Skipping authentication verification for non-default registry "${registry}"`
+    );
+
     return;
   }
 
   try {
+    logger.log(
+      `Running "yarn npm whoami --publish" to verify authentication on registry "${registry}"`
+    );
+
     // @todo deal with npm npm whoami --scope if pkg is scoped
     const whoamiResult = execa("yarn", ["npm", "whoami", "--publish"], {
       cwd: basePath,

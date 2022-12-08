@@ -1,5 +1,6 @@
 import { getImplementation } from "./container.js";
 import type { CommonContext } from "./definitions/context.js";
+import { getError } from "./get-error.js";
 
 export async function getYarnVersion({ cwd }: { cwd: CommonContext["cwd"] }) {
   const execa = await getImplementation("execa");
@@ -7,7 +8,7 @@ export async function getYarnVersion({ cwd }: { cwd: CommonContext["cwd"] }) {
   try {
     return (await execa("yarn", ["--version"], { cwd })).stdout;
   } catch {
-    throw new Error("Could not determine Yarn version. Is Yarn installed?");
+    throw getError("ENOYARN", undefined);
   }
 }
 

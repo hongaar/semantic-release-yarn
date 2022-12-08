@@ -4,55 +4,41 @@ import type { PackageJson } from "read-pkg";
 import { getImplementation } from "./container.js";
 import type { PrepareContext } from "./definitions/context.js";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
+import { installYarnPluginIfNeeded } from "./yarn-plugins.js";
 
 const TARBALL_FILENAME = "%s-%v.tgz";
 
 export async function prepare(
   { tarballDir, pkgRoot }: PluginConfig,
   pkg: PackageJson,
-  { cwd, env, stdout, stderr, nextRelease: { version }, logger }: PrepareContext
+  context: PrepareContext
 ) {
-  const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
+  const {
+    cwd,
+    env,
+    stdout,
+    stderr,
+    nextRelease: { version },
+    logger,
+  } = context;
   const execa = await getImplementation("execa");
+
+  const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
   const isMonorepo = typeof pkg.workspaces !== "undefined";
   const workspacesPrefix = isMonorepo
     ? ["workspaces", "foreach", "--topological", "--verbose", "--no-private"]
     : [];
 
   if (isMonorepo) {
-    logger.log("Installing Yarn workspace-tools plugin in %s", basePath);
-    const pluginImportResult = execa(
-      "yarn",
-      ["plugin", "import", "workspace-tools"],
-      {
-        cwd: basePath,
-        env,
-      }
-    );
-    pluginImportResult.stdout!.pipe(stdout, { end: false });
-    pluginImportResult.stderr!.pipe(stderr, { end: false });
-    await pluginImportResult;
-
-    logger.log("Running `yarn install` in %s", basePath);
-    const yarnInstallResult = execa("yarn", ["install", "--no-immutable"], {
+    await installYarnPluginIfNeeded("workspace-tools", {
+      ...context,
       cwd: basePath,
-      env,
     });
-    yarnInstallResult.stdout!.pipe(stdout, { end: false });
-    yarnInstallResult.stderr!.pipe(stderr, { end: false });
-    await yarnInstallResult;
   }
 
-  logger.log("Installing Yarn version plugin in %s", basePath);
-  const pluginImportResult = execa("yarn", ["plugin", "import", "version"], {
-    cwd: basePath,
-    env,
-  });
-  pluginImportResult.stdout!.pipe(stdout, { end: false });
-  pluginImportResult.stderr!.pipe(stderr, { end: false });
-  await pluginImportResult;
+  await installYarnPluginIfNeeded("version", { ...context, cwd: basePath });
 
-  logger.log("Write version %s to package.json in %s", version, basePath);
+  logger.log('Write version "%s" to package.json in "%s"', version, basePath);
   const versionResult = execa(
     "yarn",
     [...workspacesPrefix, "version", version, "--immediate"],
@@ -66,7 +52,7 @@ export async function prepare(
   await versionResult;
 
   if (tarballDir) {
-    logger.log("Creating package tarball in %s", tarballDir);
+    logger.log('Creating package tarball in "%s"', tarballDir);
     await fs.ensureDir(resolve(cwd, tarballDir.trim()));
     const packResult = execa(
       "yarn",
