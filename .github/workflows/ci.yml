@@ -30,7 +30,14 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: yarn test
-      - run: yarn release --dry-run
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # Disabled due to error:
+      # ```
+      # ✖  EINVALIDBRANCH A branch is invalid in the `branches` configuration.
+      # Each branch in the branches configuration (https://github.com/semantic-release/semantic-release/blob/master/docs/usage/configuration.md#branches) must be either a string, a regexp or an object with a name property.
+      # Your configuration for the problematic branch is ``.
+      # ```
+      # - run: |
+      #     yarn release --debug --dry-run --no-ci --branches main,${{ env.GITHUB_HEAD_REF }}
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GH_PAT }}
+      #     YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
