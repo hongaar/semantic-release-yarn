@@ -22,5 +22,5 @@ jobs:
       - run: yarn release
         env:
           DEBUG: semantic-release:*
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
