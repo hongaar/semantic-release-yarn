@@ -2,9 +2,11 @@
 import type { PackageJson } from "read-pkg";
 import { isDefaultRegistry } from "./definitions/constants.js";
 import type { PublishContext } from "./definitions/context.js";
+import type { PluginConfig } from "./definitions/pluginConfig.js";
 
 export function getReleaseInfo(
   { name }: PackageJson,
+  { mainWorkspace }: PluginConfig,
   {
     nextRelease: { version },
   }: {
@@ -17,7 +19,7 @@ export function getReleaseInfo(
   return {
     name: `npm package (@${distTag} dist-tag)`,
     url: isDefaultRegistry(registry)
-      ? `https://www.npmjs.com/package/${name}/v/${version}`
+      ? `https://www.npmjs.com/package/${mainWorkspace ?? name}/v/${version}`
       : undefined,
     channel: distTag,
   };

@@ -56,7 +56,7 @@ export async function addChannel(
       `Added ${pkg.name}@${version} to dist-tag @${distTag} on ${registry}`
     );
 
-    return getReleaseInfo(pkg, context, distTag, registry);
+    return getReleaseInfo(pkg, pluginConfig, context, distTag, registry);
   }
 
   const reason = reasonToNotPublish(pluginConfig, pkg);
