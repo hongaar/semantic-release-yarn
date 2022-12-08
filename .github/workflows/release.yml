@@ -19,8 +19,7 @@ jobs:
           cache: yarn
       - run: yarn install
       - run: yarn build
-      - run: yarn release
+      - run: yarn release --debug
         env:
-          DEBUG: semantic-release:*
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
