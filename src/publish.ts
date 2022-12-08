@@ -22,7 +22,7 @@ export async function publish(
     nextRelease: { version, channel },
     logger,
   } = context;
-  const { pkgRoot } = pluginConfig;
+  const { pkgRoot, mainWorkspace } = pluginConfig;
   const execa = await getImplementation("execa");
 
   if (shouldPublish(pluginConfig, pkg)) {
@@ -36,7 +36,7 @@ export async function publish(
       : [];
 
     logger.log(
-      `Publishing version ${version} to npm registry ${registry} on dist-tag ${distTag}`
+      `Publishing version ${version} to npm registry ${registry} (tagged as @${distTag})`
     );
     const result = execa(
       "yarn",
@@ -51,10 +51,12 @@ export async function publish(
     await result;
 
     logger.log(
-      `Published ${pkg.name}@${version} on ${registry} (with tag @${distTag})`
+      `Published ${
+        mainWorkspace ?? pkg.name
+      }@${version} on ${registry} (tagged as @${distTag})`
     );
 
-    return getReleaseInfo(pkg, context, distTag, registry);
+    return getReleaseInfo(pkg, pluginConfig, context, distTag, registry);
   }
 
   const reason = reasonToNotPublish(pluginConfig, pkg);

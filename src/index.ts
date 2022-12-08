@@ -43,6 +43,10 @@ export async function verifyConditions(
       pluginConfig.pkgRoot,
       publishPlugin.pkgRoot
     );
+    pluginConfig.mainWorkspace = _.defaultTo(
+      pluginConfig.mainWorkspace,
+      publishPlugin.mainWorkspace
+    );
   }
 
   await verify(pluginConfig, context);
