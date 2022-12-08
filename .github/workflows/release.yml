@@ -19,5 +19,6 @@ jobs:
       - run: yarn build
       - run: yarn release
         env:
+          DEBUG: "*"
           GH_TOKEN: ${{ secrets.GH_PAT }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

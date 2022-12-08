@@ -212,12 +212,12 @@ For example with the
 
 ## Plugin steps
 
-| Step               | Description                                                                                                                                                                                |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `verifyConditions` | Verify Yarn 2 or higher is installed, verify the presence of an NPM auth token (either in an environment variable or an `.yarnrc.yml` file) and verify the authentication method is valid. |
-| `prepare`          | Update the `package.json` version and [create](https://yarnpkg.com/cli/pack) the package tarball.                                                                                          |
-| `addChannel`       | [Add a tag](https://yarnpkg.com/cli/npm/tag/add) for the release.                                                                                                                          |
-| `publish`          | [Publish](https://yarnpkg.com/cli/npm/publish) to the npm registry.                                                                                                                        |
+| Step               | Description                                                                                                                                                                               |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `verifyConditions` | Verify Yarn 2 or higher is installed, verify the presence of a NPM auth token (either in an environment variable or an `.yarnrc.yml` file) and verify the authentication method is valid. |
+| `prepare`          | Update the `package.json` version and [create](https://yarnpkg.com/cli/pack) the package tarball.                                                                                         |
+| `addChannel`       | [Add a tag](https://yarnpkg.com/cli/npm/tag/add) for the release.                                                                                                                         |
+| `publish`          | [Publish](https://yarnpkg.com/cli/npm/publish) to the npm registry.                                                                                                                       |
 
 ## Development
 

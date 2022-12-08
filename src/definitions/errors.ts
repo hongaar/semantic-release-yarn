@@ -40,7 +40,7 @@ Your configuration for the "pkgRoot" option is "${pkgRoot}".`,
 export function ENONPMTOKEN({ registry }: { registry: string }) {
   return {
     message: "No NPM access token specified.",
-    details: `An [NPM access token](${linkify(
+    details: `A [NPM access token](${linkify(
       "README.md#npm-registry-authentication"
     )}) must be provided in your configuration. The token must allow to publish to the registry "${registry}".
       
