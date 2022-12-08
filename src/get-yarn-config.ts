@@ -1,6 +1,7 @@
 import { cosmiconfig } from "cosmiconfig";
 import _ from "lodash";
 import { dirname, resolve } from "node:path";
+import { YARNRC_FILENAME } from "./definitions/constants.js";
 import type { CommonContext } from "./definitions/context.js";
 import type { Yarnrc } from "./definitions/yarnrc.js";
 
@@ -13,7 +14,7 @@ export async function getYarnConfig({
 }): Promise<Yarnrc> {
   const result = await cosmiconfigSearchRecursive<Yarnrc>(
     cosmiconfig("yarn", {
-      searchPlaces: [".yarnrc.yml"],
+      searchPlaces: [YARNRC_FILENAME],
     }),
     cwd
   );

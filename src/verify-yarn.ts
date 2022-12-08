@@ -9,13 +9,13 @@ export async function verifyYarn(context: CommonContext) {
   const { logger } = context;
   const AggregateError = await getImplementation("AggregateError");
 
-  logger.log("Verify yarn version");
+  logger.log(`Verify yarn version is >= ${MIN_YARN_VERSION}`);
 
   const yarnMajorVersion = await getYarnMajorVersion(context);
 
   if (yarnMajorVersion < MIN_YARN_VERSION) {
     throw new AggregateError([
-      getError("EINVALIDYARN", { version: yarnMajorVersion }),
+      getError("EINVALIDYARN", { version: String(yarnMajorVersion) }),
     ]);
   }
 }

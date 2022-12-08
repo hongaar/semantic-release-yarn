@@ -25,6 +25,7 @@ As an added bonus, this plugin will also publish some simple monorepo patterns.
   - [`package.json` file](#packagejson-file)
   - [Plugin options](#plugin-options)
 - [Examples](#examples)
+  - [Only create package tarball](#only-create-package-tarball)
 - [Plugin steps](#plugin-steps)
 - [Development](#development)
   - [Roadmap](#roadmap)
@@ -59,14 +60,25 @@ for example:
 
 ## NPM registry authentication
 
-The NPM authentication configuration is **required** and can be set either via
-[environment variables](#environment-variables) or the
+Providing a NPM access token in your configuration is **required** and can be
+set either via [environment variables](#environment-variables) or the
 [`.yarnrc.yml`](#yarnrcyml-file) file.
 
-> **Note**: when
-> [two-factor authentication](https://docs.npmjs.com/configuring-two-factor-authentication)
-> is enabled on your NPM account and enabled for writes (default setting), the
-> token needs to be of type **Automation**.
+Make sure your access token has write access to the package you want to publish:
+
+- **When using a
+  [classic/legacy token](https://docs.npmjs.com/creating-and-viewing-access-tokens#creating-legacy-tokens-on-the-website)**,
+  it must be either:
+  - A "**Publish**" token if you're not using 2FA or if 2FA is disabled for
+    write operations (The "Require two-factor authentication for write actions"
+    is unchecked in your 2FA settings)
+  - An "**Automation**" token if 2FA is enabled for write operations (The
+    "Require two-factor authentication for write actions" is checked in your 2FA
+    settings)
+- **When using a
+  [granular access token](https://docs.npmjs.com/creating-and-viewing-access-tokens#creating-granular-access-tokens-on-the-website)**
+  make sure it has "**Read and write**" permissions on the package you want to
+  publish.
 
 > **Note**: only the
 > [`npmAuthToken`](https://yarnpkg.com/configuration/yarnrc/#npmAuthToken) is
@@ -83,7 +95,7 @@ release is due, all workspaces will be published to the NPM registry.
 
 Monorepos are detected by the presence of a
 [`workspaces`](https://yarnpkg.com/configuration/manifest#workspaces) option in
-the root `package.json` file:
+the root `package.json` file, for example:
 
 ```json
 {
@@ -97,10 +109,10 @@ See [our roadmap](#roadmap) for further implementation status.
 
 ### Environment variables
 
-| Variable                    | Description                                                                                                                                                                           |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `YARN_NPM_AUTH_TOKEN`       | [NPM token](https://docs.npmjs.com/creating-and-viewing-access-tokens). Translates to the [npmAuthToken](https://yarnpkg.com/configuration/yarnrc#npmAuthToken) `.yarnrc.yml` option. |
-| `YARN_NPM_PUBLISH_REGISTRY` | NPM registry to use. Translates to the [npmPublishRegistry](https://yarnpkg.com/configuration/yarnrc#npmPublishRegistry) `.yarnrc.yml` option.                                        |
+| Variable                    | Description                                                                                                                                                                                  |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `YARN_NPM_AUTH_TOKEN`       | [NPM access token](https://docs.npmjs.com/creating-and-viewing-access-tokens). Translates to the [npmAuthToken](https://yarnpkg.com/configuration/yarnrc#npmAuthToken) `.yarnrc.yml` option. |
+| `YARN_NPM_PUBLISH_REGISTRY` | NPM registry to use. Translates to the [npmPublishRegistry](https://yarnpkg.com/configuration/yarnrc#npmPublishRegistry) `.yarnrc.yml` option.                                               |
 
 Most other Yarn options could be specified as environment variables as well.
 Just prefix the names and write them in snake case. Refer to the
@@ -121,7 +133,7 @@ of option.
 The
 [`registry`](https://yarnpkg.com/configuration/manifest#publishConfig.registry)
 can be configured in the `package.json` and will take precedence over the
-configuration in environment variables and the `.yarnrc.yml` file.
+configuration in environment variables and the `.yarnrc.yml` file:
 
 ```json
 {
@@ -168,6 +180,8 @@ for example:
 > will be updated only in the `package.json` within the `pkgRoot` directory.
 
 ## Examples
+
+### Only create package tarball
 
 The `npmPublish` and `tarballDir` option can be used to skip the publishing to
 the NPM registry and instead release the package tarball with another plugin.

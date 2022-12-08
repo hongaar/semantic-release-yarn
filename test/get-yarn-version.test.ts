@@ -24,8 +24,8 @@ test.serial("Yarn not installed", async (t) => {
 
   const error = await t.throwsAsync<any>(getYarnVersion(context));
 
-  t.is(error.name, "Error");
-  t.is(error.message, "Could not determine Yarn version. Is Yarn installed?");
+  t.is(error.name, "SemanticReleaseError");
+  t.is(error.code, "ENOYARN");
 });
 
 test.serial("Yarn with empty output", async (t) => {

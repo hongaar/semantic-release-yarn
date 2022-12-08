@@ -8,10 +8,11 @@ export type ErrorDefinition = Error & {
   semanticRelease: boolean;
 };
 
-export function getError(
-  code: keyof typeof ERROR_DEFINITIONS,
-  ctx: any = {}
+export function getError<T extends keyof typeof ERROR_DEFINITIONS>(
+  code: T,
+  ctx: Parameters<typeof ERROR_DEFINITIONS[T]>[0]
 ): ErrorDefinition {
-  const { message, details } = ERROR_DEFINITIONS[code](ctx);
+  const { message, details } = ERROR_DEFINITIONS[code](ctx as any);
+
   return new SemanticReleaseError(message, code, details);
 }
