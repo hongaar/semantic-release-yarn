@@ -18,6 +18,10 @@ export function verifyConfig(config: PluginConfig) {
       return errors;
     }
 
+    if (!(option in VALIDATORS)) {
+      return errors;
+    }
+
     if (VALIDATORS[option as keyof PluginConfig](value)) {
       return errors;
     }
