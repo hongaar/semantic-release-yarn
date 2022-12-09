@@ -1,14 +1,8 @@
 # semantic-release-yarn [![npm](https://img.shields.io/npm/v/semantic-release-yarn)](https://www.npmjs.com/package/semantic-release-yarn)
 
-[**semantic-release**](https://semantic-release.gitbook.io/semantic-release/)
-plugin to publish a [npm](https://www.npmjs.com) package with
-[Yarn](https://yarnpkg.com).
-
-Use this plugin instead of the default
-[@semantic-release/npm](https://github.com/semantic-release/npm) if you want to
-use Yarn instead of the NPM CLI to publish your packages to the NPM registry.
-
-As an added bonus, this plugin will also publish some simple monorepo patterns.
+**A [semantic-release](https://semantic-release.gitbook.io/semantic-release/)
+plugin to publish [npm](https://www.npmjs.com) packages with
+[Yarn](https://yarnpkg.com) with built-in support for monorepos.**
 
 ## Table of contents
 
@@ -43,7 +37,9 @@ yarn add --dev semantic-release-yarn
 
 ## Usage
 
-The plugin must be added in the
+Use this plugin instead of the default
+[@semantic-release/npm](https://github.com/semantic-release/npm). The plugin
+must be added in the
 [**semantic-release** configuration](https://semantic-release.gitbook.io/semantic-release/usage/configuration),
 for example:
 
