@@ -2,7 +2,21 @@
 
 **A [semantic-release](https://semantic-release.gitbook.io/semantic-release/)
 plugin to publish [npm](https://www.npmjs.com) packages with
-[Yarn](https://yarnpkg.com) with built-in support for monorepos.**
+[Yarn](https://yarnpkg.com). Comes with built-in support for monorepos.**
+
+```diff
+ {
+   "branches": ["main"],
+   "plugins": [
+     "@semantic-release/commit-analyzer",
+     "@semantic-release/release-notes-generator",
+-    "@semantic-release/npm",
++    "semantic-release-yarn",
+     "@semantic-release/github",
+     "@semantic-release/git"
+   ]
+ }
+```
 
 ## Table of contents
 
