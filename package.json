@@ -83,7 +83,7 @@
     "lint-staged": "13.1.0",
     "moker": "0.5.1",
     "p-retry": "5.1.2",
-    "prettier": "2.8.0",
+    "prettier": "2.8.1",
     "semantic-release": "19.0.5",
     "sinon": "15.0.0",
     "stream-buffers": "3.0.2",
