@@ -186,12 +186,12 @@ for example:
 }
 ```
 
-| Options         | Description                                                                                                      | Default                                                                                                                          |
-| --------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Options         | Description                                                                                                      | Default                                                                                                                                                      |
+| --------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `npmPublish`    | Whether to publish the NPM package to the registry. If `false` the `package.json` version will still be updated. | `false` if the `package.json` [private](https://docs.npmjs.com/files/package.json#private) property is `true` and no monorepo is detected, `true` otherwise. |
-| `pkgRoot`       | Directory path to publish.                                                                                       | `.`                                                                                                                              |
-| `tarballDir`    | Directory path in which to write the package tarball. If `false` the tarball is not kept on the file system.     |                                                                                                                      |
-| `mainWorkspace` | Name of monorepo workspace to be used in release info                                                            |                                                                                                                                  |
+| `pkgRoot`       | Directory path to publish.                                                                                       | `.`                                                                                                                                                          |
+| `tarballDir`    | Directory path in which to write the package tarball. If `false` the tarball is not kept on the file system.     |                                                                                                                                                              |
+| `mainWorkspace` | Name of monorepo workspace to be used in release info                                                            |                                                                                                                                                              |
 
 > **Note**: the `pkgRoot` directory must contain a `package.json`. The version
 > will be updated only in the `package.json` within the `pkgRoot` directory.
