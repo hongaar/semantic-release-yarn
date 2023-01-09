@@ -1222,12 +1222,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/fs-extra@npm:9.0.13":
-  version: 9.0.13
-  resolution: "@types/fs-extra@npm:9.0.13"
+"@types/fs-extra@npm:11.0.0":
+  version: 11.0.0
+  resolution: "@types/fs-extra@npm:11.0.0"
   dependencies:
+    "@types/jsonfile": "*"
     "@types/node": "*"
-  checksum: add79e212acd5ac76b97b9045834e03a7996aef60a814185e0459088fd290519a3c1620865d588fa36c4498bf614210d2a703af5cf80aa1dbc125db78f6edac3
+  checksum: 00e706ad9fdcfd96aa15172e37e136075754256c7d52f5c33d04423f0ec786e5651526c7c90bab26a72cc882475e9c1687e33900a1176b6803b7b3fd6cdd35d8
   languageName: node
   linkType: hard
 
@@ -1242,6 +1243,15 @@ __metadata:
   version: 4.0.5
   resolution: "@types/js-yaml@npm:4.0.5"
   checksum: 7dcac8c50fec31643cc9d6444b5503239a861414cdfaa7ae9a38bc22597c4d850c4b8cec3d82d73b3fbca408348ce223b0408d598b32e094470dfffc6d486b4d
+  languageName: node
+  linkType: hard
+
+"@types/jsonfile@npm:*":
+  version: 6.1.1
+  resolution: "@types/jsonfile@npm:6.1.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: 0f8fe0a9221a00e8413cffba723dfe16553868724b830237256fb0052ecd5cac96498189d1235a001cfa815f352008261c9ceb373f0aa58227f891e0c7a12c4d
   languageName: node
   linkType: hard
 
@@ -7356,7 +7366,7 @@ __metadata:
     "@semantic-release/git": 10.0.1
     "@types/dockerode": 3.3.14
     "@types/env-ci": 3.1.1
-    "@types/fs-extra": 9.0.13
+    "@types/fs-extra": 11.0.0
     "@types/js-yaml": 4.0.5
     "@types/lodash": 4.14.191
     "@types/node": 18.11.18
