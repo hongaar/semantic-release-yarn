@@ -447,9 +447,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@npmcli/arborist@npm:^6.1.5":
-  version: 6.1.5
-  resolution: "@npmcli/arborist@npm:6.1.5"
+"@npmcli/arborist@npm:^6.1.6":
+  version: 6.1.6
+  resolution: "@npmcli/arborist@npm:6.1.6"
   dependencies:
     "@isaacs/string-locale-compare": ^1.1.0
     "@npmcli/fs": ^3.1.0
@@ -486,7 +486,7 @@ __metadata:
     walk-up-path: ^1.0.0
   bin:
     arborist: bin/index.js
-  checksum: 2c9689e4f0ebbedceec81344ab1d0e81b0392e13650d7618675ea117190c4ffc90592e6a58c31c7663a503286aacffb954643199f7c9d4bf479a716c0f9d90b2
+  checksum: dca822b38f18d729d261123212952bef87334ede7816fa44a61cddb6990efbd583c8a90071cf2828390d750042bb619b57642c54fd850ccea9320b5391210d27
   languageName: node
   linkType: hard
 
@@ -513,9 +513,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@npmcli/config@npm:^6.1.0":
-  version: 6.1.0
-  resolution: "@npmcli/config@npm:6.1.0"
+"@npmcli/config@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "@npmcli/config@npm:6.1.1"
   dependencies:
     "@npmcli/map-workspaces": ^3.0.0
     ini: ^3.0.0
@@ -524,7 +524,7 @@ __metadata:
     read-package-json-fast: ^3.0.0
     semver: ^7.3.5
     walk-up-path: ^1.0.0
-  checksum: 6a72edeefeb9df3733b5969298fc62debf25cd84993ad3b7ad9e324aad4eb77bdd1c273c39f57f0f0af979c2034f8d16c5d688e6c4d5e563bb00b6778f1da29b
+  checksum: bd9e9b30b0a66b0993e1719ed865f4d307bb18cac278b714ce0e6200c3039bdd216b2c3d38bec4ac642a72847ed4ce06bab4c591776627e13a1bb7cb4793d523
   languageName: node
   linkType: hard
 
@@ -4428,11 +4428,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libnpmdiff@npm:^5.0.6":
-  version: 5.0.6
-  resolution: "libnpmdiff@npm:5.0.6"
+"libnpmdiff@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "libnpmdiff@npm:5.0.7"
   dependencies:
-    "@npmcli/arborist": ^6.1.5
+    "@npmcli/arborist": ^6.1.6
     "@npmcli/disparity-colors": ^3.0.0
     "@npmcli/installed-package-contents": ^2.0.0
     binary-extensions: ^2.2.0
@@ -4441,7 +4441,7 @@ __metadata:
     npm-package-arg: ^10.1.0
     pacote: ^15.0.7
     tar: ^6.1.13
-  checksum: 064a654930afa5279f4780df98f07344bacbcecc291fe2ea3b942ed0d6c33ea444d7d0d1f6b373f47ba9e9c00e3d7c31bb33df8254610b958b75d5284c07564f
+  checksum: 175a42556afa517a361ac29a53d5bf0090aea864946a95502f3659ccfef2a3349ba3778d01339ca50d24dc6189f16fcce204920f918bf712d7b1c2a2a602a067
   languageName: node
   linkType: hard
 
@@ -4467,11 +4467,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libnpmexec@npm:^5.0.6":
-  version: 5.0.6
-  resolution: "libnpmexec@npm:5.0.6"
+"libnpmexec@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "libnpmexec@npm:5.0.7"
   dependencies:
-    "@npmcli/arborist": ^6.1.5
+    "@npmcli/arborist": ^6.1.6
     "@npmcli/run-script": ^6.0.0
     chalk: ^4.1.0
     ci-info: ^3.7.0
@@ -4483,7 +4483,7 @@ __metadata:
     read-package-json-fast: ^3.0.1
     semver: ^7.3.7
     walk-up-path: ^1.0.0
-  checksum: f1b17a86bbd7222b81f764bf0609fa38a5b158eda5d407ce3826515c1ff21f8aa983af3107fd614b6b36fb4a92c22497c831eaccb2df4add3059817d9ccac842
+  checksum: 4267de0ef09a0e820976bae0a1a35ee8da76c3c34171db2e7e8adb39e956ab5542f5f6e276ca34eb1a2b4ee39c5f2b7fe1edc86a2fa9757974e6c9cf7e8b117b
   languageName: node
   linkType: hard
 
@@ -4496,12 +4496,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libnpmfund@npm:^4.0.6":
-  version: 4.0.6
-  resolution: "libnpmfund@npm:4.0.6"
+"libnpmfund@npm:^4.0.7":
+  version: 4.0.7
+  resolution: "libnpmfund@npm:4.0.7"
   dependencies:
-    "@npmcli/arborist": ^6.1.5
-  checksum: cf72b90de984442e4bfe20f37dfade86f70d8548536ea5f91a7f6969c3dc0b05b4b0808aa2cb8a903537cb39e470ff30fb669a7ebb848e896848f23198380116
+    "@npmcli/arborist": ^6.1.6
+  checksum: 918ee624cfd9f7d1523fe7a1e980be8c1319346768ab30393d72a3fe85d89bdedcf206104383c2ba3e8bf937bd30ffa6844ffe618f1b907efcb51200bc5c56d1
   languageName: node
   linkType: hard
 
@@ -4556,15 +4556,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libnpmpack@npm:^5.0.6":
-  version: 5.0.6
-  resolution: "libnpmpack@npm:5.0.6"
+"libnpmpack@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "libnpmpack@npm:5.0.7"
   dependencies:
-    "@npmcli/arborist": ^6.1.5
+    "@npmcli/arborist": ^6.1.6
     "@npmcli/run-script": ^6.0.0
     npm-package-arg: ^10.1.0
     pacote: ^15.0.7
-  checksum: a72168338682b6afdd9c53ca752d3440c6566ddbcf1a26f36bbf8e2dd779f6ce8838b7142551a14d9819bc6d37b1377692c026ff4a732a206f40a6371a03f9c6
+  checksum: efbafba4cf277fd1476d0e56e9a2abfad5e2ba85616040360b5dd7f1c39792042ad3ba6286dbf32e47e47f4b11c54bb4a6adc05c312980778d0ab6f03889b026
   languageName: node
   linkType: hard
 
@@ -6104,12 +6104,12 @@ __metadata:
   linkType: hard
 
 "npm@npm:^9.1.3":
-  version: 9.2.0
-  resolution: "npm@npm:9.2.0"
+  version: 9.3.1
+  resolution: "npm@npm:9.3.1"
   dependencies:
     "@isaacs/string-locale-compare": ^1.1.0
-    "@npmcli/arborist": ^6.1.5
-    "@npmcli/config": ^6.1.0
+    "@npmcli/arborist": ^6.1.6
+    "@npmcli/config": ^6.1.1
     "@npmcli/map-workspaces": ^3.0.0
     "@npmcli/package-json": ^3.0.0
     "@npmcli/run-script": ^6.0.0
@@ -6131,12 +6131,12 @@ __metadata:
     is-cidr: ^4.0.2
     json-parse-even-better-errors: ^3.0.0
     libnpmaccess: ^7.0.1
-    libnpmdiff: ^5.0.6
-    libnpmexec: ^5.0.6
-    libnpmfund: ^4.0.6
+    libnpmdiff: ^5.0.7
+    libnpmexec: ^5.0.7
+    libnpmfund: ^4.0.7
     libnpmhook: ^9.0.1
     libnpmorg: ^5.0.1
-    libnpmpack: ^5.0.6
+    libnpmpack: ^5.0.7
     libnpmpublish: ^7.0.6
     libnpmsearch: ^6.0.1
     libnpmteam: ^5.0.1
@@ -6165,7 +6165,6 @@ __metadata:
     read: ~1.0.7
     read-package-json: ^6.0.0
     read-package-json-fast: ^3.0.1
-    rimraf: ^3.0.2
     semver: ^7.3.8
     ssri: ^10.0.1
     tar: ^6.1.13
@@ -6178,7 +6177,7 @@ __metadata:
   bin:
     npm: bin/npm-cli.js
     npx: bin/npx-cli.js
-  checksum: adb144edfec5931a3720fd7354308753b3ba36089ab7c3b813970c6229b35e51909d61fef8063da1b7068b96799771ca19b563ef9f600d77edfa349fac1e34b1
+  checksum: b884c1edabe8ff6f4553bd2feece935acaa338c9d56f627a4fa2b294cfcb66fa3e08372aa1c8d41bcf4ad0d1f1f0e2e744838c999e86a9f5add79bef0eaeeb0b
   languageName: node
   linkType: hard
 
