@@ -339,37 +339,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mokr/core@npm:0.10.3":
-  version: 0.10.3
-  resolution: "@mokr/core@npm:0.10.3"
+"@mokr/core@npm:0.10.5":
+  version: 0.10.5
+  resolution: "@mokr/core@npm:0.10.5"
   dependencies:
     chalk: 5.2.0
-    deepmerge: 4.2.2
+    deepmerge: 4.3.0
     hosted-git-info: 6.1.1
     license: 1.0.3
     ora: 6.1.2
     pkg-up: ^4.0.0
     yaml: 2.2.1
-  checksum: 5792064e22aceb55b97c09360588d9eba40b7ce0879aae92a24ad179dc3eb6f59c50eaa0823d9a2518a09254dbef7a92134dd66fc88095ab3c586f018c2cdb08
+  checksum: 6719197f46f0a1685e8d512931a8cff8ffb451108489c9470a699caf29404d653c6decdb571ee89fd833e24253110c7803568d2751c90744434c36653f497cb4
   languageName: node
   linkType: hard
 
-"@mokr/plugins@npm:0.10.3":
-  version: 0.10.3
-  resolution: "@mokr/plugins@npm:0.10.3"
+"@mokr/plugins@npm:0.10.5":
+  version: 0.10.5
+  resolution: "@mokr/plugins@npm:0.10.5"
   dependencies:
-    "@mokr/core": 0.10.3
-  checksum: d7733820d60c881c9d7bebd8ccb3ac23201738c63a311517d5b2c380d0ed6512469c740a8b501b1e1f3c9fb8c0dc0b0953a1f4d08afea0067ac6ded49b1aa72e
+    "@mokr/core": 0.10.5
+  checksum: 466809940147b2e9e771f24944c83444aa4d8fbb44a62e4924173fc8d0efc29b69f32327c488e2c2c998b6fa31a3974620999b86ddb234becce56166eb5a3d19
   languageName: node
   linkType: hard
 
-"@mokr/templates@npm:0.10.3":
-  version: 0.10.3
-  resolution: "@mokr/templates@npm:0.10.3"
+"@mokr/templates@npm:0.10.5":
+  version: 0.10.5
+  resolution: "@mokr/templates@npm:0.10.5"
   dependencies:
-    "@mokr/core": 0.10.3
-    "@mokr/plugins": 0.10.3
-  checksum: dc1f1b2742f1af7a44d4e52658ae4ec9f7b8d262feb695344204e76e8840b7bebe9609d051c7fc92ad2e43d48b509bae8168c4df8962e85354d169420b572136
+    "@mokr/core": 0.10.5
+    "@mokr/plugins": 0.10.5
+  checksum: 8e793a11142fda81693cb729a42d5dc8a394e127310bfcf24449ef4da5bdceb0680d1877719ee0207a4591d4421169b1a3a932840e7c0b51229de7af739f77b6
   languageName: node
   linkType: hard
 
@@ -2466,10 +2466,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deepmerge@npm:4.2.2":
-  version: 4.2.2
-  resolution: "deepmerge@npm:4.2.2"
-  checksum: a8c43a1ed8d6d1ed2b5bf569fa4c8eb9f0924034baf75d5d406e47e157a451075c4db353efea7b6bcc56ec48116a8ce72fccf867b6e078e7c561904b5897530b
+"deepmerge@npm:4.3.0":
+  version: 4.3.0
+  resolution: "deepmerge@npm:4.3.0"
+  checksum: c7980eb5c5be040b371f1df0d566473875cfabed9f672ccc177b81ba8eee5686ce2478de2f1d0076391621cbe729e5eacda397179a59ef0f68901849647db126
   languageName: node
   linkType: hard
 
@@ -4967,17 +4967,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moker@npm:0.10.3":
-  version: 0.10.3
-  resolution: "moker@npm:0.10.3"
+"moker@npm:0.10.5":
+  version: 0.10.5
+  resolution: "moker@npm:0.10.5"
   dependencies:
-    "@mokr/core": 0.10.3
-    "@mokr/plugins": 0.10.3
-    "@mokr/templates": 0.10.3
+    "@mokr/core": 0.10.5
+    "@mokr/plugins": 0.10.5
+    "@mokr/templates": 0.10.5
     bandersnatch: 1.11.1
   bin:
     moker: moker.js
-  checksum: 0049b1d78b83b9e6b8fe1fd2a08660dcfbe3c3183d6ca986d8dcd5d32b3aef33fd1f7a0ce0c876d3136ca2568472c02e54f83002720752f08ce2e6cded126efb
+  checksum: 633fb9e65802fc06d8fabe02b919220f6a94c68b7a6bcdc182f0ebc503770180ceac05f939ac83ca9b057b294a0273b5d4408ec53c974abcf27c6f7902f89f08
   languageName: node
   linkType: hard
 
@@ -6455,7 +6455,7 @@ __metadata:
     js-yaml: ^4.1.0
     lint-staged: 13.1.0
     lodash: ^4.17.21
-    moker: 0.10.3
+    moker: 0.10.5
     nerf-dart: ^1.0.0
     p-retry: 5.1.2
     prettier: 2.8.3
