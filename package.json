@@ -71,7 +71,7 @@
     "@types/semver": "7.3.13",
     "@types/sinon": "10.0.13",
     "@types/stream-buffers": "3.0.4",
-    "ava": "5.1.1",
+    "ava": "5.2.0",
     "convert-extension": "0.3.0",
     "dockerode": "3.3.4",
     "doctoc": "2.2.1",
