@@ -1,3 +1,10 @@
+## [0.3.2](https://github.com/hongaar/semantic-release-yarn/compare/v0.3.1...v0.3.2) (2023-02-28)
+
+
+### Bug Fixes
+
+* upgrade deps ([#55](https://github.com/hongaar/semantic-release-yarn/issues/55)) ([dd79cf1](https://github.com/hongaar/semantic-release-yarn/commit/dd79cf1daef3c5872c0625337369d0c83c532216))
+
 ## [0.3.1](https://github.com/hongaar/semantic-release-yarn/compare/v0.3.0...v0.3.1) (2023-01-18)
 
 ### Bug Fixes
