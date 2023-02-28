@@ -1,37 +1,43 @@
 ## [0.3.1](https://github.com/hongaar/semantic-release-yarn/compare/v0.3.0...v0.3.1) (2023-01-18)
 
-
 ### Bug Fixes
 
-* remove unused deps ([#42](https://github.com/hongaar/semantic-release-yarn/issues/42)) ([e87dcce](https://github.com/hongaar/semantic-release-yarn/commit/e87dccea586264e001c0f7c4aab3c1b37e64cf96))
+- remove unused deps
+  ([#42](https://github.com/hongaar/semantic-release-yarn/issues/42))
+  ([e87dcce](https://github.com/hongaar/semantic-release-yarn/commit/e87dccea586264e001c0f7c4aab3c1b37e64cf96))
 
 # [0.3.0](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.3...v0.3.0) (2022-12-08)
 
-
 ### Bug Fixes
 
-* verify ([#20](https://github.com/hongaar/semantic-release-yarn/issues/20)) ([bf0a7e8](https://github.com/hongaar/semantic-release-yarn/commit/bf0a7e8c0b0f2c2191261d6389b1577d37ae24ab))
-
+- verify ([#20](https://github.com/hongaar/semantic-release-yarn/issues/20))
+  ([bf0a7e8](https://github.com/hongaar/semantic-release-yarn/commit/bf0a7e8c0b0f2c2191261d6389b1577d37ae24ab))
 
 ### Features
 
-* monorepo notifications and channels ([#19](https://github.com/hongaar/semantic-release-yarn/issues/19)) ([5f5ac71](https://github.com/hongaar/semantic-release-yarn/commit/5f5ac716a10ed9251da9d008fa7054ff39b45609))
+- monorepo notifications and channels
+  ([#19](https://github.com/hongaar/semantic-release-yarn/issues/19))
+  ([5f5ac71](https://github.com/hongaar/semantic-release-yarn/commit/5f5ac716a10ed9251da9d008fa7054ff39b45609))
 
 ## [0.2.3](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.2...v0.2.3) (2022-12-08)
 
-
 ### Bug Fixes
 
-* set persist-credentials to false ([1024133](https://github.com/hongaar/semantic-release-yarn/commit/10241337f366a8a0c023a7876b7fb7323f716cc7))
+- set persist-credentials to false
+  ([1024133](https://github.com/hongaar/semantic-release-yarn/commit/10241337f366a8a0c023a7876b7fb7323f716cc7))
 
 ## [0.2.2](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.1...v0.2.2) (2022-12-08)
 
-
 ### Bug Fixes
 
-* better logging ([#16](https://github.com/hongaar/semantic-release-yarn/issues/16)) ([4136a90](https://github.com/hongaar/semantic-release-yarn/commit/4136a907cb3b5919c2dc8d33391c8bf3e4b73270))
-* use PAT due to branch protection ([#17](https://github.com/hongaar/semantic-release-yarn/issues/17)) ([0576ddc](https://github.com/hongaar/semantic-release-yarn/commit/0576ddc1f1113b92e0a038e70dbe2258acfdd781))
-* use token with checkout action ([52c9d11](https://github.com/hongaar/semantic-release-yarn/commit/52c9d116019a4438fc7e58c1a812adb5d94ffb04))
+- better logging
+  ([#16](https://github.com/hongaar/semantic-release-yarn/issues/16))
+  ([4136a90](https://github.com/hongaar/semantic-release-yarn/commit/4136a907cb3b5919c2dc8d33391c8bf3e4b73270))
+- use PAT due to branch protection
+  ([#17](https://github.com/hongaar/semantic-release-yarn/issues/17))
+  ([0576ddc](https://github.com/hongaar/semantic-release-yarn/commit/0576ddc1f1113b92e0a038e70dbe2258acfdd781))
+- use token with checkout action
+  ([52c9d11](https://github.com/hongaar/semantic-release-yarn/commit/52c9d116019a4438fc7e58c1a812adb5d94ffb04))
 
 ## [0.2.1](https://github.com/hongaar/semantic-release-yarn/compare/v0.2.0...v0.2.1) (2022-12-07)
 
