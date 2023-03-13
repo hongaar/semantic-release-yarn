@@ -90,7 +90,7 @@
     "get-stream": "6.0.1",
     "got": "12.6.0",
     "husky": "8.0.3",
-    "lint-staged": "13.1.2",
+    "lint-staged": "13.2.0",
     "moker": "0.11.2",
     "p-retry": "5.1.2",
     "prettier": "2.8.4",
