@@ -255,7 +255,7 @@ yarn husky install
   - [ ] Support for release information for each workspace
   - [ ] Support for independant versions (probably impossible without custom
         analyze-commits plugin)
-- [ ] Get rid of CJS build once
+- [x] Get rid of CJS build once
       [upstream PR 2607](https://github.com/semantic-release/semantic-release/pull/2607)
       lands
 - [ ] Since we're using the latest AggregateError package, `semantic-release` is
