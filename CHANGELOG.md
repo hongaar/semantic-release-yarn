@@ -1,3 +1,15 @@
+# [1.0.0](https://github.com/hongaar/semantic-release-yarn/compare/v0.3.2...v1.0.0) (2023-04-04)
+
+
+### Features
+
+* convert to esm ([#81](https://github.com/hongaar/semantic-release-yarn/issues/81)) ([4e2199b](https://github.com/hongaar/semantic-release-yarn/commit/4e2199b8ece3046b4aae284d25f239997418d6c2))
+
+
+### BREAKING CHANGES
+
+* drop support for Node < 18
+
 ## [0.3.2](https://github.com/hongaar/semantic-release-yarn/compare/v0.3.1...v0.3.2) (2023-02-28)
 
 

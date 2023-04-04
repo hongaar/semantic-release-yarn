@@ -1,6 +1,6 @@
 {
   "name": "semantic-release-yarn",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "semantic-release plugin to publish a npm package with yarn",
   "keywords": [
     "npm",
