@@ -1,6 +1,6 @@
 import _ from "lodash";
 import type { PluginConfig } from "./definitions/pluginConfig.js";
-import { ErrorDefinition, getError } from "./get-error.js";
+import { getError, type ErrorDefinition } from "./get-error.js";
 
 const isNonEmptyString = (value: unknown) =>
   !!(_.isString(value) && value.trim());

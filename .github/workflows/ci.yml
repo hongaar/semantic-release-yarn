@@ -9,23 +9,11 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - node-version: 14
-            node-lts: true
-          - node-version: 16
-            node-lts: true
-          - node-version: 18
-            node-lts: true
-          - node-version: 19
-            node-lts: false
-    continue-on-error: ${{ ! matrix.node-lts }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: lts/*
           cache: yarn
       - run: yarn install
       - run: yarn build
