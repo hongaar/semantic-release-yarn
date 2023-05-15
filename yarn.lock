@@ -102,9 +102,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mokr/core@npm:0.12.0":
-  version: 0.12.0
-  resolution: "@mokr/core@npm:0.12.0"
+"@mokr/core@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@mokr/core@npm:1.1.0"
   dependencies:
     chalk: 5.2.0
     deepmerge: 4.3.1
@@ -112,27 +112,28 @@ __metadata:
     license: 1.0.3
     ora: 6.3.0
     pkg-up: ^4.0.0
+    sort-package-json: 2.4.1
     yaml: 2.2.2
-  checksum: 69e319a7d120d73097ecde6479edb77191ce6fc29c7eaa2149d50c8513af43b6a90968253e08f6105f03da433a18be9646d853b474b8728f0d4444999644145b
+  checksum: cee08904f288dd5125c905582929bb6fd0e5fa66ff8a2d94ff9f6ea7c77ef078999b29811e00dd36770d75b7d63a077d48f3808d3d74beca0da523e73ec22cad
   languageName: node
   linkType: hard
 
-"@mokr/plugins@npm:0.12.0":
-  version: 0.12.0
-  resolution: "@mokr/plugins@npm:0.12.0"
+"@mokr/plugins@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@mokr/plugins@npm:1.1.0"
   dependencies:
-    "@mokr/core": 0.12.0
-  checksum: 529662ad5a48038eca5d1eca22fa2017e5979e8272fecc7584ad65f6f2d1081b0c12f3331cfcedd24401a6b559101fdef6fc483ee118a115f36bc4c91a7a82a7
+    "@mokr/core": 1.1.0
+  checksum: 567f158d88d695f10aa731496e6ea4890763a388c795eb190683ff4aa196b04edfae2b0c3308275bcf8a3ecc2ed76c2de0d6e59cdfa7c7f0d950bf3afba62502
   languageName: node
   linkType: hard
 
-"@mokr/templates@npm:0.12.0":
-  version: 0.12.0
-  resolution: "@mokr/templates@npm:0.12.0"
+"@mokr/templates@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@mokr/templates@npm:1.1.0"
   dependencies:
-    "@mokr/core": 0.12.0
-    "@mokr/plugins": 0.12.0
-  checksum: 55e092986cc5f0e46a6056c3857f6812ae174998c7f9528d401f5fbb19382c02497c16120488168dd475d93ab5548b480cf56841698a1f160f90583768cf5f55
+    "@mokr/core": 1.1.0
+    "@mokr/plugins": 1.1.0
+  checksum: f05a5055b0d4422e81b82e37356704f79960e515964adc1c8e5ede2aabcbe57fede42424006f4668dc0426582bd8e00f1b8bdf755ca26eb6a6af82d9ff5b7165
   languageName: node
   linkType: hard
 
@@ -1366,16 +1367,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bandersnatch@npm:1.12.2":
-  version: 1.12.2
-  resolution: "bandersnatch@npm:1.12.2"
+"bandersnatch@npm:1.12.4":
+  version: 1.12.4
+  resolution: "bandersnatch@npm:1.12.4"
   dependencies:
     "@types/yargs": 17.0.24
     enquirer: ^2.3.6
     string-argv: ^0.3.1
     typed-emitter: ^2.1.0
     yargs: ^17.5.1
-  checksum: 3d69a90545fca0e4ff3372759daf5926fe4ab3bf59a2a293aff6c1fc6316105a2462b002858e63502b065d90e5536172061a938489df0f577f37296e6b31a6ca
+  checksum: 2328625900e34ee32651ca28792528dcc6607be64cc14dc267ef5c626e3fad7acfbda6d68cc959d0d6867cae5f15c2aaa7c09d591019f3db218a61d17ec9ba96
   languageName: node
   linkType: hard
 
@@ -2327,6 +2328,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"detect-indent@npm:^7.0.1":
+  version: 7.0.1
+  resolution: "detect-indent@npm:7.0.1"
+  checksum: cbf3f0b1c3c881934ca94428e1179b26ab2a587e0d719031d37a67fb506d49d067de54ff057cb1e772e75975fed5155c01cd4518306fee60988b1486e3fc7768
+  languageName: node
+  linkType: hard
+
+"detect-newline@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "detect-newline@npm:4.0.0"
+  checksum: 52767347c70f485b2d1db6493dde57b8c3c1f249e24bad7eb7424cc1129200aa7e671902ede18bc94a8b69e10dec91456aab4c7e2478559d9eedb31ef3847f36
+  languageName: node
+  linkType: hard
+
 "diff@npm:^4.0.1":
   version: 4.0.2
   resolution: "diff@npm:4.0.2"
@@ -2933,6 +2948,13 @@ __metadata:
   version: 2.0.0
   resolution: "git-config-path@npm:2.0.0"
   checksum: f67bee619b76a339d39dee6094c4db914512e3ca7e5ec0a05421b81a6ad0221d6fccfcc0b1c5127cf5af4ed3a49184279bde91b61c003f1cff58ac61e7139cfc
+  languageName: node
+  linkType: hard
+
+"git-hooks-list@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "git-hooks-list@npm:3.1.0"
+  checksum: 05cbdb29e1e14f3b6fde78c876a34383e4476b1be32e8486ad03293f01add884c1a8df8c2dce2ca5d99119c94951b2ff9fa9cbd51d834ae6477b6813cefb998f
   languageName: node
   linkType: hard
 
@@ -3576,6 +3598,13 @@ __metadata:
   version: 2.1.0
   resolution: "is-plain-obj@npm:2.1.0"
   checksum: cec9100678b0a9fe0248a81743041ed990c2d4c99f893d935545cfbc42876cbe86d207f3b895700c690ad2fa520e568c44afc1605044b535a7820c1d40e38daa
+  languageName: node
+  linkType: hard
+
+"is-plain-obj@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "is-plain-obj@npm:4.1.0"
+  checksum: 6dc45da70d04a81f35c9310971e78a6a3c7a63547ef782e3a07ee3674695081b6ca4e977fbb8efc48dae3375e0b34558d2bcd722aec9bddfa2d7db5b041be8ce
   languageName: node
   linkType: hard
 
@@ -4818,17 +4847,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moker@npm:0.12.0":
-  version: 0.12.0
-  resolution: "moker@npm:0.12.0"
+"moker@npm:1.1.0":
+  version: 1.1.0
+  resolution: "moker@npm:1.1.0"
   dependencies:
-    "@mokr/core": 0.12.0
-    "@mokr/plugins": 0.12.0
-    "@mokr/templates": 0.12.0
-    bandersnatch: 1.12.2
+    "@mokr/core": 1.1.0
+    "@mokr/plugins": 1.1.0
+    "@mokr/templates": 1.1.0
+    bandersnatch: 1.12.4
   bin:
     moker: moker.js
-  checksum: 34cf20a89d09cd185008c36f5cbbd2754bb5bd6c3ddcf3a2e8f96a70bf7a2122bc7620c6698770b25c9aa4eeeb86850e08613adcb2b4ff32305d7ca8fa563cfd
+  checksum: 5db0dfb8210724d66d9511b7c18502fd9ecc410fd4b482ef3d16fcc709011ab2ccf336c787a84917a4cbac136f8b39e8579689515efe46ca20bcc8b5aa811732
   languageName: node
   linkType: hard
 
@@ -6338,7 +6367,7 @@ __metadata:
     js-yaml: ^4.1.0
     lint-staged: 13.2.2
     lodash: ^4.17.21
-    moker: 0.12.0
+    moker: 1.1.0
     nerf-dart: ^1.0.0
     p-retry: 5.1.2
     prettier: 2.8.8
@@ -6593,6 +6622,29 @@ __metadata:
     ip: ^2.0.0
     smart-buffer: ^4.2.0
   checksum: 259d9e3e8e1c9809a7f5c32238c3d4d2a36b39b83851d0f573bfde5f21c4b1288417ce1af06af1452569cd1eb0841169afd4998f0e04ba04656f6b7f0e46d748
+  languageName: node
+  linkType: hard
+
+"sort-object-keys@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "sort-object-keys@npm:1.1.3"
+  checksum: abea944d6722a1710a1aa6e4f9509da085d93d5fc0db23947cb411eedc7731f80022ce8fa68ed83a53dd2ac7441fcf72a3f38c09b3d9bbc4ff80546aa2e151ad
+  languageName: node
+  linkType: hard
+
+"sort-package-json@npm:2.4.1":
+  version: 2.4.1
+  resolution: "sort-package-json@npm:2.4.1"
+  dependencies:
+    detect-indent: ^7.0.1
+    detect-newline: ^4.0.0
+    git-hooks-list: ^3.0.0
+    globby: ^13.1.2
+    is-plain-obj: ^4.1.0
+    sort-object-keys: ^1.1.3
+  bin:
+    sort-package-json: cli.js
+  checksum: b0059f3fb597513948ba532a194608877e2a44c8864ac3a7e285ea2f441e540596bf30c5de11a89ccd30159d5562d0f5803186b824dfa0fe69cb8d123589a6cb
   languageName: node
   linkType: hard
 
