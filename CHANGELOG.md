@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/hongaar/semantic-release-yarn/compare/v1.0.0...v1.0.1) (2023-06-07)
+
+
+### Bug Fixes
+
+* moker updates ([#116](https://github.com/hongaar/semantic-release-yarn/issues/116)) ([1990fed](https://github.com/hongaar/semantic-release-yarn/commit/1990fed11929f4b863aebd6177dfb254bab2275b))
+
 # [1.0.0](https://github.com/hongaar/semantic-release-yarn/compare/v0.3.2...v1.0.0) (2023-04-04)
 
 ### Features
