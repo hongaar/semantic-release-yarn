@@ -99,7 +99,7 @@
   },
   "packageManager": "yarn@3.3.0",
   "engines": {
-    "node": ">=16 || ^14.17"
+    "node": ">=16"
   },
   "moker": {
     "plugins": [
