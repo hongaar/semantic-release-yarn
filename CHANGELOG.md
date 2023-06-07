@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/hongaar/semantic-release-yarn/compare/v1.0.1...v2.0.0) (2023-06-07)
+
+
+### Features
+
+* update node.js versions ([#117](https://github.com/hongaar/semantic-release-yarn/issues/117)) ([526b6fd](https://github.com/hongaar/semantic-release-yarn/commit/526b6fd9c66d95d83e5d02c4c86fc0146231d7fb))
+
+
+### BREAKING CHANGES
+
+* This updates the supported node.js versions
+
 ## [1.0.1](https://github.com/hongaar/semantic-release-yarn/compare/v1.0.0...v1.0.1) (2023-06-07)
 
 
