@@ -90,7 +90,7 @@
     "semantic-release": "21.0.7",
     "sinon": "15.2.0",
     "stream-buffers": "3.0.2",
-    "tempy": "3.0.0",
+    "tempy": "3.1.0",
     "ts-node": "10.9.1",
     "typescript": "5.1.6"
   },
