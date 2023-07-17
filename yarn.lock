@@ -6378,7 +6378,7 @@ __metadata:
     semver: ^7.3.8
     sinon: 15.2.0
     stream-buffers: 3.0.2
-    tempy: 3.0.0
+    tempy: 3.1.0
     ts-node: 10.9.1
     typescript: 5.1.6
   peerDependencies:
@@ -7026,7 +7026,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tempy@npm:3.0.0, tempy@npm:^3.0.0":
+"tempy@npm:3.1.0":
+  version: 3.1.0
+  resolution: "tempy@npm:3.1.0"
+  dependencies:
+    is-stream: ^3.0.0
+    temp-dir: ^3.0.0
+    type-fest: ^2.12.2
+    unique-string: ^3.0.0
+  checksum: c4ee8ce7700c6d0652f0828f15f7628e599e57f34352a7fe82abf8f1ebc36f10a5f83861b6c60cce55c321d8f7861d1fecbd9fb4c00de55bf460390bea42f7da
+  languageName: node
+  linkType: hard
+
+"tempy@npm:^3.0.0":
   version: 3.0.0
   resolution: "tempy@npm:3.0.0"
   dependencies:
