@@ -72,7 +72,7 @@
     "@types/js-yaml": "4.0.5",
     "@types/lodash": "4.14.195",
     "@types/node": "20.4.4",
-    "@types/prettier": "2.7.3",
+    "@types/prettier": "3.0.0",
     "@types/semantic-release": "20.0.1",
     "@types/semver": "7.5.0",
     "@types/sinon": "10.0.15",
