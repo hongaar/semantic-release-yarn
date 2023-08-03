@@ -34,9 +34,9 @@ export async function getYarnPlugins({ cwd }: { cwd: CommonContext["cwd"] }) {
 
   return stdout.split("\n").reduce((acc, line) => {
     try {
-      const { name, builtin } = JSON.parse(line);
+      const { name } = JSON.parse(line);
 
-      if (!builtin && name !== "@@core") {
+      if (name !== "@@core") {
         return [...acc, name.replace("@yarnpkg/plugin-", "")];
       }
     } catch {

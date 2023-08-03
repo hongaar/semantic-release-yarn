@@ -22,7 +22,15 @@ test.serial("getYarnPlugins", async (t) => {
 
   const plugins = await getYarnPlugins(context);
 
-  t.deepEqual(plugins, ["interactive-tools", "typescript", "version"]);
+  t.deepEqual(plugins, [
+    "essentials",
+    "compat",
+    "pnp",
+    "pnpm",
+    "interactive-tools",
+    "typescript",
+    "version",
+  ]);
 });
 
 test.serial("installYarnPluginIfNeeded when needed", async (t) => {
@@ -37,6 +45,14 @@ test.serial("installYarnPluginIfNeeded when not needed", async (t) => {
   const context = createContext();
 
   mockExeca({ stdout: '{"name":"@yarnpkg/plugin-version","builtin":false}' });
+
+  t.false(await installYarnPluginIfNeeded("version", context));
+});
+
+test.serial("installYarnPluginIfNeeded when builtin", async (t) => {
+  const context = createContext();
+
+  mockExeca({ stdout: '{"name":"@yarnpkg/plugin-version","builtin":true}' });
 
   t.false(await installYarnPluginIfNeeded("version", context));
 });
