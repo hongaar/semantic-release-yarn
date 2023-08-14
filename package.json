@@ -70,7 +70,7 @@
     "@types/env-ci": "3.1.1",
     "@types/fs-extra": "11.0.1",
     "@types/js-yaml": "4.0.5",
-    "@types/lodash": "4.14.196",
+    "@types/lodash": "4.14.197",
     "@types/node": "20.5.0",
     "@types/prettier": "3.0.0",
     "@types/semantic-release": "20.0.1",
