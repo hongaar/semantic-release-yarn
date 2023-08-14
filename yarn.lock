@@ -102,38 +102,38 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mokr/core@npm:1.3.7":
-  version: 1.3.7
-  resolution: "@mokr/core@npm:1.3.7"
+"@mokr/core@npm:1.3.8":
+  version: 1.3.8
+  resolution: "@mokr/core@npm:1.3.8"
   dependencies:
     chalk: 5.3.0
     deepmerge: 4.3.1
     hosted-git-info: 6.1.1
     license: 1.0.3
-    ora: 7.0.0
+    ora: 7.0.1
     pkg-up: ^4.0.0
     sort-package-json: 2.5.1
     yaml: 2.3.1
-  checksum: 07dbc78aa906d7a033fda6899be927356497864ca121d9130e49de145848258ae8508aec1f261ca08f63cb1ca3035f7286f1d0218bace0a2613948a0260d3070
+  checksum: c3c1cd886abe7cf42a83d80f4ff0340dfa2f938dd5de17b1ab7f00682d568211991fe9f1de1732cc97c6455b4ec9e30fb5420177aad49593f3b79d63aa7a2e09
   languageName: node
   linkType: hard
 
-"@mokr/plugins@npm:1.3.7":
-  version: 1.3.7
-  resolution: "@mokr/plugins@npm:1.3.7"
+"@mokr/plugins@npm:1.3.8":
+  version: 1.3.8
+  resolution: "@mokr/plugins@npm:1.3.8"
   dependencies:
-    "@mokr/core": 1.3.7
-  checksum: 2af0ad6c0a2694e4c31389a19ce3727579ef8a5738545f3379f9c2a78628a4dfa284955920e7957d93166bee237d1ee6dde6fc408f04de1848b3f8495fdc4cf3
+    "@mokr/core": 1.3.8
+  checksum: d7619985db45ae69b7142987271948cfd1779aceb514297002191455d184a4b0b730faab8f0ca5ba83df0b172d9f4640cf970f02e92953c6009adcaf47de674c
   languageName: node
   linkType: hard
 
-"@mokr/templates@npm:1.3.7":
-  version: 1.3.7
-  resolution: "@mokr/templates@npm:1.3.7"
+"@mokr/templates@npm:1.3.8":
+  version: 1.3.8
+  resolution: "@mokr/templates@npm:1.3.8"
   dependencies:
-    "@mokr/core": 1.3.7
-    "@mokr/plugins": 1.3.7
-  checksum: 1a56086ef3d41e7dac5e3f83f9004ae3ef33491054b0cae2a41cf15f2eb6c9183069d5667760949e5866409189916ce2d633b61de0f33769a66d230450761ca8
+    "@mokr/core": 1.3.8
+    "@mokr/plugins": 1.3.8
+  checksum: 2c5a0bfd174ea9092ab053f34d819ccc15fcb66add5049884645499dc6898f6effdfc41dbe15dd56d6ceb61743a2c70faf978cefb65bc738de7eae20aa80d3f5
   languageName: node
   linkType: hard
 
@@ -2462,6 +2462,13 @@ __metadata:
   version: 1.0.1
   resolution: "emittery@npm:1.0.1"
   checksum: d95faee6ffb2e023cadaa6804265fea5298c53d079f170112af8dfae3e141761363ea4510966128259346418e3ec7639310fd75059ecce2423bf8afd07004226
+  languageName: node
+  linkType: hard
+
+"emoji-regex@npm:^10.2.1":
+  version: 10.2.1
+  resolution: "emoji-regex@npm:10.2.1"
+  checksum: 1aa2d16881c56531fdfc03d0b36f5c2b6221cc4097499a5665b88b711dc3fb4d5b8804f0ca6f00c56e5dcf89bac75f0487eee85da1da77df3a33accc6ecbe426
   languageName: node
   linkType: hard
 
@@ -4836,17 +4843,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moker@npm:1.3.7":
-  version: 1.3.7
-  resolution: "moker@npm:1.3.7"
+"moker@npm:1.3.8":
+  version: 1.3.8
+  resolution: "moker@npm:1.3.8"
   dependencies:
-    "@mokr/core": 1.3.7
-    "@mokr/plugins": 1.3.7
-    "@mokr/templates": 1.3.7
+    "@mokr/core": 1.3.8
+    "@mokr/plugins": 1.3.8
+    "@mokr/templates": 1.3.8
     bandersnatch: 1.12.6
   bin:
     moker: moker.js
-  checksum: b4c24d7d71d8d59ab00af32c9d82bd614da3d904e33ae0d90a3b5ce22d5538485885189fe90355e9fffc9c0c782f754833d42f55d744ec610ff33ea23a5fa1d3
+  checksum: 5144aaaa09eb2746f9ed20889f21a9841c05db7a2f2cc3f6ea7af3a3bb63b5b23c4c504bcd0a11e1fbc54f776d8a87d727f5c7d6f93b56d56fa26a24bb2345da
   languageName: node
   linkType: hard
 
@@ -5301,9 +5308,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ora@npm:7.0.0":
-  version: 7.0.0
-  resolution: "ora@npm:7.0.0"
+"ora@npm:7.0.1":
+  version: 7.0.1
+  resolution: "ora@npm:7.0.1"
   dependencies:
     chalk: ^5.3.0
     cli-cursor: ^4.0.0
@@ -5312,8 +5319,9 @@ __metadata:
     is-unicode-supported: ^1.3.0
     log-symbols: ^5.1.0
     stdin-discarder: ^0.1.0
+    string-width: ^6.1.0
     strip-ansi: ^7.1.0
-  checksum: 4a33fb5b351cf79dc346036f9e86ddbb409e4d63e382185eb2be228b4e1f5f4f52604aa138772e6142dbdb1a3dc348a6af1f5c3f57a663e8b9f946878bf4d45d
+  checksum: 0842b8b9a96a8586085cafdc25077c76fed8ade072c52c53e748cf40a214731d2215a4d6081d8fbd6203d2b897e834332bda53eb64afd1a5968da17daf020bff
   languageName: node
   linkType: hard
 
@@ -6332,7 +6340,7 @@ __metadata:
     js-yaml: ^4.1.0
     lint-staged: 14.0.0
     lodash: ^4.17.21
-    moker: 1.3.7
+    moker: 1.3.8
     nerf-dart: ^1.0.0
     p-retry: 5.1.2
     prettier: 3.0.1
@@ -6784,6 +6792,17 @@ __metadata:
     emoji-regex: ^9.2.2
     strip-ansi: ^7.0.1
   checksum: 7369deaa29f21dda9a438686154b62c2c5f661f8dda60449088f9f980196f7908fc39fdd1803e3e01541970287cf5deae336798337e9319a7055af89dafa7193
+  languageName: node
+  linkType: hard
+
+"string-width@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "string-width@npm:6.1.0"
+  dependencies:
+    eastasianwidth: ^0.2.0
+    emoji-regex: ^10.2.1
+    strip-ansi: ^7.0.1
+  checksum: 8aefb456a230c8d7fe254049b1b2d62603da1a3b6c7fc9f3332f6779583cc1c72653f9b6e4cd0c1c92befee1565d4a0a7542d09ba4ceb6d96af02fbd8425bb03
   languageName: node
   linkType: hard
 
