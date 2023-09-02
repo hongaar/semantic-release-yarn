@@ -1,3 +1,15 @@
+## [2.0.1](https://github.com/hongaar/semantic-release-yarn/compare/v2.0.0...v2.0.1) (2023-09-02)
+
+
+### Bug Fixes
+
+* **deps:** Bump @semantic-release/error from 3.0.0 to 4.0.0 ([#121](https://github.com/hongaar/semantic-release-yarn/issues/121)) ([de2b0d5](https://github.com/hongaar/semantic-release-yarn/commit/de2b0d5987c0fa8472e292ef65c24ecec008aae6))
+* **deps:** bump execa from 7.1.1 to 7.2.0 ([#144](https://github.com/hongaar/semantic-release-yarn/issues/144)) ([0b56937](https://github.com/hongaar/semantic-release-yarn/commit/0b5693774a0138f824b61d3c1c727f2dd3121024)), closes [#565](https://github.com/hongaar/semantic-release-yarn/issues/565) [#565](https://github.com/hongaar/semantic-release-yarn/issues/565) [#562](https://github.com/hongaar/semantic-release-yarn/issues/562) [#563](https://github.com/hongaar/semantic-release-yarn/issues/563)
+* **deps:** bump execa from 7.2.0 to 8.0.1 ([#156](https://github.com/hongaar/semantic-release-yarn/issues/156)) ([5338230](https://github.com/hongaar/semantic-release-yarn/commit/533823085cc857694594a9ef168a2c69daefd972)), closes [#572](https://github.com/hongaar/semantic-release-yarn/issues/572) [#569](https://github.com/hongaar/semantic-release-yarn/issues/569) [#572](https://github.com/hongaar/semantic-release-yarn/issues/572) [#571](https://github.com/hongaar/semantic-release-yarn/issues/571) [#568](https://github.com/hongaar/semantic-release-yarn/issues/568) [#570](https://github.com/hongaar/semantic-release-yarn/issues/570) [#569](https://github.com/hongaar/semantic-release-yarn/issues/569)
+* **deps:** Bump semver from 7.5.1 to 7.5.2 ([#123](https://github.com/hongaar/semantic-release-yarn/issues/123)) ([f855612](https://github.com/hongaar/semantic-release-yarn/commit/f855612e7ca5188c3fdab371dc4e642f395e89da))
+* **deps:** Bump semver from 7.5.2 to 7.5.3 ([#126](https://github.com/hongaar/semantic-release-yarn/issues/126)) ([b2cc0a5](https://github.com/hongaar/semantic-release-yarn/commit/b2cc0a52178c0d57ab2013f1f61ca7c7e8e066a0)), closes [#571](https://github.com/hongaar/semantic-release-yarn/issues/571) [#571](https://github.com/hongaar/semantic-release-yarn/issues/571) [#569](https://github.com/hongaar/semantic-release-yarn/issues/569) [#569](https://github.com/hongaar/semantic-release-yarn/issues/569) [#571](https://github.com/hongaar/semantic-release-yarn/issues/571) [#571](https://github.com/hongaar/semantic-release-yarn/issues/571) [#569](https://github.com/hongaar/semantic-release-yarn/issues/569) [#569](https://github.com/hongaar/semantic-release-yarn/issues/569) [#569](https://github.com/hongaar/semantic-release-yarn/issues/569) [#571](https://github.com/hongaar/semantic-release-yarn/issues/571)
+* **deps:** Bump semver from 7.5.3 to 7.5.4 ([#136](https://github.com/hongaar/semantic-release-yarn/issues/136)) ([9afaa3e](https://github.com/hongaar/semantic-release-yarn/commit/9afaa3ebd4435c95e1299dc1ff8c6b61b719540f))
+
 # [2.0.0](https://github.com/hongaar/semantic-release-yarn/compare/v1.0.1...v2.0.0) (2023-06-07)
 
 
