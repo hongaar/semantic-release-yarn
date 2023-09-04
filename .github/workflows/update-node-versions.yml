@@ -9,7 +9,7 @@ jobs:
   update-node-versions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: hongaar/update-node-versions@v2
       - uses: peter-evans/create-pull-request@v5
         with:
