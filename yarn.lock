@@ -913,10 +913,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.5.1":
-  version: 20.5.1
-  resolution: "@types/node@npm:20.5.1"
-  checksum: 3dbe611cd67afa987102c8558ee70f848949c5dcfee5f60abc073e55c0d7b048e391bf06bb1e0dc052cb7210ca97136ac496cbaf6e89123c989de6bd125fde82
+"@types/node@npm:20.5.9":
+  version: 20.5.9
+  resolution: "@types/node@npm:20.5.9"
+  checksum: 717490e94131722144878b4ca1a963ede1673bb8f2ef78c2f5b50b918df6dc9b35e7f8283e5c2a7a9f137730f7c08dc6228e53d4494a94c9ee16881e6ce6caed
   languageName: node
   linkType: hard
 
@@ -6385,7 +6385,7 @@ __metadata:
     "@types/fs-extra": 11.0.1
     "@types/js-yaml": 4.0.5
     "@types/lodash": 4.14.197
-    "@types/node": 20.5.1
+    "@types/node": 20.5.9
     "@types/prettier": 3.0.0
     "@types/semantic-release": 20.0.1
     "@types/semver": 7.5.1
