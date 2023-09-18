@@ -80,7 +80,7 @@
     "ava": "5.3.1",
     "dockerode": "3.3.5",
     "doctoc": "2.2.1",
-    "get-stream": "7.0.1",
+    "get-stream": "8.0.1",
     "got": "12.6.0",
     "husky": "8.0.3",
     "lint-staged": "14.0.1",
