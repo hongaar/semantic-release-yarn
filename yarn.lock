@@ -1067,12 +1067,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/stream-buffers@npm:3.0.4":
-  version: 3.0.4
-  resolution: "@types/stream-buffers@npm:3.0.4"
+"@types/stream-buffers@npm:3.0.5":
+  version: 3.0.5
+  resolution: "@types/stream-buffers@npm:3.0.5"
   dependencies:
     "@types/node": "*"
-  checksum: 5b432b2bf963d612747b79ac317562888236d6a9ea14414fb055c24e7be9643b5e3c7b7470841fa82802aa1c1c0d752a4ba935bbc0cfb12de6b89f7e1dadee92
+  checksum: 365994064aa631c4559a4f7a23abf1ee32aac14993103a52e6d2acaf095056761bb897394b1bd659b1ef580e947ee4d4af16058a3e31b98bff04282baca48bef
   languageName: node
   linkType: hard
 
@@ -6352,7 +6352,7 @@ __metadata:
     "@types/semantic-release": 20.0.1
     "@types/semver": 7.5.2
     "@types/sinon": 10.0.16
-    "@types/stream-buffers": 3.0.4
+    "@types/stream-buffers": 3.0.5
     aggregate-error: ^4.0.1
     ava: 5.3.1
     cosmiconfig: ^8.1.0
