@@ -11,7 +11,7 @@ jobs:
       github.actor == 'dependabot[bot]' || github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v4
-      - uses: hongaar/moker@v1
+      - uses: hongaar/moker@v2
       - uses: peter-evans/create-pull-request@v5
         with:
           title: "chore: reload moker plugins"
