@@ -940,10 +940,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/env-ci@npm:3.1.1":
-  version: 3.1.1
-  resolution: "@types/env-ci@npm:3.1.1"
-  checksum: 8f2afdb5928ed590e1a2b727ed14483ff226d6e20e321b2e934e663590edca6084fece047286bd491d7b250696f112859a2d13b44c31f72d26bb650e60dc96c1
+"@types/env-ci@npm:3.1.2":
+  version: 3.1.2
+  resolution: "@types/env-ci@npm:3.1.2"
+  checksum: 77056862b9fb7e929d112449a1ac31a1c53364d03ecb65067fe2100d515c8658f376b3ebc84b4712c3146c4e61c1118cfc6e485a87f6c71e67bcee4430bfa285
   languageName: node
   linkType: hard
 
@@ -6376,7 +6376,7 @@ __metadata:
     "@semantic-release/error": ^4.0.0
     "@semantic-release/git": 10.0.1
     "@types/dockerode": 3.3.20
-    "@types/env-ci": 3.1.1
+    "@types/env-ci": 3.1.2
     "@types/fs-extra": 11.0.2
     "@types/js-yaml": 4.0.5
     "@types/lodash": 4.14.198
