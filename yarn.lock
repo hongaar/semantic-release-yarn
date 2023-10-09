@@ -6395,7 +6395,7 @@ __metadata:
     "@types/semver": 7.5.3
     "@types/sinon": 10.0.16
     "@types/stream-buffers": 3.0.5
-    aggregate-error: ^4.0.1
+    aggregate-error: ^5.0.0
     ava: 5.3.1
     cosmiconfig: ^8.1.0
     dockerode: 3.3.5
