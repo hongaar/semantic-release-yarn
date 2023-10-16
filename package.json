@@ -84,7 +84,7 @@
     "got": "12.6.0",
     "husky": "8.0.3",
     "lint-staged": "14.0.1",
-    "moker": "2.0.2",
+    "moker": "2.0.5",
     "p-retry": "6.1.0",
     "prettier": "3.0.3",
     "semantic-release": "22.0.5",
