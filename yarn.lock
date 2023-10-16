@@ -3738,6 +3738,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-network-error@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "is-network-error@npm:1.0.0"
+  checksum: 2ca2b4b2d420015e0237abe28ebf316fcd26a82304b07432abf155759a3bee6895609ac91e692a72ad61b7fc902c3283b2dece61e1ddb05a6257777a8573e468
+  languageName: node
+  linkType: hard
+
 "is-number@npm:^7.0.0":
   version: 7.0.0
   resolution: "is-number@npm:7.0.0"
@@ -5609,13 +5616,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-retry@npm:6.0.0":
-  version: 6.0.0
-  resolution: "p-retry@npm:6.0.0"
+"p-retry@npm:6.1.0":
+  version: 6.1.0
+  resolution: "p-retry@npm:6.1.0"
   dependencies:
     "@types/retry": 0.12.2
+    is-network-error: ^1.0.0
     retry: ^0.13.1
-  checksum: ef6bbac2733ff561b80f11fb9dcdf91a8adb8ceeec84388e789bdb23dc5f2d443bfffd2ffb20798e8db7fd9a4071cc238ef264b32ad495cc323d2df40c444750
+  checksum: 1083b2b72672205680f8a736583e31dce5d4ae472996cd06f4a33cd7ea11798d7712c202d253eb8afbdc80abf52f049651989c59f2e2ccca529e6b64d722b1f7
   languageName: node
   linkType: hard
 
@@ -6410,7 +6418,7 @@ __metadata:
     lodash: ^4.17.21
     moker: 2.0.2
     nerf-dart: ^1.0.0
-    p-retry: 6.0.0
+    p-retry: 6.1.0
     prettier: 3.0.3
     read-pkg: ^8.0.0
     semantic-release: 22.0.5
