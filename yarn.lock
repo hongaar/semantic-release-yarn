@@ -964,10 +964,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/js-yaml@npm:4.0.6":
-  version: 4.0.6
-  resolution: "@types/js-yaml@npm:4.0.6"
-  checksum: d4439ec2cc830d355c2a1d7508f49888931b2cfe59d786d27621edd530bf06314b1dceeaa759e21f9b035a0ff623a0ca306752ebb73df9485c02abe045bd962c
+"@types/js-yaml@npm:4.0.8":
+  version: 4.0.8
+  resolution: "@types/js-yaml@npm:4.0.8"
+  checksum: a5a77a5a1eac7e7fb667156c251c2b947ca4ddfdda570726369dd50bd5b2b1d0da2d0fb4273d1b10aa1782406d7b3da8923d957df4fb89dbfa1db06f43297de2
   languageName: node
   linkType: hard
 
@@ -6395,7 +6395,7 @@ __metadata:
     "@types/dockerode": 3.3.20
     "@types/env-ci": 3.1.2
     "@types/fs-extra": 11.0.3
-    "@types/js-yaml": 4.0.6
+    "@types/js-yaml": 4.0.8
     "@types/lodash": 4.14.200
     "@types/node": 20.8.3
     "@types/prettier": 3.0.0
