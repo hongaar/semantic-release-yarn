@@ -1,8 +1,8 @@
 ## [2.0.1](https://github.com/hongaar/semantic-release-yarn/compare/v2.0.0...v2.0.1) (2023-09-02)
 
-
 ### Bug Fixes
 
+* **fix:** yarn plugins might be built-in ([#147](https://github.com/hongaar/semantic-release-yarn/issues/147)) ([391d043](https://github.com/hongaar/semantic-release-yarn/commit/391d0435029d90f9d3721469b589b2650a1ab2af))
 * **deps:** Bump @semantic-release/error from 3.0.0 to 4.0.0 ([#121](https://github.com/hongaar/semantic-release-yarn/issues/121)) ([de2b0d5](https://github.com/hongaar/semantic-release-yarn/commit/de2b0d5987c0fa8472e292ef65c24ecec008aae6))
 * **deps:** bump execa from 7.1.1 to 7.2.0 ([#144](https://github.com/hongaar/semantic-release-yarn/issues/144)) ([0b56937](https://github.com/hongaar/semantic-release-yarn/commit/0b5693774a0138f824b61d3c1c727f2dd3121024)), closes [#565](https://github.com/hongaar/semantic-release-yarn/issues/565) [#565](https://github.com/hongaar/semantic-release-yarn/issues/565) [#562](https://github.com/hongaar/semantic-release-yarn/issues/562) [#563](https://github.com/hongaar/semantic-release-yarn/issues/563)
 * **deps:** bump execa from 7.2.0 to 8.0.1 ([#156](https://github.com/hongaar/semantic-release-yarn/issues/156)) ([5338230](https://github.com/hongaar/semantic-release-yarn/commit/533823085cc857694594a9ef168a2c69daefd972)), closes [#572](https://github.com/hongaar/semantic-release-yarn/issues/572) [#569](https://github.com/hongaar/semantic-release-yarn/issues/569) [#572](https://github.com/hongaar/semantic-release-yarn/issues/572) [#571](https://github.com/hongaar/semantic-release-yarn/issues/571) [#568](https://github.com/hongaar/semantic-release-yarn/issues/568) [#570](https://github.com/hongaar/semantic-release-yarn/issues/570) [#569](https://github.com/hongaar/semantic-release-yarn/issues/569)
