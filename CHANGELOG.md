@@ -1,3 +1,14 @@
+## [2.0.2](https://github.com/hongaar/semantic-release-yarn/compare/v2.0.1...v2.0.2) (2023-10-26)
+
+
+### Bug Fixes
+
+* **deps:** Bump aggregate-error from 4.0.1 to 5.0.0 ([#196](https://github.com/hongaar/semantic-release-yarn/issues/196)) ([f69c623](https://github.com/hongaar/semantic-release-yarn/commit/f69c62333acd4ce59e284daeaa4f3536415d8f22))
+* **deps:** Bump cosmiconfig from 8.2.0 to 8.3.3 ([#170](https://github.com/hongaar/semantic-release-yarn/issues/170)) ([ee040c7](https://github.com/hongaar/semantic-release-yarn/commit/ee040c7c84cd106c69c8c9b8a2184467df1e1dbf)), closes [#320](https://github.com/hongaar/semantic-release-yarn/issues/320) [#317](https://github.com/hongaar/semantic-release-yarn/issues/317) [#320](https://github.com/hongaar/semantic-release-yarn/issues/320) [#317](https://github.com/hongaar/semantic-release-yarn/issues/317) [#321](https://github.com/hongaar/semantic-release-yarn/issues/321) [#319](https://github.com/hongaar/semantic-release-yarn/issues/319) [#318](https://github.com/hongaar/semantic-release-yarn/issues/318)
+* **deps:** Bump cosmiconfig from 8.3.3 to 8.3.5 ([#175](https://github.com/hongaar/semantic-release-yarn/issues/175)) ([55b2176](https://github.com/hongaar/semantic-release-yarn/commit/55b21765eddd8162a633bba04971af199bd65f9a)), closes [#323](https://github.com/hongaar/semantic-release-yarn/issues/323) [#323](https://github.com/hongaar/semantic-release-yarn/issues/323) [#327](https://github.com/hongaar/semantic-release-yarn/issues/327) [#324](https://github.com/hongaar/semantic-release-yarn/issues/324)
+* **deps:** Bump cosmiconfig from 8.3.5 to 8.3.6 ([#181](https://github.com/hongaar/semantic-release-yarn/issues/181)) ([b881733](https://github.com/hongaar/semantic-release-yarn/commit/b8817331071328c789fa2eb7200afd3c1217e40c)), closes [#328](https://github.com/hongaar/semantic-release-yarn/issues/328)
+* **deps:** Bump read-pkg from 8.0.0 to 8.1.0 ([#169](https://github.com/hongaar/semantic-release-yarn/issues/169)) ([cbdfa8b](https://github.com/hongaar/semantic-release-yarn/commit/cbdfa8b24fec00aafb57b67992ce4fabb66ed5bc))
+
 ## [2.0.1](https://github.com/hongaar/semantic-release-yarn/compare/v2.0.0...v2.0.1) (2023-09-02)
 
 ### Bug Fixes
