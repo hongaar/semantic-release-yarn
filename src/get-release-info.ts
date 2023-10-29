@@ -14,7 +14,7 @@ export function getReleaseInfo(
     nextRelease: PublishContext["nextRelease"];
   },
   distTag: string,
-  registry: string
+  registry: string,
 ) {
   return {
     name: `npm package (@${distTag} dist-tag)`,

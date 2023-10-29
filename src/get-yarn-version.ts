@@ -26,7 +26,7 @@ export async function getYarnMajorVersion({
     Number.isNaN(parseInt(majorVersionComponent, 10))
   ) {
     throw new Error(
-      `Could not determine Yarn major version, got "${yarnVersion}"`
+      `Could not determine Yarn major version, got "${yarnVersion}"`,
     );
   }
 

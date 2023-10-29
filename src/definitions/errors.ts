@@ -8,7 +8,7 @@ export function EINVALIDNPMPUBLISH({ npmPublish }: { npmPublish: unknown }) {
   return {
     message: 'Invalid "npmPublish" option.',
     details: `The [npmPublish option](${linkify(
-      "README.md#plugin-options"
+      "README.md#plugin-options",
     )}) option, if defined, must be a "Boolean".
 
 Your configuration for the "npmPublish" option is "${npmPublish}".`,
@@ -19,7 +19,7 @@ export function EINVALIDTARBALLDIR({ tarballDir }: { tarballDir: unknown }) {
   return {
     message: 'Invalid "tarballDir" option.',
     details: `The [tarballDir option](${linkify(
-      "README.md#plugin-options"
+      "README.md#plugin-options",
     )}) option, if defined, must be a "String".
 
 Your configuration for the "tarballDir" option is "${tarballDir}".`,
@@ -30,7 +30,7 @@ export function EINVALIDPKGROOT({ pkgRoot }: { pkgRoot: unknown }) {
   return {
     message: 'Invalid "pkgRoot" option.',
     details: `The [pkgRoot option](${linkify(
-      "README.md#plugin-options"
+      "README.md#plugin-options",
     )}) option, if defined, must be a "String".
 
 Your configuration for the "pkgRoot" option is "${pkgRoot}".`,
@@ -45,7 +45,7 @@ export function EINVALIDMAINWORKSPACE({
   return {
     message: 'Invalid "mainWorkspace" option.',
     details: `The [mainWorkspace option](${linkify(
-      "README.md#plugin-options"
+      "README.md#plugin-options",
     )}) option, if defined, must be a "String".
 
 Your configuration for the "mainWorkspace" option is "${mainWorkspace}".`,
@@ -56,11 +56,11 @@ export function ENONPMTOKEN({ registry }: { registry: string }) {
   return {
     message: "No NPM access token specified.",
     details: `A [NPM access token](${linkify(
-      "README.md#npm-registry-authentication"
+      "README.md#npm-registry-authentication",
     )}) must be provided in your configuration. The token must allow to publish to the registry "${registry}".
       
 Please refer to the [npm registry authentication](${linkify(
-      "README.md#npm-registry-authentication"
+      "README.md#npm-registry-authentication",
     )}) section of the README to learn how to configure the NPM registry access token.`,
   };
 }
@@ -69,11 +69,11 @@ export function EINVALIDNPMTOKEN({ registry }: { registry: string }) {
   return {
     message: "Invalid NPM access token.",
     details: `The [NPM access token](${linkify(
-      "README.md#npm-registry-authentication"
+      "README.md#npm-registry-authentication",
     )}) configured must be a valid [access token](https://docs.npmjs.com/getting-started/working_with_tokens) allowing to publish to the registry "${registry}".
     
 Please refer to the [npm registry authentication](${linkify(
-      "README.md#npm-registry-authentication"
+      "README.md#npm-registry-authentication",
     )}) section of the README to learn how to configure the NPM registry access token.`,
   };
 }
@@ -107,7 +107,7 @@ export function EINVALIDYARN({ version }: { version: string }) {
   return {
     message: "Incompatible Yarn version detected.",
     details: `The version of Yarn that you are using is not compatible. Please refer to [the README](${linkify(
-      "README.md#install"
+      "README.md#install",
     )}) to review which versions of Yarn are currently supported
 
 Your version of Yarn is "${version}".`,

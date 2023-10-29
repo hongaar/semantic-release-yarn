@@ -8,7 +8,7 @@ import type { PluginConfig } from "./definitions/pluginConfig.js";
  */
 function shouldPublishTuple(
   pluginConfig: PluginConfig,
-  pkg: PackageJson
+  pkg: PackageJson,
 ): [boolean, string | null] {
   const reasonToNotPublish =
     pluginConfig.npmPublish === false
@@ -28,7 +28,7 @@ export function shouldPublish(pluginConfig: PluginConfig, pkg: PackageJson) {
 
 export function reasonToNotPublish(
   pluginConfig: PluginConfig,
-  pkg: PackageJson
+  pkg: PackageJson,
 ) {
   return shouldPublishTuple(pluginConfig, pkg)[1];
 }

@@ -11,7 +11,7 @@ test("Read from .yarnrc.yml", async (t) => {
   const { cwd, logger } = createContext();
   await fs.outputFile(
     resolve(cwd, ".yarnrc.yml"),
-    yaml.dump({ npmPublishRegistry: "https://custom1.registry.com" } as Yarnrc)
+    yaml.dump({ npmPublishRegistry: "https://custom1.registry.com" } as Yarnrc),
   );
 
   const yarnrc = await getYarnConfig({ cwd, logger });
@@ -25,13 +25,13 @@ test("Read from .yarnrc.yml in parent directory", async (t) => {
   const cwd = resolve(parent, "subdir");
   await fs.outputFile(
     resolve(cwd, ".yarnrc.yml"),
-    yaml.dump({ enableColors: true } as Yarnrc)
+    yaml.dump({ enableColors: true } as Yarnrc),
   );
   await fs.outputFile(
     resolve(parent, ".yarnrc.yml"),
     yaml.dump({
       npmPublishRegistry: "https://parentdir.registry.com",
-    } as Yarnrc)
+    } as Yarnrc),
   );
 
   const yarnrc = await getYarnConfig({ cwd, logger });
@@ -46,13 +46,13 @@ test("Read from .yarnrc.yml in current directory", async (t) => {
   const cwd = resolve(parent, "subdir");
   await fs.outputFile(
     resolve(cwd, ".yarnrc.yml"),
-    yaml.dump({ npmPublishRegistry: "https://subdir.registry.com" } as Yarnrc)
+    yaml.dump({ npmPublishRegistry: "https://subdir.registry.com" } as Yarnrc),
   );
   await fs.outputFile(
     resolve(parent, ".yarnrc.yml"),
     yaml.dump({
       npmPublishRegistry: "https://parentdir.registry.com",
-    } as Yarnrc)
+    } as Yarnrc),
   );
 
   const yarnrc = await getYarnConfig({ cwd, logger });

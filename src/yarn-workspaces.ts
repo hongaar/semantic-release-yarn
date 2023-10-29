@@ -9,13 +9,13 @@ export async function getWorkspaces({ cwd }: { cwd: CommonContext["cwd"] }) {
     ["workspaces", "list", "--json", "--no-private"],
     {
       cwd,
-    }
+    },
   );
 
   return stdout
     .split("\n")
     .reduce(
       (acc, line) => [...acc, JSON.parse(line)],
-      [] as { location: string; name: string }[]
+      [] as { location: string; name: string }[],
     );
 }

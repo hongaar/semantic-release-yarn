@@ -9,7 +9,7 @@ import { verifyYarn } from "./verify-yarn.js";
 
 export async function verify(
   pluginConfig: PluginConfig,
-  context: VerifyConditionsContext
+  context: VerifyConditionsContext,
 ) {
   const AggregateError = await getImplementation("AggregateError");
 

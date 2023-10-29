@@ -12,7 +12,7 @@ export function getRegistry(
   {
     env,
     logger,
-  }: { env: CommonContext["env"]; logger: CommonContext["logger"] }
+  }: { env: CommonContext["env"]; logger: CommonContext["logger"] },
 ) {
   const publishConfigRegistry = publishConfig?.["registry"] as
     | string
@@ -21,7 +21,7 @@ export function getRegistry(
   if (publishConfigRegistry) {
     logger.log(
       `Using registry "%s" from "package.json: publishConfig.registry"`,
-      publishConfigRegistry
+      publishConfigRegistry,
     );
 
     return publishConfigRegistry;
@@ -30,7 +30,7 @@ export function getRegistry(
   if (env["YARN_NPM_PUBLISH_REGISTRY"]) {
     logger.log(
       `Using registry "%s" from environment variable YARN_NPM_PUBLISH_REGISTRY`,
-      env["YARN_NPM_PUBLISH_REGISTRY"]
+      env["YARN_NPM_PUBLISH_REGISTRY"],
     );
 
     return env["YARN_NPM_PUBLISH_REGISTRY"];
@@ -39,7 +39,7 @@ export function getRegistry(
   if (npmPublishRegistry) {
     logger.log(
       `Using registry "%s" from "${YARNRC_FILENAME}: npmPublishRegistry"`,
-      npmPublishRegistry
+      npmPublishRegistry,
     );
 
     return npmPublishRegistry;
@@ -48,7 +48,7 @@ export function getRegistry(
   if (env["YARN_NPM_REGISTRY_SERVER"]) {
     logger.log(
       `Using registry "%s" from environment variable YARN_NPM_REGISTRY_SERVER`,
-      env["YARN_NPM_REGISTRY_SERVER"]
+      env["YARN_NPM_REGISTRY_SERVER"],
     );
 
     return env["YARN_NPM_REGISTRY_SERVER"];
@@ -57,7 +57,7 @@ export function getRegistry(
   if (npmRegistryServer) {
     logger.log(
       `Using registry "%s" from "${YARNRC_FILENAME}: npmRegistryServer"`,
-      npmRegistryServer
+      npmRegistryServer,
     );
 
     return npmRegistryServer;

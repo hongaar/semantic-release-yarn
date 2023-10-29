@@ -9,7 +9,7 @@ test("Verify options", async (t) => {
       pkgRoot: "dist",
       mainWorkspace: "cli",
     }),
-    []
+    [],
   );
 });
 

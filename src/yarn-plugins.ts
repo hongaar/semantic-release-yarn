@@ -3,7 +3,7 @@ import type { CommonContext } from "./definitions/context.js";
 
 export async function installYarnPluginIfNeeded(
   name: string,
-  { cwd, env, logger, stdout, stderr }: CommonContext
+  { cwd, env, logger, stdout, stderr }: CommonContext,
 ) {
   const execa = await getImplementation("execa");
 

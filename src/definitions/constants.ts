@@ -15,6 +15,6 @@ export const defaultRegistries = [DEFAULT_NPM_REGISTRY, DEFAULT_YARN_REGISTRY];
 
 export function isDefaultRegistry(registry: string) {
   return defaultRegistries.some(
-    (defaultRegistry) => toNerfDart(defaultRegistry) === toNerfDart(registry)
+    (defaultRegistry) => toNerfDart(defaultRegistry) === toNerfDart(registry),
   );
 }

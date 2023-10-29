@@ -10,7 +10,7 @@ export function getToken(
   {
     env,
     logger,
-  }: { env: CommonContext["env"]; logger: CommonContext["logger"] }
+  }: { env: CommonContext["env"]; logger: CommonContext["logger"] },
 ) {
   const registryId = toNerfDart(registry);
 
@@ -25,7 +25,7 @@ export function getToken(
     });
   if (entry) {
     logger.log(
-      `Using token from "${YARNRC_FILENAME}: npmRegistries["${entry[0]}"].npmAuthToken"`
+      `Using token from "${YARNRC_FILENAME}: npmRegistries["${entry[0]}"].npmAuthToken"`,
     );
 
     return npmRegistries[entry[0]]!.npmAuthToken!;

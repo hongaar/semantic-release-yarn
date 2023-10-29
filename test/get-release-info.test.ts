@@ -8,13 +8,13 @@ test("Default registry and scoped module", (t) => {
       {},
       { env: {}, nextRelease: { version: "1.0.0" } },
       "latest",
-      "https://registry.npmjs.org/"
+      "https://registry.npmjs.org/",
     ),
     {
       name: "npm package (@latest dist-tag)",
       url: "https://www.npmjs.com/package/@scope/module/v/1.0.0",
       channel: "latest",
-    }
+    },
   );
 });
 
@@ -25,13 +25,13 @@ test("Custom registry and scoped module", (t) => {
       {},
       { env: {}, nextRelease: { version: "1.0.0" } },
       "latest",
-      "https://custom.registry.org/"
+      "https://custom.registry.org/",
     ),
     {
       name: "npm package (@latest dist-tag)",
       url: undefined,
       channel: "latest",
-    }
+    },
   );
 });
 
@@ -42,12 +42,12 @@ test("With mainWorkspace set", (t) => {
       { mainWorkspace: "custom-workspace" },
       { env: {}, nextRelease: { version: "1.0.0" } },
       "latest",
-      "https://registry.npmjs.org/"
+      "https://registry.npmjs.org/",
     ),
     {
       name: "npm package (@latest dist-tag)",
       url: "https://www.npmjs.com/package/custom-workspace/v/1.0.0",
       channel: "latest",
-    }
+    },
   );
 });

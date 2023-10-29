@@ -13,7 +13,7 @@ import { getWorkspaces } from "./yarn-workspaces.js";
 export async function addChannel(
   pluginConfig: PluginConfig,
   pkg: PackageJson,
-  context: AddChannelContext
+  context: AddChannelContext,
 ) {
   const {
     cwd,
@@ -39,7 +39,7 @@ export async function addChannel(
 
     for (const name of packagesToTag) {
       logger.log(
-        `Adding version ${version} to npm registry ${registry} (tagged as @${distTag})`
+        `Adding version ${version} to npm registry ${registry} (tagged as @${distTag})`,
       );
       const result = execa(
         "yarn",
@@ -47,14 +47,14 @@ export async function addChannel(
         {
           cwd: basePath,
           env,
-        }
+        },
       );
       result.stdout!.pipe(stdout, { end: false });
       result.stderr!.pipe(stderr, { end: false });
       await result;
 
       logger.log(
-        `Added ${name}@${version} on ${registry} (tagged as @${distTag})`
+        `Added ${name}@${version} on ${registry} (tagged as @${distTag})`,
       );
     }
 

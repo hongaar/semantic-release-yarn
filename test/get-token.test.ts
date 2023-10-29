@@ -7,7 +7,7 @@ test("Get token from npmAuthToken", (t) => {
 
   t.is(
     getToken("https://registry.npmjs.org", { npmAuthToken: "token" }, context),
-    "token"
+    "token",
   );
 });
 
@@ -23,9 +23,9 @@ test("Get token from environment variable", (t) => {
         env: {
           YARN_NPM_AUTH_TOKEN: "token",
         },
-      }
+      },
     ),
-    "token"
+    "token",
   );
 });
 
@@ -42,9 +42,9 @@ test("Get token from registries list", (t) => {
           },
         },
       },
-      context
+      context,
     ),
-    "token"
+    "token",
   );
 });
 
@@ -67,9 +67,9 @@ test("Precedence: registries list > environment variable > npmAuthToken", (t) =>
         env: {
           YARN_NPM_AUTH_TOKEN: "token3",
         },
-      }
+      },
     ),
-    "token2"
+    "token2",
   );
   t.is(
     getToken(
@@ -82,8 +82,8 @@ test("Precedence: registries list > environment variable > npmAuthToken", (t) =>
         env: {
           YARN_NPM_AUTH_TOKEN: "token3",
         },
-      }
+      },
     ),
-    "token3"
+    "token3",
   );
 });
