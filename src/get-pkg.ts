@@ -6,7 +6,7 @@ import { getError } from "./get-error.js";
 
 export async function getPkg(
   { pkgRoot }: PluginConfig,
-  { cwd }: { cwd: CommonContext["cwd"] }
+  { cwd }: { cwd: CommonContext["cwd"] },
 ) {
   const readPackage = await getImplementation("readPackage");
 

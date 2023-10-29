@@ -10,7 +10,7 @@ export type ErrorDefinition = Error & {
 
 export function getError<T extends keyof typeof ERROR_DEFINITIONS>(
   code: T,
-  ctx: Parameters<(typeof ERROR_DEFINITIONS)[T]>[0]
+  ctx: Parameters<(typeof ERROR_DEFINITIONS)[T]>[0],
 ): ErrorDefinition {
   const { message, details } = ERROR_DEFINITIONS[code](ctx as any);
 

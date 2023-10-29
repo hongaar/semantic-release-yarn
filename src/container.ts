@@ -7,7 +7,7 @@ type Modules = {
 const modules: Modules = {} as any;
 
 async function getDefaultImplementation<T extends keyof Modules>(
-  name: T
+  name: T,
 ): Promise<Modules[T]> {
   switch (name) {
     case "execa":

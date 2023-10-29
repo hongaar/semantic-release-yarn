@@ -25,7 +25,7 @@ const DEFAULT_ERROR = {
 };
 
 function createExecaResult(
-  payload: Partial<ExecaReturnValue & ExecaError> = {}
+  payload: Partial<ExecaReturnValue & ExecaError> = {},
 ) {
   let promise;
 
@@ -60,14 +60,14 @@ export function mockExeca(payload: Partial<ExecaReturnValue> = {}) {
 }
 
 export function mockExecaError(
-  payload: Partial<ExecaReturnValue & ExecaError> = {}
+  payload: Partial<ExecaReturnValue & ExecaError> = {},
 ) {
   setImplementation("execa", () =>
     createExecaResult({
       ...payload,
       exitCode: 1,
       failed: true,
-    })
+    }),
   );
 }
 

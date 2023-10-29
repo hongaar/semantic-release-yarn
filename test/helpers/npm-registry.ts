@@ -56,7 +56,7 @@ export async function start() {
         retries: 7,
         minTimeout: 1000,
         factor: 2,
-      }
+      },
     );
   } catch {
     throw new Error(`Couldn't start ${IMAGE} after 2 min`);
@@ -75,7 +75,7 @@ export async function start() {
           password: NPM_PASSWORD,
           email: NPM_EMAIL,
         },
-      }
+      },
     )
     .json();
 

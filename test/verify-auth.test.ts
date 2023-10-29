@@ -14,7 +14,7 @@ test.serial("No token", async (t) => {
   const context = createContext();
   await fs.outputFile(
     resolve(context.cwd, ".yarnrc.yml"),
-    yaml.dump({} as Yarnrc)
+    yaml.dump({} as Yarnrc),
   );
 
   const {
@@ -31,7 +31,7 @@ test.serial("Invalid token", async (t) => {
     resolve(context.cwd, ".yarnrc.yml"),
     yaml.dump({
       npmAuthToken: "invalid",
-    } as Yarnrc)
+    } as Yarnrc),
   );
 
   mockExecaError();
@@ -50,7 +50,7 @@ test.serial("Valid token", async (t) => {
     resolve(context.cwd, ".yarnrc.yml"),
     yaml.dump({
       npmAuthToken: "valid",
-    } as Yarnrc)
+    } as Yarnrc),
   );
 
   mockExeca();

@@ -12,7 +12,7 @@ import { getYarnConfig } from "./get-yarn-config.js";
 export async function verifyAuth(
   { pkgRoot }: PluginConfig,
   pkg: PackageJson,
-  context: CommonContext
+  context: CommonContext,
 ) {
   const { cwd, env, stdout, stderr, logger } = context;
   const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
@@ -29,7 +29,7 @@ export async function verifyAuth(
 
   if (!isDefaultRegistry(registry)) {
     logger.log(
-      `Skipping authentication verification for non-default registry "${registry}"`
+      `Skipping authentication verification for non-default registry "${registry}"`,
     );
 
     return;
@@ -37,7 +37,7 @@ export async function verifyAuth(
 
   try {
     logger.log(
-      `Running "yarn npm whoami --publish" to verify authentication on registry "${registry}"`
+      `Running "yarn npm whoami --publish" to verify authentication on registry "${registry}"`,
     );
 
     // @todo deal with npm npm whoami --scope if pkg is scoped

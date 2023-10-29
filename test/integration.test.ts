@@ -52,8 +52,8 @@ test('Skip npm auth verification if "npmPublish" is false', async (t) => {
       {
         ...context,
         env,
-      }
-    )
+      },
+    ),
   );
 });
 
@@ -74,8 +74,8 @@ test('Skip npm auth verification if "package.private" is true', async (t) => {
       {
         ...context,
         options: { publish: ["semantic-release-yarn"] },
-      }
-    )
+      },
+    ),
   );
 });
 
@@ -101,8 +101,8 @@ test("Throws error if NPM token is invalid", async (t) => {
         ...context,
         env,
         options: {},
-      }
-    )
+      },
+    ),
   );
 
   t.is(error.name, "SemanticReleaseError");
@@ -127,8 +127,8 @@ test("Skip auth validation if the registry configured is not the default one", a
         ...context,
         env,
         options: {},
-      }
-    )
+      },
+    ),
   );
 });
 
@@ -149,8 +149,8 @@ test("Verify npm auth and package", async (t) => {
         ...context,
         env: authEnv,
         options: {},
-      }
-    )
+      },
+    ),
   );
 });
 
@@ -171,8 +171,8 @@ test("Verify npm auth and package from a sub-directory", async (t) => {
         ...context,
         env: authEnv,
         options: {},
-      }
-    )
+      },
+    ),
   );
 });
 
@@ -204,8 +204,8 @@ test("Throw SemanticReleaseError Array if config option are not valid in verifyC
             },
           ],
         },
-      }
-    )
+      },
+    ),
   );
 
   t.is(errors[0].name, "SemanticReleaseError");
@@ -239,7 +239,7 @@ test("Publish the package", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.deepEqual(result, {
@@ -273,7 +273,7 @@ test("Publish the package on a dist-tag", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { channel: "next", version: "1.0.0" },
-    }
+    },
   );
 
   t.deepEqual(result, {
@@ -307,7 +307,7 @@ test("Publish the package from a sub-directory", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.deepEqual(result, {
@@ -322,7 +322,7 @@ test("Publish the package from a sub-directory", async (t) => {
       cwd: resolve(cwd, "dist"),
       env: testEnv,
     }),
-    "1.0.0"
+    "1.0.0",
   );
 });
 
@@ -347,7 +347,7 @@ test('Create the package and skip publish ("npmPublish" is false)', async (t) =>
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.false(result);
@@ -378,7 +378,7 @@ test('Create the package and skip publish ("package.private" is true)', async (t
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.false(result);
@@ -408,7 +408,7 @@ test('Create the package and skip publish from a sub-directory ("npmPublish" is 
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.false(result);
@@ -439,7 +439,7 @@ test('Create the package and skip publish from a sub-directory ("package.private
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.false(result);
@@ -471,8 +471,8 @@ test("Throw SemanticReleaseError Array if config option are not valid in publish
         commits: [],
         lastRelease: { version: "0.0.0" },
         nextRelease: { version: "1.0.0" },
-      }
-    )
+      },
+    ),
   );
 
   t.is(errors[0].name, "SemanticReleaseError");
@@ -506,7 +506,7 @@ test("Prepare the package", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.is((await fs.readJson(resolve(cwd, "package.json"))).version, "1.0.0");
@@ -534,7 +534,7 @@ test("Prepare the package from a sub-directory", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.is((await fs.readJson(resolve(cwd, "dist/package.json"))).version, "1.0.0");
@@ -564,8 +564,8 @@ test("Throw SemanticReleaseError Array if config option are not valid in prepare
         commits: [],
         lastRelease: { version: "0.0.0" },
         nextRelease: { version: "1.0.0" },
-      }
-    )
+      },
+    ),
   );
 
   t.is(errors[0].name, "SemanticReleaseError");
@@ -599,7 +599,7 @@ test("Publish the package and add to default dist-tag", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { channel: "next", version: "1.0.0" },
-    }
+    },
   );
 
   const result = await mod.addChannel(
@@ -613,7 +613,7 @@ test("Publish the package and add to default dist-tag", async (t) => {
       lastRelease: { version: "0.0.0" },
       currentRelease: { version: "1.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.deepEqual(result, {
@@ -645,7 +645,7 @@ test("Publish the package and add to lts dist-tag", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { channel: "latest", version: "1.0.0" },
-    }
+    },
   );
 
   const result = await mod.addChannel(
@@ -659,7 +659,7 @@ test("Publish the package and add to lts dist-tag", async (t) => {
       lastRelease: { version: "0.0.0" },
       currentRelease: { version: "1.0.0" },
       nextRelease: { channel: "1.x", version: "1.0.0" },
-    }
+    },
   );
 
   t.deepEqual(result, {
@@ -693,7 +693,7 @@ test('Skip adding the package to a channel ("npmPublish" is false)', async (t) =
       lastRelease: { version: "0.0.0" },
       currentRelease: { version: "1.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.false(result);
@@ -723,7 +723,7 @@ test('Skip adding the package to a channel ("package.private" is true)', async (
       lastRelease: { version: "0.0.0" },
       currentRelease: { version: "1.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.false(result);
@@ -751,7 +751,7 @@ test("Create the package in addChannel step", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.is((await fs.readJson(resolve(cwd, "package.json"))).version, "1.0.0");
@@ -783,8 +783,8 @@ test("Throw SemanticReleaseError Array if config option are not valid in addChan
         lastRelease: { version: "0.0.0" },
         currentRelease: { version: "1.0.0" },
         nextRelease: { version: "1.0.0" },
-      }
-    )
+      },
+    ),
   );
 
   t.is(errors[0].name, "SemanticReleaseError");
@@ -815,8 +815,8 @@ test("Verify token and set up auth only on the fist call, then prepare on prepar
         ...context,
         env,
         options: {},
-      }
-    )
+      },
+    ),
   );
   await mod.prepare(
     {},
@@ -828,7 +828,7 @@ test("Verify token and set up auth only on the fist call, then prepare on prepar
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   let result = await mod.publish(
@@ -841,7 +841,7 @@ test("Verify token and set up auth only on the fist call, then prepare on prepar
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { channel: "next", version: "1.0.0" },
-    }
+    },
   );
   t.deepEqual(result, {
     name: "npm package (@next dist-tag)",
@@ -861,7 +861,7 @@ test("Verify token and set up auth only on the fist call, then prepare on prepar
       lastRelease: { version: "0.0.0" },
       currentRelease: { version: "1.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.deepEqual(result, {
@@ -906,7 +906,7 @@ test("Publish monorepo packages", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   // @todo: how to reflect each workspace in the result?
@@ -924,11 +924,11 @@ test("Publish monorepo packages", async (t) => {
   await t.throwsAsync(getPackageVersion("monorepo", { cwd, env: testEnv }));
   t.is(
     await getPackageVersion("monorepo-workspace-a", { cwd, env: testEnv }),
-    "1.0.0"
+    "1.0.0",
   );
   t.is(
     await getPackageVersion("monorepo-workspace-b", { cwd, env: testEnv }),
-    "1.0.0"
+    "1.0.0",
   );
 });
 
@@ -966,7 +966,7 @@ test("Publish non-private monorepo packages", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   // @todo: how to reflect each workspace in the result?
@@ -981,31 +981,31 @@ test("Publish non-private monorepo packages", async (t) => {
   t.false(await fs.pathExists(resolve(cwd, `monorepo-non-private-1.0.0.tgz`)));
   t.false(
     await fs.pathExists(
-      resolve(cwd, `monorepo-non-private-workspace-a-1.0.0.tgz`)
-    )
+      resolve(cwd, `monorepo-non-private-workspace-a-1.0.0.tgz`),
+    ),
   );
   t.false(
     await fs.pathExists(
-      resolve(cwd, `monorepo-non-private-workspace-b-1.0.0.tgz`)
-    )
+      resolve(cwd, `monorepo-non-private-workspace-b-1.0.0.tgz`),
+    ),
   );
   t.is(
     await getPackageVersion("monorepo-non-private", { cwd, env: testEnv }),
-    "1.0.0"
+    "1.0.0",
   );
   t.is(
     await getPackageVersion("monorepo-non-private-workspace-a", {
       cwd,
       env: testEnv,
     }),
-    "1.0.0"
+    "1.0.0",
   );
   t.is(
     await getPackageVersion("monorepo-non-private-workspace-b", {
       cwd,
       env: testEnv,
     }),
-    "1.0.0"
+    "1.0.0",
   );
 });
 
@@ -1043,7 +1043,7 @@ test("Publish monorepo packages on a dist-tag", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { channel: "next", version: "1.0.0" },
-    }
+    },
   );
 
   // @todo: how to reflect each workspace in the result?
@@ -1056,30 +1056,30 @@ test("Publish monorepo packages on a dist-tag", async (t) => {
   t.false(await fs.pathExists(resolve(cwd, `monorepo-publish-tag-1.0.0.tgz`)));
   t.false(
     await fs.pathExists(
-      resolve(cwd, `monorepo-publish-tag-workspace-a-1.0.0.tgz`)
-    )
+      resolve(cwd, `monorepo-publish-tag-workspace-a-1.0.0.tgz`),
+    ),
   );
   t.false(
     await fs.pathExists(
-      resolve(cwd, `monorepo-publish-tag-workspace-b-1.0.0.tgz`)
-    )
+      resolve(cwd, `monorepo-publish-tag-workspace-b-1.0.0.tgz`),
+    ),
   );
   await t.throwsAsync(
-    getPackageVersion("monorepo-publish-tag", { cwd, env: testEnv })
+    getPackageVersion("monorepo-publish-tag", { cwd, env: testEnv }),
   );
   t.is(
     await getPackageVersion("monorepo-publish-tag-workspace-a", {
       cwd,
       env: testEnv,
     }),
-    "1.0.0"
+    "1.0.0",
   );
   t.is(
     await getPackageVersion("monorepo-publish-tag-workspace-b", {
       cwd,
       env: testEnv,
     }),
-    "1.0.0"
+    "1.0.0",
   );
 });
 
@@ -1117,7 +1117,7 @@ test("Publish monorepo packages and add to default dist-tag", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { channel: "next", version: "1.0.0" },
-    }
+    },
   );
 
   const result = await mod.addChannel(
@@ -1131,7 +1131,7 @@ test("Publish monorepo packages and add to default dist-tag", async (t) => {
       lastRelease: { version: "0.0.0" },
       currentRelease: { version: "1.0.0" },
       nextRelease: { version: "1.0.0" },
-    }
+    },
   );
 
   t.deepEqual(result, {
@@ -1144,13 +1144,13 @@ test("Publish monorepo packages and add to default dist-tag", async (t) => {
     (await getPackageTags("monorepo-add-channel-workspace-a", { cwd, env }))[
       "latest"
     ],
-    "1.0.0"
+    "1.0.0",
   );
   t.is(
     (await getPackageTags("monorepo-add-channel-workspace-b", { cwd, env }))[
       "latest"
     ],
-    "1.0.0"
+    "1.0.0",
   );
 });
 
@@ -1188,7 +1188,7 @@ test("Publish monorepo packages and add to lts dist-tag", async (t) => {
       commits: [],
       lastRelease: { version: "0.0.0" },
       nextRelease: { channel: "latest", version: "1.0.0" },
-    }
+    },
   );
 
   const result = await mod.addChannel(
@@ -1202,7 +1202,7 @@ test("Publish monorepo packages and add to lts dist-tag", async (t) => {
       lastRelease: { version: "0.0.0" },
       currentRelease: { version: "1.0.0" },
       nextRelease: { channel: "1.x", version: "1.0.0" },
-    }
+    },
   );
 
   t.deepEqual(result, {
@@ -1211,7 +1211,7 @@ test("Publish monorepo packages and add to lts dist-tag", async (t) => {
     channel: "release-1.x",
   });
   await t.throwsAsync(
-    getPackageTags("monorepo-add-channel-legacy", { cwd, env })
+    getPackageTags("monorepo-add-channel-legacy", { cwd, env }),
   );
   t.is(
     (
@@ -1220,7 +1220,7 @@ test("Publish monorepo packages and add to lts dist-tag", async (t) => {
         env,
       })
     )["latest"],
-    "1.0.0"
+    "1.0.0",
   );
   t.is(
     (
@@ -1229,7 +1229,7 @@ test("Publish monorepo packages and add to lts dist-tag", async (t) => {
         env,
       })
     )["latest"],
-    "1.0.0"
+    "1.0.0",
   );
   t.is(
     (
@@ -1238,7 +1238,7 @@ test("Publish monorepo packages and add to lts dist-tag", async (t) => {
         env,
       })
     )["release-1.x"],
-    "1.0.0"
+    "1.0.0",
   );
   t.is(
     (
@@ -1247,6 +1247,6 @@ test("Publish monorepo packages and add to lts dist-tag", async (t) => {
         env,
       })
     )["release-1.x"],
-    "1.0.0"
+    "1.0.0",
   );
 });

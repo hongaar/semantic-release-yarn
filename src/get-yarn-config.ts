@@ -16,7 +16,7 @@ export async function getYarnConfig({
     cosmiconfig("yarn", {
       searchPlaces: [YARNRC_FILENAME],
     }),
-    cwd
+    cwd,
   );
 
   if (!result) {
@@ -31,7 +31,7 @@ export async function getYarnConfig({
 // https://github.com/chrisblossom/cosmiconfig-all-example/blob/master/src/cosmiconfig-all-example.js
 async function cosmiconfigSearchRecursive<T>(
   explorer: ReturnType<typeof cosmiconfig>,
-  searchFrom: string
+  searchFrom: string,
 ) {
   let config: T = {} as T;
   const files: string[] = [];

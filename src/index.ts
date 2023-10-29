@@ -18,7 +18,7 @@ let prepared: boolean;
 
 export async function verifyConditions(
   pluginConfig: PluginConfig,
-  context: VerifyConditionsContext
+  context: VerifyConditionsContext,
 ) {
   /**
    * If the plugin is used and has `npmPublish`, `tarballDir` or
@@ -28,24 +28,24 @@ export async function verifyConditions(
   if (context.options?.["publish"]) {
     const publishPlugin =
       _.castArray(context.options["publish"]).find(
-        (config) => config.path && config.path === PLUGIN_NAME
+        (config) => config.path && config.path === PLUGIN_NAME,
       ) || {};
 
     pluginConfig.npmPublish = _.defaultTo(
       pluginConfig.npmPublish,
-      publishPlugin.npmPublish
+      publishPlugin.npmPublish,
     );
     pluginConfig.tarballDir = _.defaultTo(
       pluginConfig.tarballDir,
-      publishPlugin.tarballDir
+      publishPlugin.tarballDir,
     );
     pluginConfig.pkgRoot = _.defaultTo(
       pluginConfig.pkgRoot,
-      publishPlugin.pkgRoot
+      publishPlugin.pkgRoot,
     );
     pluginConfig.mainWorkspace = _.defaultTo(
       pluginConfig.mainWorkspace,
-      publishPlugin.mainWorkspace
+      publishPlugin.mainWorkspace,
     );
   }
 
@@ -56,7 +56,7 @@ export async function verifyConditions(
 
 export async function prepare(
   pluginConfig: PluginConfig,
-  context: PrepareContext
+  context: PrepareContext,
 ) {
   if (!verified) {
     await verify(pluginConfig, context);
@@ -71,7 +71,7 @@ export async function prepare(
 
 export async function publish(
   pluginConfig: PluginConfig,
-  context: PublishContext
+  context: PublishContext,
 ) {
   if (!verified) {
     await verify(pluginConfig, context);
@@ -88,7 +88,7 @@ export async function publish(
 
 export async function addChannel(
   pluginConfig: PluginConfig,
-  context: AddChannelContext
+  context: AddChannelContext,
 ) {
   if (!verified) {
     await verify(pluginConfig, context);
