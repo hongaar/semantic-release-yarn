@@ -23,15 +23,8 @@ test("Update package.json", async (t) => {
   // Verify package.json has been updated
   t.is((await fs.readJson(packagePath)).version, "1.0.0");
 
-  // Verify the logger has been called with the version plugin call
-  t.deepEqual(context.logger.log.args[0], [
-    'Installing Yarn "%s" plugin in "%s"',
-    "version",
-    cwd,
-  ]);
-
   // Verify the logger has been called with the version updated
-  t.deepEqual(context.logger.log.args[1], [
+  t.deepEqual(context.logger.log.args[0], [
     'Write version "%s" to package.json in "%s"',
     "1.0.0",
     cwd,
@@ -59,7 +52,7 @@ test("Update package.json in a sub-directory", async (t) => {
   t.is((await fs.readJson(packagePath)).version, "1.0.0");
 
   // Verify the logger has been called with the version updated
-  t.deepEqual(context.logger.log.args[1], [
+  t.deepEqual(context.logger.log.args[0], [
     'Write version "%s" to package.json in "%s"',
     "1.0.0",
     resolve(cwd, pkgRoot),
@@ -86,7 +79,7 @@ test("Create the package tarball", async (t) => {
   t.is((await fs.readJson(packagePath)).version, "1.0.0");
 
   // Verify the logger has been called with the version updated
-  t.deepEqual(context.logger.log.args[1], [
+  t.deepEqual(context.logger.log.args[0], [
     'Write version "%s" to package.json in "%s"',
     "1.0.0",
     cwd,
@@ -96,7 +89,7 @@ test("Create the package tarball", async (t) => {
   t.true(await fs.pathExists(resolve(cwd, "tarball/my-pkg-1.0.0.tgz")));
 
   // Verify the logger has been called with the version updated
-  t.deepEqual(context.logger.log.args[2], [
+  t.deepEqual(context.logger.log.args[1], [
     'Creating package tarball in "%s"',
     "tarball",
   ]);
@@ -121,7 +114,7 @@ test("Create the package tarball in the current directory", async (t) => {
   t.is(await fs.pathExists(resolve(cwd, "my-pkg-1.0.0.tgz")), true);
 
   // Verify the logger has been called with the version updated
-  t.deepEqual(context.logger.log.args[2], [
+  t.deepEqual(context.logger.log.args[1], [
     'Creating package tarball in "%s"',
     ".",
   ]);
@@ -183,23 +176,8 @@ test("Update monorepo package.json files", async (t) => {
   t.is((await fs.readJson(workspaceAPath)).version, "1.0.0");
   t.is((await fs.readJson(workspaceBPath)).version, "1.0.0");
 
-  // Verify the logger has been called with the workspace-tools plugin call
-  t.deepEqual(context.logger.log.args[0], [
-    'Installing Yarn "%s" plugin in "%s"',
-    "workspace-tools",
-    cwd,
-  ]);
-
-  // Verify the logger has been called with the version plugin call
-  // Verify the logger has been called with the workspace-tools plugin call
-  t.deepEqual(context.logger.log.args[1], [
-    'Installing Yarn "%s" plugin in "%s"',
-    "version",
-    cwd,
-  ]);
-
   // Verify the logger has been called with the version updated
-  t.deepEqual(context.logger.log.args[2], [
+  t.deepEqual(context.logger.log.args[0], [
     'Write version "%s" to package.json in "%s"',
     "1.0.0",
     cwd,
@@ -240,7 +218,7 @@ test("Create the monorepo package tarballs", async (t) => {
   t.is(await fs.pathExists(resolve(cwd, "workspace-b-1.0.0.tgz")), true);
 
   // Verify the logger has been called with the version updated
-  t.deepEqual(context.logger.log.args[3], [
+  t.deepEqual(context.logger.log.args[1], [
     'Creating package tarball in "%s"',
     ".",
   ]);
