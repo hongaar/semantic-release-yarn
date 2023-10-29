@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/hongaar/semantic-release-yarn/compare/v3.0.1...v3.0.2) (2023-10-29)
+
+
+### Bug Fixes
+
+* change --worktree to --all ([#212](https://github.com/hongaar/semantic-release-yarn/issues/212)) ([0bf8f09](https://github.com/hongaar/semantic-release-yarn/commit/0bf8f0979e1bd0684225b82f4a47e5b89eb72a92)), closes [#210](https://github.com/hongaar/semantic-release-yarn/issues/210)
+
 ## [3.0.1](https://github.com/hongaar/semantic-release-yarn/compare/v3.0.0...v3.0.1) (2023-10-29)
 
 
