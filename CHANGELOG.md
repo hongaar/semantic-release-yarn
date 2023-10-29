@@ -1,3 +1,13 @@
+# [3.0.0](https://github.com/hongaar/semantic-release-yarn/compare/v2.0.2...v3.0.0) (2023-10-29)
+
+
+* feat!: update node.js versions (#177) ([3101023](https://github.com/hongaar/semantic-release-yarn/commit/3101023371bcb5291ee3bfc727ebb3c1052a3e2f)), closes [#177](https://github.com/hongaar/semantic-release-yarn/issues/177)
+
+
+### BREAKING CHANGES
+
+* Require at least Node 18
+
 ## [2.0.2](https://github.com/hongaar/semantic-release-yarn/compare/v2.0.1...v2.0.2) (2023-10-26)
 
 
