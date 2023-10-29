@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/hongaar/semantic-release-yarn/compare/v3.0.0...v3.0.1) (2023-10-29)
+
+
+### Bug Fixes
+
+* add support for yarn 4 ([#211](https://github.com/hongaar/semantic-release-yarn/issues/211)) ([94ff591](https://github.com/hongaar/semantic-release-yarn/commit/94ff591be54fe5151c488bf20cdd0a09cdb9769b)), closes [#210](https://github.com/hongaar/semantic-release-yarn/issues/210)
+
 # [3.0.0](https://github.com/hongaar/semantic-release-yarn/compare/v2.0.2...v3.0.0) (2023-10-29)
 
 
