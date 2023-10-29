@@ -12,7 +12,7 @@ import { reasonToNotPublish, shouldPublish } from "./should-publish.js";
 export async function publish(
   pluginConfig: PluginConfig,
   pkg: PackageJson,
-  context: PublishContext
+  context: PublishContext,
 ) {
   const {
     cwd,
@@ -32,11 +32,18 @@ export async function publish(
     const distTag = getChannel(channel!);
     const isMonorepo = typeof pkg.workspaces !== "undefined";
     const workspacesPrefix = isMonorepo
-      ? ["workspaces", "foreach", "--topological", "--verbose", "--no-private"]
+      ? [
+          "workspaces",
+          "foreach",
+          "--worktree",
+          "--topological",
+          "--verbose",
+          "--no-private",
+        ]
       : [];
 
     logger.log(
-      `Publishing version ${version} to npm registry ${registry} (tagged as @${distTag})`
+      `Publishing version ${version} to npm registry ${registry} (tagged as @${distTag})`,
     );
     const result = execa(
       "yarn",
@@ -44,7 +51,7 @@ export async function publish(
       {
         cwd: basePath,
         env,
-      }
+      },
     );
     result.stdout!.pipe(stdout, { end: false });
     result.stderr!.pipe(stderr, { end: false });
@@ -53,7 +60,7 @@ export async function publish(
     logger.log(
       `Published ${
         mainWorkspace ?? pkg.name
-      }@${version} on ${registry} (tagged as @${distTag})`
+      }@${version} on ${registry} (tagged as @${distTag})`,
     );
 
     return getReleaseInfo(pkg, pluginConfig, context, distTag, registry);

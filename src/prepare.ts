@@ -11,7 +11,7 @@ const TARBALL_FILENAME = "%s-%v.tgz";
 export async function prepare(
   { tarballDir, pkgRoot }: PluginConfig,
   pkg: PackageJson,
-  context: PrepareContext
+  context: PrepareContext,
 ) {
   const {
     cwd,
@@ -26,7 +26,14 @@ export async function prepare(
   const basePath = pkgRoot ? resolve(cwd, String(pkgRoot)) : cwd;
   const isMonorepo = typeof pkg.workspaces !== "undefined";
   const workspacesPrefix = isMonorepo
-    ? ["workspaces", "foreach", "--topological", "--verbose", "--no-private"]
+    ? [
+        "workspaces",
+        "foreach",
+        "--worktree",
+        "--topological",
+        "--verbose",
+        "--no-private",
+      ]
     : [];
 
   if (isMonorepo) {
@@ -45,7 +52,7 @@ export async function prepare(
     {
       cwd: basePath,
       env,
-    }
+    },
   );
   versionResult.stdout!.pipe(stdout, { end: false });
   versionResult.stderr!.pipe(stderr, { end: false });
@@ -65,7 +72,7 @@ export async function prepare(
       {
         cwd: basePath,
         env,
-      }
+      },
     );
     packResult.stdout!.pipe(stdout, { end: false });
     packResult.stderr!.pipe(stderr, { end: false });
