@@ -35,7 +35,7 @@ export async function publish(
       ? [
           "workspaces",
           "foreach",
-          "--worktree",
+          "--all",
           "--topological",
           "--verbose",
           "--no-private",

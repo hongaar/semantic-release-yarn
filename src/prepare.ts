@@ -29,7 +29,7 @@ export async function prepare(
     ? [
         "workspaces",
         "foreach",
-        "--worktree",
+        "--all",
         "--topological",
         "--verbose",
         "--no-private",
