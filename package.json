@@ -73,7 +73,7 @@
     "@types/lodash": "4.14.200",
     "@types/node": "20.8.3",
     "@types/prettier": "3.0.0",
-    "@types/semantic-release": "20.0.2",
+    "@types/semantic-release": "20.0.4",
     "@types/semver": "7.5.4",
     "@types/sinon": "10.0.16",
     "@types/stream-buffers": "3.0.5",
