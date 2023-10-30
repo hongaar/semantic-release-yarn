@@ -1049,12 +1049,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/sinon@npm:10.0.16":
-  version: 10.0.16
-  resolution: "@types/sinon@npm:10.0.16"
+"@types/sinon@npm:10.0.20":
+  version: 10.0.20
+  resolution: "@types/sinon@npm:10.0.20"
   dependencies:
     "@types/sinonjs__fake-timers": "npm:*"
-  checksum: 33cf8b6e87ef3f1e40d7d4a920ff642b39081cd6d90feb7224399b8299a9fbbe5902b7c90a9096d98e8e94433bc3e8173dac390bdb37a4b2ec6e1cc71ce95ab6
+  checksum: 4c62cb8e45298ac8311e312f54e8afe9b170e79a6c1b10459e1216cc58ab66c90c9654d984e96de114003cfc62ddedb94f7e25b571e7da9b08800c9e8d864b0d
   languageName: node
   linkType: hard
 
@@ -6401,7 +6401,7 @@ __metadata:
     "@types/prettier": "npm:3.0.0"
     "@types/semantic-release": "npm:20.0.2"
     "@types/semver": "npm:7.5.4"
-    "@types/sinon": "npm:10.0.16"
+    "@types/sinon": "npm:10.0.20"
     "@types/stream-buffers": "npm:3.0.5"
     aggregate-error: "npm:^5.0.0"
     ava: "npm:5.3.1"
