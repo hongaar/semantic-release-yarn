@@ -1003,10 +1003,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.8.3":
-  version: 20.8.3
-  resolution: "@types/node@npm:20.8.3"
-  checksum: 6f69c2fc4b2f95764317fc23c6b92b0c3480e5026d47dcb7b882308908dd6beab3dd02c54344811c8db44f84abd3ef00e35097e2f6d2b79cff21f33981a504a1
+"@types/node@npm:20.8.10":
+  version: 20.8.10
+  resolution: "@types/node@npm:20.8.10"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 8930039077c8ad74de74c724909412bea8110c3f8892bcef8dda3e9629073bed65632ee755f94b252bcdae8ca71cf83e89a4a440a105e2b1b7c9797b43483049
   languageName: node
   linkType: hard
 
@@ -6397,7 +6399,7 @@ __metadata:
     "@types/fs-extra": "npm:11.0.3"
     "@types/js-yaml": "npm:4.0.8"
     "@types/lodash": "npm:4.14.200"
-    "@types/node": "npm:20.8.3"
+    "@types/node": "npm:20.8.10"
     "@types/prettier": "npm:3.0.0"
     "@types/semantic-release": "npm:20.0.4"
     "@types/semver": "npm:7.5.4"
@@ -7370,6 +7372,13 @@ __metadata:
   version: 1.13.6
   resolution: "underscore@npm:1.13.6"
   checksum: 58cf5dc42cb0ac99c146ae4064792c0a2cc84f3a3c4ad88f5082e79057dfdff3371d896d1ec20379e9ece2450d94fa78f2ef5bfefc199ba320653e32c009bd66
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 0097779d94bc0fd26f0418b3a05472410408877279141ded2bd449167be1aed7ea5b76f756562cb3586a07f251b90799bab22d9019ceba49c037c76445f7cddd
   languageName: node
   linkType: hard
 
