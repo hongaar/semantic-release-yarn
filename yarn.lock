@@ -1079,10 +1079,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:7.5.4":
-  version: 7.5.4
-  resolution: "@types/semver@npm:7.5.4"
-  checksum: e99c3edc8d64f56abcd891b9e44a45c4ae3cab551c8af5aa67b5df2b49e5fd03f74aac9da71fd5357a50a08d5deb95014516956b15b407052e07f25c7a4a606e
+"@types/semver@npm:7.5.5":
+  version: 7.5.5
+  resolution: "@types/semver@npm:7.5.5"
+  checksum: 1b0be2c4d830f5ef002a305308e06e3616fc38a41c9a2c5b4267df82a038d9bd0ba32ec1da82a52db84a720be7e4b69bac7593797d8dc1400a69069af8f19219
   languageName: node
   linkType: hard
 
@@ -6490,7 +6490,7 @@ __metadata:
     "@types/node": "npm:20.8.10"
     "@types/prettier": "npm:3.0.0"
     "@types/semantic-release": "npm:20.0.4"
-    "@types/semver": "npm:7.5.4"
+    "@types/semver": "npm:7.5.5"
     "@types/sinon": "npm:17.0.1"
     "@types/stream-buffers": "npm:3.0.6"
     aggregate-error: "npm:^5.0.0"
