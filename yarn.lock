@@ -3532,10 +3532,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"import-from-esm@npm:^1.3.1":
+  version: 1.3.3
+  resolution: "import-from-esm@npm:1.3.3"
+  dependencies:
+    debug: "npm:^4.3.4"
+    import-meta-resolve: "npm:^4.0.0"
+  checksum: 3f30a7bcce9b7f96f90e33facd473cc4801abf2260894bdde47099c60b04e8c72a40a82702c05e150996aab4345e7fba0c512ecfed7562f009a1e8982ed2835a
+  languageName: node
+  linkType: hard
+
 "import-from@npm:^4.0.0":
   version: 4.0.0
   resolution: "import-from@npm:4.0.0"
   checksum: 1fa29c05b048da18914e91d9a529e5d9b91774bebbfab10e53f59bcc1667917672b971cf102fee857f142e5e433ce69fa1f0a596e1c7d82f9947a5ec352694b9
+  languageName: node
+  linkType: hard
+
+"import-meta-resolve@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "import-meta-resolve@npm:4.0.0"
+  checksum: 73f0f1d68f7280cb4415e3a212a6e5d57fbfe61ab6f467df3dad5361529fbd89ac7d8ea2b694412b74985a4226d218ad3fb22fd8f06f5429beda521dc9f0229c
   languageName: node
   linkType: hard
 
@@ -6494,7 +6511,7 @@ __metadata:
     p-retry: "npm:6.1.0"
     prettier: "npm:3.0.3"
     read-pkg: "npm:^8.0.0"
-    semantic-release: "npm:22.0.7"
+    semantic-release: "npm:22.0.8"
     semver: "npm:^7.3.8"
     sinon: "npm:17.0.1"
     stream-buffers: "npm:3.0.2"
@@ -6506,9 +6523,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"semantic-release@npm:22.0.7":
-  version: 22.0.7
-  resolution: "semantic-release@npm:22.0.7"
+"semantic-release@npm:22.0.8":
+  version: 22.0.8
+  resolution: "semantic-release@npm:22.0.8"
   dependencies:
     "@semantic-release/commit-analyzer": "npm:^11.0.0"
     "@semantic-release/error": "npm:^4.0.0"
@@ -6526,6 +6543,7 @@ __metadata:
     git-log-parser: "npm:^1.2.0"
     hook-std: "npm:^3.0.0"
     hosted-git-info: "npm:^7.0.0"
+    import-from-esm: "npm:^1.3.1"
     lodash-es: "npm:^4.17.21"
     marked: "npm:^9.0.0"
     marked-terminal: "npm:^6.0.0"
@@ -6540,7 +6558,7 @@ __metadata:
     yargs: "npm:^17.5.1"
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: df1d1c0b5108703374ca824b48b4b59cc5cca885d2c36d9d6c96f77a6350111e58b4f813a666cb94730bf38bcdddcd8a4920d2cbd8841efe3398db4db3ef83d4
+  checksum: 68f8eca22edbdca382c2a08b7aa29b2050b4d1d598f0b719075d52bc696c8e78dd1dcfc45f4f07e7e34d6dc5dce7ec120cd877fd0ab30d2a1efa124eefe08b4f
   languageName: node
   linkType: hard
 
