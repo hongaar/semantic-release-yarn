@@ -1070,12 +1070,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:20.0.4":
-  version: 20.0.4
-  resolution: "@types/semantic-release@npm:20.0.4"
+"@types/semantic-release@npm:20.0.6":
+  version: 20.0.6
+  resolution: "@types/semantic-release@npm:20.0.6"
   dependencies:
     "@types/node": "npm:*"
-  checksum: ca30c8b31cc4741566ff989977e61ae6b3a74cd425c1e56e9d8286ce5980433ccbb9541c95850a39c48aa14aa9a766174be141a5864859cc33d7356b2360e724
+  checksum: 7e2c186b07012a0468c1024201be0eda801927093eeb1c7b98d58881b8d66ca7647ff310673eaaeeef312f16c70409386d6a839b6c1a552dd500057678d4b682
   languageName: node
   linkType: hard
 
@@ -6506,7 +6506,7 @@ __metadata:
     "@types/lodash": "npm:4.14.200"
     "@types/node": "npm:20.10.0"
     "@types/prettier": "npm:3.0.0"
-    "@types/semantic-release": "npm:20.0.4"
+    "@types/semantic-release": "npm:20.0.6"
     "@types/semver": "npm:7.5.6"
     "@types/sinon": "npm:17.0.2"
     "@types/stream-buffers": "npm:3.0.7"
