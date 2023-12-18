@@ -6653,7 +6653,7 @@ __metadata:
     p-retry: "npm:6.1.0"
     prettier: "npm:3.1.1"
     read-pkg: "npm:^9.0.1"
-    semantic-release: "npm:22.0.8"
+    semantic-release: "npm:22.0.12"
     semver: "npm:^7.3.8"
     sinon: "npm:17.0.1"
     stream-buffers: "npm:3.0.2"
@@ -6665,9 +6665,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"semantic-release@npm:22.0.8":
-  version: 22.0.8
-  resolution: "semantic-release@npm:22.0.8"
+"semantic-release@npm:22.0.12":
+  version: 22.0.12
+  resolution: "semantic-release@npm:22.0.12"
   dependencies:
     "@semantic-release/commit-analyzer": "npm:^11.0.0"
     "@semantic-release/error": "npm:^4.0.0"
@@ -6700,7 +6700,7 @@ __metadata:
     yargs: "npm:^17.5.1"
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: 68f8eca22edbdca382c2a08b7aa29b2050b4d1d598f0b719075d52bc696c8e78dd1dcfc45f4f07e7e34d6dc5dce7ec120cd877fd0ab30d2a1efa124eefe08b4f
+  checksum: cecc72eace26a28bec37a1c1958281b4f7ccee57620c476d852468499b08111d6d71d580943b23dd8b9ae4433f06ccfc450486dc2915c67a6654aa157fbd7130
   languageName: node
   linkType: hard
 
