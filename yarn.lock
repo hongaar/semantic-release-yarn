@@ -1067,12 +1067,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.10.0":
-  version: 20.10.0
-  resolution: "@types/node@npm:20.10.0"
+"@types/node@npm:20.10.5":
+  version: 20.10.5
+  resolution: "@types/node@npm:20.10.5"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: c7d5ddbdbf3491e2363135c9611eb6bfae90eda2957279237fa232bcb29cd0df1cc3ee149d6de9915b754262a531ee2d57d33c9ecd58d763e8ad4856113822f3
+  checksum: 4a378428d2c9f692b19801a5a3d20dc4c0ad5d4a3d103350f8b401af439941a9aa5efeadc8eb9db13c66c620318bc7f336abfc8934f82fd32c4a689d85068c6f
   languageName: node
   linkType: hard
 
@@ -6629,7 +6629,7 @@ __metadata:
     "@types/fs-extra": "npm:11.0.4"
     "@types/js-yaml": "npm:4.0.9"
     "@types/lodash": "npm:4.14.202"
-    "@types/node": "npm:20.10.0"
+    "@types/node": "npm:20.10.5"
     "@types/prettier": "npm:3.0.0"
     "@types/semantic-release": "npm:20.0.6"
     "@types/semver": "npm:7.5.6"
