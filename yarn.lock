@@ -2555,26 +2555,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docker-modem@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "docker-modem@npm:5.0.0"
+"docker-modem@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "docker-modem@npm:5.0.2"
   dependencies:
     debug: "npm:^4.1.1"
     readable-stream: "npm:^3.5.0"
     split-ca: "npm:^1.0.1"
     ssh2: "npm:^1.11.0"
-  checksum: a9c812dd710a1b868076a14d2509957c2b1e37eb75c1d4ae925ed863e4aaed8c112794a3487ec0d56f7e1cd025753a3dbe2690153d9d52c97b8a1e98acb456ca
+  checksum: 889494a9ea263098130598acaad1cb9f2ff5de5dda6c89698788adfa663947b539edbe8ee679d867c007aefb60af08e8c55a44c58822d24d9c9e61add72d1fdb
   languageName: node
   linkType: hard
 
-"dockerode@npm:4.0.0":
-  version: 4.0.0
-  resolution: "dockerode@npm:4.0.0"
+"dockerode@npm:4.0.1":
+  version: 4.0.1
+  resolution: "dockerode@npm:4.0.1"
   dependencies:
     "@balena/dockerignore": "npm:^1.0.2"
-    docker-modem: "npm:^5.0.0"
+    docker-modem: "npm:^5.0.2"
     tar-fs: "npm:~2.0.1"
-  checksum: e92b7f03252945dc6f04661d78a72ac9e9f3e5128dc04ab3687a648662f572d73e561cce878699870f64c6cd941c90970481791901d7a087d263de0807474eab
+  checksum: 87fec74ec5dd65c8eb0275cb21f60a2d3c4122c3b682e2ef1f36a31eca43ff2cca09b269ff44b4160e2a682a9d4d724b9940c8d2511e871c8074ab27c45f3929
   languageName: node
   linkType: hard
 
@@ -6638,7 +6638,7 @@ __metadata:
     aggregate-error: "npm:^5.0.0"
     ava: "npm:6.0.1"
     cosmiconfig: "npm:^9.0.0"
-    dockerode: "npm:4.0.0"
+    dockerode: "npm:4.0.1"
     doctoc: "npm:2.2.1"
     execa: "npm:^8.0.1"
     fs-extra: "npm:^11.1.0"
