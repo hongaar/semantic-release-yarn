@@ -78,7 +78,7 @@
     "@types/sinon": "17.0.2",
     "@types/stream-buffers": "3.0.7",
     "ava": "6.0.1",
-    "dockerode": "4.0.1",
+    "dockerode": "4.0.2",
     "doctoc": "2.2.1",
     "get-stream": "7.0.1",
     "got": "12.6.0",

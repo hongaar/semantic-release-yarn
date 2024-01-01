@@ -1499,7 +1499,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"asn1@npm:^0.2.4":
+"asn1@npm:^0.2.6":
   version: 0.2.6
   resolution: "asn1@npm:0.2.6"
   dependencies:
@@ -1732,10 +1732,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buildcheck@npm:0.0.3":
-  version: 0.0.3
-  resolution: "buildcheck@npm:0.0.3"
-  checksum: 4b0001e730d78e09a13b4cebae7e8ffa08252b54cdad0e8853cf68481d5bde5b11236f23b7889110ff3e90b0ba0ef2125340cbcee8267735e6dd8caf1064b15a
+"buildcheck@npm:~0.0.6":
+  version: 0.0.6
+  resolution: "buildcheck@npm:0.0.6"
+  checksum: 194ee8d3b0926fd6f3e799732130ad7ab194882c56900b8670ad43c81326f64871f49b7d9f1e9baad91ca3070eb4e8b678797fe9ae78cf87dde86d8916eb25d2
   languageName: node
   linkType: hard
 
@@ -2353,14 +2353,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cpu-features@npm:~0.0.4":
-  version: 0.0.4
-  resolution: "cpu-features@npm:0.0.4"
+"cpu-features@npm:~0.0.9":
+  version: 0.0.9
+  resolution: "cpu-features@npm:0.0.9"
   dependencies:
-    buildcheck: "npm:0.0.3"
-    nan: "npm:^2.15.0"
+    buildcheck: "npm:~0.0.6"
+    nan: "npm:^2.17.0"
     node-gyp: "npm:latest"
-  checksum: 25946f9f64daee853525de16eadc9221c1760c4e78ca30cec423cbc0b8e9e3690942b6de219b6b8c8957c8bbe9d6a156f55013db15586d497516d9e01a5b6182
+  checksum: 05a4ec51fff87fcde9ca91021d9a0e73a34eb190b14163f7394757ce2470a85393bc49985915bc0bc0ad7ac1ac79caee21f8626a82b535262d9b7d012f805d64
   languageName: node
   linkType: hard
 
@@ -2555,26 +2555,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docker-modem@npm:^5.0.2":
-  version: 5.0.2
-  resolution: "docker-modem@npm:5.0.2"
+"docker-modem@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "docker-modem@npm:5.0.3"
   dependencies:
     debug: "npm:^4.1.1"
     readable-stream: "npm:^3.5.0"
     split-ca: "npm:^1.0.1"
-    ssh2: "npm:^1.11.0"
-  checksum: 889494a9ea263098130598acaad1cb9f2ff5de5dda6c89698788adfa663947b539edbe8ee679d867c007aefb60af08e8c55a44c58822d24d9c9e61add72d1fdb
+    ssh2: "npm:^1.15.0"
+  checksum: fc4cc09f3aab0e17d32eb5a01974bed845a803e23352937aceab2e35c35bdcd283d1655c154b737063b037f164f57addbd447628d620f564a2da82e036543a5f
   languageName: node
   linkType: hard
 
-"dockerode@npm:4.0.1":
-  version: 4.0.1
-  resolution: "dockerode@npm:4.0.1"
+"dockerode@npm:4.0.2":
+  version: 4.0.2
+  resolution: "dockerode@npm:4.0.2"
   dependencies:
     "@balena/dockerignore": "npm:^1.0.2"
-    docker-modem: "npm:^5.0.2"
+    docker-modem: "npm:^5.0.3"
     tar-fs: "npm:~2.0.1"
-  checksum: 87fec74ec5dd65c8eb0275cb21f60a2d3c4122c3b682e2ef1f36a31eca43ff2cca09b269ff44b4160e2a682a9d4d724b9940c8d2511e871c8074ab27c45f3929
+  checksum: 859279721553cc07d00f8e7ac55abb3bba3a8a42685c742f3651c46a996755c720005fedc8b6bb7ac0ca5dc9123536164099c93741d691c7779669ecde3bbc3d
   languageName: node
   linkType: hard
 
@@ -5198,12 +5198,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.15.0, nan@npm:^2.16.0":
-  version: 2.17.0
-  resolution: "nan@npm:2.17.0"
+"nan@npm:^2.17.0, nan@npm:^2.18.0":
+  version: 2.18.0
+  resolution: "nan@npm:2.18.0"
   dependencies:
     node-gyp: "npm:latest"
-  checksum: bba1efee2475afb0cce154300b554863fb4bb0a683a28f5d0fa7390794b3b4381356aabeab6472c70651d9c8a2830e7595963f3ec0aa2008e5c4d83dbeb820fa
+  checksum: 5520e22c64e2b5b495b1d765d6334c989b848bbe1502fec89c5857cabcc7f9f0474563377259e7574bff1c8a041d3b90e9ffa1f5e15502ffddee7b2550cc26a0
   languageName: node
   linkType: hard
 
@@ -6638,7 +6638,7 @@ __metadata:
     aggregate-error: "npm:^5.0.0"
     ava: "npm:6.0.1"
     cosmiconfig: "npm:^9.0.0"
-    dockerode: "npm:4.0.1"
+    dockerode: "npm:4.0.2"
     doctoc: "npm:2.2.1"
     execa: "npm:^8.0.1"
     fs-extra: "npm:^11.1.0"
@@ -7021,20 +7021,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ssh2@npm:^1.11.0":
-  version: 1.11.0
-  resolution: "ssh2@npm:1.11.0"
+"ssh2@npm:^1.15.0":
+  version: 1.15.0
+  resolution: "ssh2@npm:1.15.0"
   dependencies:
-    asn1: "npm:^0.2.4"
+    asn1: "npm:^0.2.6"
     bcrypt-pbkdf: "npm:^1.0.2"
-    cpu-features: "npm:~0.0.4"
-    nan: "npm:^2.16.0"
+    cpu-features: "npm:~0.0.9"
+    nan: "npm:^2.18.0"
   dependenciesMeta:
     cpu-features:
       optional: true
     nan:
       optional: true
-  checksum: 292671cc0c51dcd87694918c589340dc05e1b25395add37016e38b4564da16f8b5c8daa30b3def64065be710e8e09ec7ddbb183c6b4515306b81e258b0590b96
+  checksum: afe7cb646d73348753c25938f677b61f6ac7554ff3d7dbbcdd4e7bbb275eaff9956729267c1828de92bbbdcd8431253cff995b05d4c882b9e411661fb4f4cd88
   languageName: node
   linkType: hard
 
