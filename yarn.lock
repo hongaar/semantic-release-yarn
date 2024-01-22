@@ -1515,9 +1515,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ava@npm:6.0.1":
-  version: 6.0.1
-  resolution: "ava@npm:6.0.1"
+"ava@npm:6.1.0":
+  version: 6.1.0
+  resolution: "ava@npm:6.1.0"
   dependencies:
     "@vercel/nft": "npm:^0.24.4"
     acorn: "npm:^8.11.2"
@@ -1566,7 +1566,7 @@ __metadata:
       optional: true
   bin:
     ava: entrypoints/cli.mjs
-  checksum: 0b7e71b047c61fd9e52eb5ee5946ed2a450425ac0060410ef964bd5b1842e1581a1e5f2a71f4b328ecb8f54fb53a51c8c80acda78de974890582c194ef6ebb7d
+  checksum: ef948e0b76e5d8775003d9b0e253231cea9d78851674b443e00815f6590fb103a7628b28691cdc2654cc6a698c554def8b9b793c2c794663b17f3a04bb4b662e
   languageName: node
   linkType: hard
 
@@ -6594,7 +6594,7 @@ __metadata:
     "@types/sinon": "npm:17.0.3"
     "@types/stream-buffers": "npm:3.0.7"
     aggregate-error: "npm:^5.0.0"
-    ava: "npm:6.0.1"
+    ava: "npm:6.1.0"
     cosmiconfig: "npm:^9.0.0"
     dockerode: "npm:4.0.2"
     doctoc: "npm:2.2.1"
