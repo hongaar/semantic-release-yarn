@@ -81,7 +81,7 @@
     "dockerode": "4.0.2",
     "doctoc": "2.2.1",
     "get-stream": "7.0.1",
-    "got": "12.6.0",
+    "got": "14.1.0",
     "husky": "9.0.7",
     "lint-staged": "15.2.0",
     "moker": "2.1.5",
