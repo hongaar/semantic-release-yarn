@@ -163,9 +163,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mokr/core@npm:2.1.8":
-  version: 2.1.8
-  resolution: "@mokr/core@npm:2.1.8"
+"@mokr/core@npm:2.1.9":
+  version: 2.1.9
+  resolution: "@mokr/core@npm:2.1.9"
   dependencies:
     chalk: "npm:5.3.0"
     deepmerge: "npm:4.3.1"
@@ -173,28 +173,28 @@ __metadata:
     license: "npm:1.0.3"
     ora: "npm:8.0.1"
     pkg-up: "npm:^5.0.0"
-    sort-package-json: "npm:2.7.0"
+    sort-package-json: "npm:2.8.0"
     yaml: "npm:2.4.0"
-  checksum: ebb8f3a2904f9f7928c8f9183c1fc43a817c6ddf26f3053e463f497b4dc8c53c260f64388702d35865cee7a6b20240d1a22b635b6055f0d06da1e82c7f886af6
+  checksum: b31d97b74e9aa28cb15d0ef17a08c39f0cf6e5e69237e332c48f45531905352be18d8a9dc4ff5e45917c3030e8496cd4efc4212002d47dd1a7067385ee66b2e4
   languageName: node
   linkType: hard
 
-"@mokr/plugins@npm:2.1.8":
-  version: 2.1.8
-  resolution: "@mokr/plugins@npm:2.1.8"
+"@mokr/plugins@npm:2.1.9":
+  version: 2.1.9
+  resolution: "@mokr/plugins@npm:2.1.9"
   dependencies:
-    "@mokr/core": "npm:2.1.8"
-  checksum: aea09840eb58bb5f96b257e6c63a37cb172c900ec142a5864913b98f43c33ad066c56a8c11ef7e5e48f03061dcdce3a8d1fcbc4a256e2f8c7fbfa2424b44671b
+    "@mokr/core": "npm:2.1.9"
+  checksum: aea700529d02c36e0be0e32a630d330bb51e1d220a99722f5cfd7f90298e7a7996dad6f5f1bd12e3efac825b892dcbb47717482214b72b29ea0e409e13fe83a1
   languageName: node
   linkType: hard
 
-"@mokr/templates@npm:2.1.8":
-  version: 2.1.8
-  resolution: "@mokr/templates@npm:2.1.8"
+"@mokr/templates@npm:2.1.9":
+  version: 2.1.9
+  resolution: "@mokr/templates@npm:2.1.9"
   dependencies:
-    "@mokr/core": "npm:2.1.8"
-    "@mokr/plugins": "npm:2.1.8"
-  checksum: 789d9331a8240566ffa42bb93084c88b9d8c38dfa25054deb29e56ef88fd4e298b7627510bbcd8a4a4e95c76a4d836d918564d51d9b3b02d32123ce643739893
+    "@mokr/core": "npm:2.1.9"
+    "@mokr/plugins": "npm:2.1.9"
+  checksum: 035d82c85a0f61603192568e40b4fcde20d0c0c4215643ddf345bd84b4d3f84cf80e873ccc63db60b8aec6c20be4e26f94f19ff00d3c651426e22b8b2c5c0583
   languageName: node
   linkType: hard
 
@@ -1603,16 +1603,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bandersnatch@npm:1.12.13":
-  version: 1.12.13
-  resolution: "bandersnatch@npm:1.12.13"
+"bandersnatch@npm:1.12.14":
+  version: 1.12.14
+  resolution: "bandersnatch@npm:1.12.14"
   dependencies:
     "@types/yargs": "npm:17.0.32"
     enquirer: "npm:^2.3.6"
     string-argv: "npm:^0.3.1"
     typed-emitter: "npm:^2.1.0"
     yargs: "npm:^17.5.1"
-  checksum: 588d196ae953c756e3b77a9f95e6641c018a369819c8c7580da138faa5ab922fbe9a8bd50176ed71287a2f912e5c1fe886606e225cb134888c509f40081099c5
+  checksum: 8c8ea845d96cb31f75f3540eda5279a6e3698a6e550a00e6f402681992138ee6f5635799ef9540a8e17ee53a471080d3b7d2759c354924fa0d62fac59f0b2873
   languageName: node
   linkType: hard
 
@@ -5172,17 +5172,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moker@npm:2.1.8":
-  version: 2.1.8
-  resolution: "moker@npm:2.1.8"
+"moker@npm:2.1.9":
+  version: 2.1.9
+  resolution: "moker@npm:2.1.9"
   dependencies:
-    "@mokr/core": "npm:2.1.8"
-    "@mokr/plugins": "npm:2.1.8"
-    "@mokr/templates": "npm:2.1.8"
-    bandersnatch: "npm:1.12.13"
+    "@mokr/core": "npm:2.1.9"
+    "@mokr/plugins": "npm:2.1.9"
+    "@mokr/templates": "npm:2.1.9"
+    bandersnatch: "npm:1.12.14"
   bin:
     moker: moker.js
-  checksum: a51d66a708ba09e677c0e1e83c29c7fc7f534bb6499b8288355a0cae296a5976b5a4401a9ca4aff5b9d848162c17555858a0672c8d1bd902571b410e44417177
+  checksum: f9acbc81e596380ed555c2a41ddea43e9e6318e9aebb4b3581b47626f881067a2825ed2da2ad6f6e311aa355fd2dc1bfae7efa2e4a71f03f4aa26a3d4b0867a0
   languageName: node
   linkType: hard
 
@@ -6682,7 +6682,7 @@ __metadata:
     js-yaml: "npm:^4.1.0"
     lint-staged: "npm:15.2.2"
     lodash: "npm:^4.17.21"
-    moker: "npm:2.1.8"
+    moker: "npm:2.1.9"
     nerf-dart: "npm:^1.0.0"
     p-retry: "npm:6.2.0"
     prettier: "npm:3.2.5"
@@ -6960,9 +6960,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sort-package-json@npm:2.7.0":
-  version: 2.7.0
-  resolution: "sort-package-json@npm:2.7.0"
+"sort-package-json@npm:2.8.0":
+  version: 2.8.0
+  resolution: "sort-package-json@npm:2.8.0"
   dependencies:
     detect-indent: "npm:^7.0.1"
     detect-newline: "npm:^4.0.0"
@@ -6973,7 +6973,7 @@ __metadata:
     sort-object-keys: "npm:^1.1.3"
   bin:
     sort-package-json: cli.js
-  checksum: a9b825830f3ba0c59f3a5828271d9ad461703abbc18653bc77d2c0d4409b85d84b5a2a1307b9e9cfa0cfcfde640dcc58f003217f0570dcab6ce079ea2dff26ec
+  checksum: d9097e2cc01b04ef15181747eea4669a26eb72815b54762169d112885fe511426ff2a4dc855c3a68cbec970ec75ab1826e7d0ce85c7c418b399a8adbe0046db0
   languageName: node
   linkType: hard
 
