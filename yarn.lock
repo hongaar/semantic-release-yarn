@@ -638,6 +638,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sec-ant/readable-stream@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "@sec-ant/readable-stream@npm:0.4.1"
+  checksum: aac89581652ac85debe7c5303451c2ebf8bf25ca25db680e4b9b73168f6940616d9a4bbe3348981827b1159b14e2f2e6af4b7bd5735cac898c12d5c51909c102
+  languageName: node
+  linkType: hard
+
 "@semantic-release/changelog@npm:6.0.3":
   version: 6.0.3
   resolution: "@semantic-release/changelog@npm:6.0.3"
@@ -3223,10 +3230,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-stream@npm:7.0.1, get-stream@npm:^7.0.0":
-  version: 7.0.1
-  resolution: "get-stream@npm:7.0.1"
-  checksum: ebd749cbf27c0b468fb9b2d5638637c91fe4fa24081e1bef4d84c6f6de5c0aafb4babdf4b41ee410f36fa35a1dc8bc066a8c13c3d63050b07d78d2cd5bed17a9
+"get-stream@npm:9.0.1":
+  version: 9.0.1
+  resolution: "get-stream@npm:9.0.1"
+  dependencies:
+    "@sec-ant/readable-stream": "npm:^0.4.1"
+    is-stream: "npm:^4.0.1"
+  checksum: ce56e6db6bcd29ca9027b0546af035c3e93dcd154ca456b54c298901eb0e5b2ce799c5d727341a100c99e14c523f267f1205f46f153f7b75b1f4da6d98a21c5e
   languageName: node
   linkType: hard
 
@@ -3234,6 +3244,13 @@ __metadata:
   version: 6.0.1
   resolution: "get-stream@npm:6.0.1"
   checksum: 781266d29725f35c59f1d214aedc92b0ae855800a980800e2923b3fbc4e56b3cb6e462c42e09a1cf1a00c64e056a78fa407cbe06c7c92b7e5cd49b4b85c2a497
+  languageName: node
+  linkType: hard
+
+"get-stream@npm:^7.0.0":
+  version: 7.0.1
+  resolution: "get-stream@npm:7.0.1"
+  checksum: ebd749cbf27c0b468fb9b2d5638637c91fe4fa24081e1bef4d84c6f6de5c0aafb4babdf4b41ee410f36fa35a1dc8bc066a8c13c3d63050b07d78d2cd5bed17a9
   languageName: node
   linkType: hard
 
@@ -3970,6 +3987,13 @@ __metadata:
   version: 3.0.0
   resolution: "is-stream@npm:3.0.0"
   checksum: 172093fe99119ffd07611ab6d1bcccfe8bc4aa80d864b15f43e63e54b7abc71e779acd69afdb854c4e2a67fdc16ae710e370eda40088d1cfc956a50ed82d8f16
+  languageName: node
+  linkType: hard
+
+"is-stream@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "is-stream@npm:4.0.1"
+  checksum: cbea3f1fc271b21ceb228819d0c12a0965a02b57f39423925f99530b4eb86935235f258f06310b67cd02b2d10b49e9a0998f5ececf110ab7d3760bae4055ad23
   languageName: node
   linkType: hard
 
@@ -6691,7 +6715,7 @@ __metadata:
     doctoc: "npm:2.2.1"
     execa: "npm:^8.0.1"
     fs-extra: "npm:^11.1.0"
-    get-stream: "npm:7.0.1"
+    get-stream: "npm:9.0.1"
     got: "npm:12.6.0"
     husky: "npm:9.0.11"
     js-yaml: "npm:^4.1.0"
