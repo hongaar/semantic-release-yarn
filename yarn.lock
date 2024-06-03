@@ -2913,7 +2913,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:^8.0.0, execa@npm:^8.0.1, execa@npm:~8.0.1":
+"execa@npm:^8.0.0, execa@npm:~8.0.1":
   version: 8.0.1
   resolution: "execa@npm:8.0.1"
   dependencies:
@@ -2930,7 +2930,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:^9.0.0":
+"execa@npm:^9.0.0, execa@npm:^9.1.0":
   version: 9.1.0
   resolution: "execa@npm:9.1.0"
   dependencies:
@@ -6808,7 +6808,7 @@ __metadata:
     cosmiconfig: "npm:^9.0.0"
     dockerode: "npm:4.0.2"
     doctoc: "npm:2.2.1"
-    execa: "npm:^8.0.1"
+    execa: "npm:^9.1.0"
     fs-extra: "npm:^11.1.0"
     get-stream: "npm:7.0.1"
     got: "npm:12.6.0"
