@@ -6793,7 +6793,7 @@ __metadata:
     semantic-release: "npm:24.0.0"
     semver: "npm:^7.3.8"
     sinon: "npm:17.0.1"
-    stream-buffers: "npm:3.0.2"
+    stream-buffers: "npm:3.0.3"
     tempy: "npm:3.1.0"
     ts-node: "npm:10.9.2"
     typescript: "npm:5.4.5"
@@ -7224,10 +7224,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stream-buffers@npm:3.0.2":
-  version: 3.0.2
-  resolution: "stream-buffers@npm:3.0.2"
-  checksum: 66e55fb770929527f5cf7798f0e4c3b48e04970bf242b3d200140d9e3c0425ba14da4203d3b877be2f8a981b8f3027a5f5d2ad56f8c9f51cb70b3cbb6ba7c5b3
+"stream-buffers@npm:3.0.3":
+  version: 3.0.3
+  resolution: "stream-buffers@npm:3.0.3"
+  checksum: 8a1d5ea656fc8c3ed8daaf18e0f3755829683912c4a182f47360480f29c4757fe558518a9f5375075c71578fa1a3f18d72a0270f90fbf5288b6f119f347b156f
   languageName: node
   linkType: hard
 
