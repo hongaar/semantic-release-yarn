@@ -1048,14 +1048,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/dockerode@npm:3.3.28":
-  version: 3.3.28
-  resolution: "@types/dockerode@npm:3.3.28"
+"@types/dockerode@npm:3.3.30":
+  version: 3.3.30
+  resolution: "@types/dockerode@npm:3.3.30"
   dependencies:
     "@types/docker-modem": "npm:*"
     "@types/node": "npm:*"
     "@types/ssh2": "npm:*"
-  checksum: cb358c787992808d7528709b81d8d64560a91c7b2bd70b2bb342ac7313a772b0158bb617bc9e3089d89a649567d2c613ed5a23d0cb4a72bf209ac456409343ae
+  checksum: a57186c921bea91ebfd63870a072a742b3ad2fe4e1aeef05a805caa6ccd43abee4b86a632fc2eea197cc5457e7a469f8270a28945cbb3ab559840df287101306
   languageName: node
   linkType: hard
 
@@ -6761,7 +6761,7 @@ __metadata:
     "@semantic-release/changelog": "npm:6.0.3"
     "@semantic-release/error": "npm:^4.0.0"
     "@semantic-release/git": "npm:10.0.1"
-    "@types/dockerode": "npm:3.3.28"
+    "@types/dockerode": "npm:3.3.30"
     "@types/env-ci": "npm:3.1.4"
     "@types/fs-extra": "npm:11.0.4"
     "@types/js-yaml": "npm:4.0.9"
