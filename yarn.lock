@@ -3548,6 +3548,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hosted-git-info@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "hosted-git-info@npm:8.0.0"
+  dependencies:
+    lru-cache: "npm:^10.0.1"
+  checksum: fb1e5600a57dbebfc4d708ccd6256facabb1cdfb182ac20ab7c900c311bda91f71b2129d3e15b4d1faaef82d1acb5f7c3558e50c4249402020f866a4f9958b8b
+  languageName: node
+  linkType: hard
+
 "htmlparser2@npm:^7.2.0":
   version: 7.2.0
   resolution: "htmlparser2@npm:7.2.0"
@@ -6770,7 +6779,7 @@ __metadata:
     p-retry: "npm:6.2.0"
     prettier: "npm:3.2.5"
     read-pkg: "npm:^9.0.1"
-    semantic-release: "npm:24.0.0"
+    semantic-release: "npm:24.1.1"
     semver: "npm:^7.3.8"
     sinon: "npm:19.0.2"
     stream-buffers: "npm:3.0.3"
@@ -6782,9 +6791,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"semantic-release@npm:24.0.0":
-  version: 24.0.0
-  resolution: "semantic-release@npm:24.0.0"
+"semantic-release@npm:24.1.1":
+  version: 24.1.1
+  resolution: "semantic-release@npm:24.1.1"
   dependencies:
     "@semantic-release/commit-analyzer": "npm:^13.0.0-beta.1"
     "@semantic-release/error": "npm:^4.0.0"
@@ -6801,7 +6810,7 @@ __metadata:
     get-stream: "npm:^6.0.0"
     git-log-parser: "npm:^1.2.0"
     hook-std: "npm:^3.0.0"
-    hosted-git-info: "npm:^7.0.0"
+    hosted-git-info: "npm:^8.0.0"
     import-from-esm: "npm:^1.3.1"
     lodash-es: "npm:^4.17.21"
     marked: "npm:^12.0.0"
@@ -6817,7 +6826,7 @@ __metadata:
     yargs: "npm:^17.5.1"
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: 6403831caf7623b805f928c1c6ddf6dfa66f31823c0b91c95ae942dd25fbc0ad4b0f52027b37d2cfe10f27f06ef6b535b81561a67f5652340966fa85741ce1b8
+  checksum: 194a560c152755b95c50eb786ff98949e04fba1222c5c9312b0e847bd0c0bade291fda99469d4a36f1e790bfbc597f2fd5e4b32b7b1c3c82c6ba54297bec56a2
   languageName: node
   linkType: hard
 
