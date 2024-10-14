@@ -3699,12 +3699,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:9.0.11":
-  version: 9.0.11
-  resolution: "husky@npm:9.0.11"
+"husky@npm:9.1.6":
+  version: 9.1.6
+  resolution: "husky@npm:9.1.6"
   bin:
-    husky: bin.mjs
-  checksum: 8a9b7cb9dc8494b470b3b47b386e65d579608c6206da80d3cc8b71d10e37947264af3dfe00092368dad9673b51d2a5ee87afb4b2291e77ba9e7ec1ac36e56cd1
+    husky: bin.js
+  checksum: 421ccd8850378231aaefd70dbe9e4f1549b84ffe3a6897f93a202242bbc04e48bd498169aef43849411105d9fcf7c192b757d42661e28d06b934a609a4eb8771
   languageName: node
   linkType: hard
 
@@ -6814,7 +6814,7 @@ __metadata:
     fs-extra: "npm:^11.1.0"
     get-stream: "npm:7.0.1"
     got: "npm:12.6.0"
-    husky: "npm:9.0.11"
+    husky: "npm:9.1.6"
     js-yaml: "npm:^4.1.0"
     lint-staged: "npm:15.2.10"
     lodash: "npm:^4.17.21"
