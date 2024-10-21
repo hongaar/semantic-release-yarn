@@ -521,14 +521,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/plugin-paginate-rest@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "@octokit/plugin-paginate-rest@npm:10.0.0"
+"@octokit/openapi-types@npm:^22.2.0":
+  version: 22.2.0
+  resolution: "@octokit/openapi-types@npm:22.2.0"
+  checksum: 0471b0c789fada5aa2390e6f82ba477738228ef7d2d986dda9aab0cb625d1562bd178ba0ba4d2655ce841079cd5efff9e58ece2077c27e569ea22109ea301830
+  languageName: node
+  linkType: hard
+
+"@octokit/plugin-paginate-rest@npm:^11.0.0":
+  version: 11.3.5
+  resolution: "@octokit/plugin-paginate-rest@npm:11.3.5"
   dependencies:
-    "@octokit/types": "npm:^12.6.0"
+    "@octokit/types": "npm:^13.6.0"
   peerDependencies:
     "@octokit/core": ">=6"
-  checksum: ab198792c94e4adf596d41659153b248c7d8ca78092e1aff5d4994045ffaf2ee9fec5d01107b8f0098074e3f76f11f941a791a647ffe11f68f78f3bfb84d40ce
+  checksum: daa911bb370818d8cd561a7d449d164cbad6e9e29c11c666054f1ecc19d2ea9fbdc9ef8c65f33a1102096eb671847d343ae57acbeb17185e64447741ffdfde3e
   languageName: node
   linkType: hard
 
@@ -584,6 +591,15 @@ __metadata:
   dependencies:
     "@octokit/openapi-types": "npm:^20.0.0"
   checksum: 19b77a8d25af2a5df4561f8750f807edfc9fca5b07cfa9fb21dce4665e1b188c966688f5ed5e08089404428100dfe44ad353f8d8532f1d30fe47e61c5faa1440
+  languageName: node
+  linkType: hard
+
+"@octokit/types@npm:^13.6.0":
+  version: 13.6.1
+  resolution: "@octokit/types@npm:13.6.1"
+  dependencies:
+    "@octokit/openapi-types": "npm:^22.2.0"
+  checksum: 9ea6189839439e1085799cc16ee699292538d9c14dd15e9e45462377287f863b6be93455d2ad9acffd561018a0c35adbb9d1437e92075c9058d6c6d69ff2f503
   languageName: node
   linkType: hard
 
@@ -709,12 +725,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/github@npm:^10.0.0":
-  version: 10.0.2
-  resolution: "@semantic-release/github@npm:10.0.2"
+"@semantic-release/github@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "@semantic-release/github@npm:11.0.0"
   dependencies:
     "@octokit/core": "npm:^6.0.0"
-    "@octokit/plugin-paginate-rest": "npm:^10.0.0"
+    "@octokit/plugin-paginate-rest": "npm:^11.0.0"
     "@octokit/plugin-retry": "npm:^7.0.0"
     "@octokit/plugin-throttling": "npm:^9.0.0"
     "@semantic-release/error": "npm:^4.0.0"
@@ -730,8 +746,8 @@ __metadata:
     p-filter: "npm:^4.0.0"
     url-join: "npm:^5.0.0"
   peerDependencies:
-    semantic-release: ">=20.1.0"
-  checksum: 4e9e401205447b1f115f9e2db9213be6942ce6a82df94e687939165df599b9d39e95460a9419d3a368aed6a8639386da9b7277d6f50a116d08719ae02fdb28f1
+    semantic-release: ">=24.1.0"
+  checksum: a9ffb7eb0cddc04242cd83f002d025e230899ede643d0f0e9e47073021e176d6a8746d9465f1ca6b718323cb4bebd77db0878a2ca90b2ce6f97c8de31ef5529b
   languageName: node
   linkType: hard
 
@@ -6823,7 +6839,7 @@ __metadata:
     p-retry: "npm:6.2.0"
     prettier: "npm:3.2.5"
     read-pkg: "npm:^9.0.1"
-    semantic-release: "npm:24.1.1"
+    semantic-release: "npm:24.1.3"
     semver: "npm:^7.3.8"
     sinon: "npm:19.0.2"
     stream-buffers: "npm:3.0.3"
@@ -6835,13 +6851,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"semantic-release@npm:24.1.1":
-  version: 24.1.1
-  resolution: "semantic-release@npm:24.1.1"
+"semantic-release@npm:24.1.3":
+  version: 24.1.3
+  resolution: "semantic-release@npm:24.1.3"
   dependencies:
     "@semantic-release/commit-analyzer": "npm:^13.0.0-beta.1"
     "@semantic-release/error": "npm:^4.0.0"
-    "@semantic-release/github": "npm:^10.0.0"
+    "@semantic-release/github": "npm:^11.0.0"
     "@semantic-release/npm": "npm:^12.0.0"
     "@semantic-release/release-notes-generator": "npm:^14.0.0-beta.1"
     aggregate-error: "npm:^5.0.0"
@@ -6870,7 +6886,7 @@ __metadata:
     yargs: "npm:^17.5.1"
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: 194a560c152755b95c50eb786ff98949e04fba1222c5c9312b0e847bd0c0bade291fda99469d4a36f1e790bfbc597f2fd5e4b32b7b1c3c82c6ba54297bec56a2
+  checksum: f18e6ce5fe671b8dcfbfe79a8fe37432f560c554b6a2180ffff96c4ab86cab80ef738bc3f7ac371d8e478dbf876787d22bcbb4c499b285528556053637e5bb72
   languageName: node
   linkType: hard
 
