@@ -1127,12 +1127,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:22.8.1":
-  version: 22.8.1
-  resolution: "@types/node@npm:22.8.1"
+"@types/node@npm:22.9.0":
+  version: 22.9.0
+  resolution: "@types/node@npm:22.9.0"
   dependencies:
     undici-types: "npm:~6.19.8"
-  checksum: ae969e3d956dead1422c35d568ea5d48dd124a38a1a337cbd120fec6e13cc92b45c7308f91f1139fcd2337a67d4704d5614d6a2c444b1fb268f85e9f1d24c713
+  checksum: a7df3426891868b0f5fb03e46aeddd8446178233521c624a44531c92a040cf08a82d8235f7e1e02af731fd16984665d4d71f3418caf9c2788313b10f040d615d
   languageName: node
   linkType: hard
 
@@ -6854,7 +6854,7 @@ __metadata:
     "@types/fs-extra": "npm:11.0.4"
     "@types/js-yaml": "npm:4.0.9"
     "@types/lodash": "npm:4.17.13"
-    "@types/node": "npm:22.8.1"
+    "@types/node": "npm:22.9.0"
     "@types/prettier": "npm:3.0.0"
     "@types/semantic-release": "npm:20.0.6"
     "@types/semver": "npm:7.5.8"
