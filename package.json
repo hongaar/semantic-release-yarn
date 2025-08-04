@@ -92,7 +92,7 @@
     "stream-buffers": "3.0.3",
     "tempy": "3.1.0",
     "ts-node": "10.9.2",
-    "typescript": "5.7.3"
+    "typescript": "5.9.2"
   },
   "peerDependencies": {
     "semantic-release": ">=19.0.0"
