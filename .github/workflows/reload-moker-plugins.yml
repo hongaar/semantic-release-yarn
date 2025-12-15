@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: hongaar/moker@v4
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8
         with:
           title: "chore: reload moker plugins"
           body: |
